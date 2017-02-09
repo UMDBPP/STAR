@@ -6794,8 +6794,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <part name="XTAL1" library="AR_XTAL" deviceset="ABS07AIG-32.768KHZ-1-T" device="" value="ABS07AIG-32.768KHZ-1-T "/>
 <part name="P+1" library="supply1" deviceset="V+" device=""/>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
-<part name="R3" library="resistor" deviceset="R-US_" device="R0603" value="3.6k"/>
-<part name="R4" library="resistor" deviceset="R-US_" device="R0603" value="6.8k"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="R0603" value="6.8k"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="R0603" value="3.3k"/>
 <part name="P+2" library="supply1" deviceset="V+" device=""/>
 <part name="U2" library="NR_IC" deviceset="ACS722LLCTR-10AU" device=""/>
 <part name="+3V4" library="supply1" deviceset="+3V3" device=""/>
@@ -6971,8 +6971,8 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <instance part="+3V5" gate="G$1" x="241.3" y="22.86"/>
 <instance part="R5" gate="G$1" x="241.3" y="12.7" rot="R90"/>
 <instance part="R6" gate="G$1" x="266.7" y="12.7" rot="R90"/>
-<instance part="FRAME1" gate="G$1" x="-160.02" y="-294.64"/>
-<instance part="FRAME1" gate="G$2" x="293.37" y="-294.64"/>
+<instance part="FRAME1" gate="G$1" x="-190.5" y="-279.4"/>
+<instance part="FRAME1" gate="G$2" x="261.62" y="-279.4"/>
 </instances>
 <busses>
 </busses>
