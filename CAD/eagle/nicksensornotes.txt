@@ -1,7 +1,7 @@
 Sensors: RTC (temp comp), high accel, low g imu, pressure sensor, temp sensor, current sensor, voltage sensor
 
 RTC: DS3231 8-SOIC (IF USED)
-High G Accel: ADXL375
+(CHECK)High G Accel: ADXL375
 Low G IMU: BMX055
 Pressure Sensor: HSCMNNN015PA2A5
 Temp Sensor: MAX31725MTA+

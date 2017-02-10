@@ -61,6 +61,21 @@
 </layers>
 <library>
 <packages>
+<package name="SOIC-8">
+<smd name="1" x="-1.905" y="-2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="2" x="-0.635" y="-2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="3" x="0.635" y="-2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="4" x="1.905" y="-2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="5" x="1.905" y="2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="6" x="0.635" y="2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="7" x="-0.635" y="2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<smd name="8" x="-1.905" y="2.8" dx="1.75" dy="0.65" layer="1" rot="R90"/>
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="-2.54" width="0.127" layer="21"/>
+<wire x1="2.54" y1="2.54" x2="2.54" y2="-2.54" width="0.127" layer="21"/>
+<circle x="-1.6" y="-1.2" radius="0.4" width="0.127" layer="21"/>
+<text x="-2.4" y="4" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-2.4" y="-4.8" size="0.6096" layer="27">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="ACS722">
@@ -79,8 +94,52 @@
 <text x="-10.16" y="10.16" size="1.778" layer="95">&gt;NAME</text>
 <text x="-10.16" y="-12.7" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
+<symbol name="ADXL375">
+<wire x1="-15.24" y1="15.24" x2="15.24" y2="15.24" width="0.254" layer="94"/>
+<wire x1="15.24" y1="15.24" x2="15.24" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-12.7" x2="-15.24" y2="-12.7" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-12.7" x2="-15.24" y2="15.24" width="0.254" layer="94"/>
+<pin name="VS" x="-20.32" y="12.7" length="middle"/>
+<pin name="VDDIO" x="-20.32" y="10.16" length="middle"/>
+<pin name="GND@1" x="-20.32" y="-5.08" length="middle"/>
+<pin name="GND@2" x="-20.32" y="-7.62" length="middle"/>
+<pin name="GND@3" x="-20.32" y="-10.16" length="middle"/>
+<pin name="RES@1" x="-20.32" y="2.54" length="middle"/>
+<pin name="RES@2" x="-20.32" y="0" length="middle"/>
+<pin name="!CS!" x="20.32" y="12.7" length="middle" rot="R180"/>
+<pin name="SCL/SCLK" x="20.32" y="10.16" length="middle" rot="R180"/>
+<pin name="SDA/SDI/SDIO" x="20.32" y="7.62" length="middle" rot="R180"/>
+<pin name="SDO/ADDR" x="20.32" y="5.08" length="middle" rot="R180"/>
+<pin name="INT1" x="20.32" y="2.54" length="middle" rot="R180"/>
+<pin name="INT2" x="20.32" y="0" length="middle" rot="R180"/>
+<pin name="NC" x="20.32" y="-2.54" length="middle" direction="nc" rot="R180"/>
+<text x="-15.24" y="16.002" size="1.778" layer="95">&gt;NAME</text>
+<text x="-15.24" y="-15.24" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
 </symbols>
 <devicesets>
+<deviceset name="ACS722LLCTR-10AU" prefix="U">
+<gates>
+<gate name="G$1" symbol="ACS722" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOIC-8">
+<connects>
+<connect gate="G$1" pin="BW_SEL" pad="6"/>
+<connect gate="G$1" pin="GND" pad="5"/>
+<connect gate="G$1" pin="IP+@1" pad="1"/>
+<connect gate="G$1" pin="IP+@2" pad="2"/>
+<connect gate="G$1" pin="IP-@1" pad="3"/>
+<connect gate="G$1" pin="IP-@2" pad="4"/>
+<connect gate="G$1" pin="VCC" pad="8"/>
+<connect gate="G$1" pin="VIOUT" pad="7"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </drawing>
