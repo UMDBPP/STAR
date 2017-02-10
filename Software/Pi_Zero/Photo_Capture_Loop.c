@@ -22,11 +22,11 @@ int main(void) {
     
     for (;;) {
         // Take photo
-        counter += coutner;
+        counter ++;
         if counter == 1 {
             End_Pulse();
         }
-        if counter == 30 {
+        else if counter == 30 {
             Start_Pulse();
             counter = 0;
         }
