@@ -1,14 +1,14 @@
 #include <wiringPi.h>
 #include <time.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 // Pin - wiringPi pin 0 is BCM_GPIO 17.
 #define PulsePin     0
 
-#define CLOCKS_PER_SEC 1000000000 //Clock speed for the Pi
 unsigned long previousTime = 0;        // will store last time status was updated
-#define ON_TIME (10/1000)*CLOCKS_PER_SEC          //Clock cylces of on-time
-#define OFF_TIME (990/1000)*CLOCKS_PER_SEC          //Clock cycles of off-time
+#define ON_TIME .01*CLOCKS_PER_SEC          //Clock cylces of on-time
+#define OFF_TIME .99*CLOCKS_PER_SEC          //Clock cycles of off-time
 
 //#define DEBUG 1
 
@@ -19,17 +19,17 @@ int main (void) {
 	
   wiringPiSetup () ;
   pinMode (PulsePin, OUTPUT) ;
-
+  bool State = 0;
   for (;;) {
 	unsigned long currentTime = clock();
- 	if((State == HIGH) && (currentTime - previousTime >= ON_TIME)) {
-	State = LOW ; 
+ 	if((State == 1) && (currentTime - previousTime >= ON_TIME)) {
+	State = 0;
 	previousTime = currentTime;
     digitalWrite (PulsePin, State) ; 
    }
   
-  else if ((State == LOW) && (currentTime - previousTime >= OFF_TIME)) {
-    State = HIGH ; 
+  else if ((State == 0) && (currentTime - previousTime >= OFF_TIME)) {
+    State = 1;
 	previousTime = currentTime;
     digitalWrite (PulsePin, State) ; 
    }

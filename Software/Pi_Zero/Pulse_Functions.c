@@ -6,9 +6,10 @@
 //
 //
 
+#include <wiringPi.h>
 #include "Pulse_Functions.h"
 
-//#define PulsePin     0      // Pin that pulse is going too - BCM GPIO 17
+#define PulsePin     0      // Pin that pulse is going too - BCM GPIO 17
 
 void Setup_Pulse(void) {
     wiringPiSetup () ;

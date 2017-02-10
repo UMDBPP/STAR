@@ -6,13 +6,13 @@
 //
 //
 
-#include <wiringPi.h>
 #include <time.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "Pulse_Functions.h"    // Calls pulse functions
 
-#define PulsePin     0      // Pin that pulse is going too - BCM GPIO 17
+// #define PulsePin     0      // Pin that pulse is going too - BCM GPIO 17
 
 int main(void) {
     // Write a loop that turns on the photo after every 30 shots and then turns it off after the first of the next one
@@ -21,12 +21,13 @@ int main(void) {
     int counter = 0;    // photo counter
     
     for (;;) {
+	usleep(3000);
         // Take photo
         counter ++;
-        if counter == 1 {
+        if (counter == 1) {
             End_Pulse();
         }
-        else if counter == 30 {
+        else if (counter == 30) {
             Start_Pulse();
             counter = 0;
         }
