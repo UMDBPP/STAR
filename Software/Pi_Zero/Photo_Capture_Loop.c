@@ -18,11 +18,11 @@ int main(void) {
     // Write a loop that turns on the photo after every 30 shots and then turns it off after the first of the next one
     Setup_Pulse();  // initial raspberry pi for sync pulse
     
-    counter = 0;    // photo counter
+    int counter = 0;    // photo counter
     
     for (;;) {
         // Take photo
-        int counter ++;
+        counter ++;
         if counter == 1 {
             End_Pulse();
         }
