@@ -22,7 +22,7 @@ int main(void) {
     
     for (;;) {
         // Take photo
-        counter ++;
+        int counter ++;
         if counter == 1 {
             End_Pulse();
         }
