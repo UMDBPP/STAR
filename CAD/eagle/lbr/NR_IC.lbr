@@ -138,6 +138,37 @@
 <text x="-4.953" y="6.477" size="0.8128" layer="25">&gt;NAME</text>
 <text x="-4.953" y="-7.239" size="0.6096" layer="25">&gt;VALUE</text>
 </package>
+<package name="LGA-20">
+<smd name="1" x="1.2625" y="1.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="2" x="1.2625" y="1" dx="0.675" dy="0.25" layer="1"/>
+<smd name="3" x="1.2625" y="0.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="4" x="1.2625" y="0" dx="0.675" dy="0.25" layer="1"/>
+<smd name="5" x="1.2625" y="-0.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="6" x="1.2625" y="-1" dx="0.675" dy="0.25" layer="1"/>
+<smd name="7" x="1.2625" y="-1.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="8" x="0.5" y="-2.05" dx="0.55" dy="0.25" layer="1" rot="R90"/>
+<smd name="9" x="0" y="-2.05" dx="0.55" dy="0.25" layer="1" rot="R90"/>
+<smd name="10" x="-0.5" y="-2.05" dx="0.55" dy="0.25" layer="1" rot="R90"/>
+<smd name="11" x="-1.2625" y="-1.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="12" x="-1.2625" y="-1" dx="0.675" dy="0.25" layer="1"/>
+<smd name="13" x="-1.2625" y="-0.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="14" x="-1.2625" y="0" dx="0.675" dy="0.25" layer="1"/>
+<smd name="15" x="-1.2625" y="0.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="16" x="-1.2625" y="1" dx="0.675" dy="0.25" layer="1"/>
+<smd name="17" x="-1.2625" y="1.5" dx="0.675" dy="0.25" layer="1"/>
+<smd name="18" x="-0.5" y="2.05" dx="0.55" dy="0.25" layer="1" rot="R90"/>
+<smd name="19" x="0" y="2.05" dx="0.55" dy="0.25" layer="1" rot="R90"/>
+<smd name="20" x="0.5" y="2.05" dx="0.55" dy="0.25" layer="1" rot="R90"/>
+<wire x1="1.5" y1="2.5" x2="-1.5" y2="2.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="2.5" x2="-1.5" y2="2" width="0.127" layer="21"/>
+<wire x1="1.5" y1="2.5" x2="1.5" y2="2" width="0.127" layer="21"/>
+<wire x1="1.5" y1="-2" x2="1.5" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="-2.5" x2="-1.5" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="-2.5" x2="-1.5" y2="-2" width="0.127" layer="21"/>
+<circle x="2.25" y="2.25" radius="0.5" width="0.127" layer="21"/>
+<text x="-1.5" y="3" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-1.5" y="-3.25" size="0.6096" layer="27">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="ACS722">
@@ -226,6 +257,34 @@
 <pin name="!RST!" x="15.24" y="-5.08" length="middle" rot="R180"/>
 <text x="-10.414" y="8.128" size="1.778" layer="95">&gt;NAME</text>
 <text x="-10.16" y="-10.16" size="1.778" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="BMX055">
+<wire x1="-20.32" y1="22.86" x2="-20.32" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-20.32" x2="20.32" y2="-20.32" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-20.32" x2="20.32" y2="22.86" width="0.254" layer="94"/>
+<wire x1="20.32" y1="22.86" x2="-20.32" y2="22.86" width="0.254" layer="94"/>
+<pin name="VDD" x="-25.4" y="20.32" length="middle" direction="pwr"/>
+<pin name="VDDIO" x="-25.4" y="17.78" length="middle" direction="pwr"/>
+<pin name="GNDA" x="-25.4" y="-15.24" length="middle" direction="pwr"/>
+<pin name="GNDIO" x="-25.4" y="-17.78" length="middle" direction="pwr"/>
+<pin name="SCX" x="25.4" y="20.32" length="middle" rot="R180"/>
+<pin name="SDX" x="25.4" y="17.78" length="middle" rot="R180"/>
+<pin name="SDO1" x="25.4" y="15.24" length="middle" rot="R180"/>
+<pin name="SDO2" x="25.4" y="12.7" length="middle" rot="R180"/>
+<pin name="CSB1" x="25.4" y="10.16" length="middle" rot="R180"/>
+<pin name="CSB2" x="25.4" y="7.62" length="middle" rot="R180"/>
+<pin name="CSB3" x="25.4" y="5.08" length="middle" rot="R180"/>
+<pin name="PS" x="25.4" y="2.54" length="middle" rot="R180"/>
+<pin name="DRDYM" x="25.4" y="0" length="middle" rot="R180"/>
+<pin name="INT1" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="INT2" x="25.4" y="-5.08" length="middle" rot="R180"/>
+<pin name="INT3" x="25.4" y="-7.62" length="middle" rot="R180"/>
+<pin name="INT4" x="25.4" y="-10.16" length="middle" rot="R180"/>
+<pin name="INT5" x="25.4" y="-12.7" length="middle" rot="R180"/>
+<pin name="NC@1" x="25.4" y="-15.24" length="middle" direction="nc" rot="R180"/>
+<pin name="NC@2" x="25.4" y="-17.78" length="middle" direction="nc" rot="R180"/>
+<text x="-20.32" y="23.622" size="1.778" layer="95">&gt;NAME</text>
+<text x="-20.32" y="-22.86" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -339,6 +398,40 @@
 <connect gate="G$1" pin="SDA" pad="7"/>
 <connect gate="G$1" pin="VBAT" pad="6"/>
 <connect gate="G$1" pin="VCC" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="BMX055" prefix="U">
+<gates>
+<gate name="G$1" symbol="BMX055" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="LGA-20">
+<connects>
+<connect gate="G$1" pin="CSB1" pad="16"/>
+<connect gate="G$1" pin="CSB2" pad="5"/>
+<connect gate="G$1" pin="CSB3" pad="20"/>
+<connect gate="G$1" pin="DRDYM" pad="2"/>
+<connect gate="G$1" pin="GNDA" pad="4"/>
+<connect gate="G$1" pin="GNDIO" pad="6"/>
+<connect gate="G$1" pin="INT1" pad="19"/>
+<connect gate="G$1" pin="INT2" pad="1"/>
+<connect gate="G$1" pin="INT3" pad="14"/>
+<connect gate="G$1" pin="INT4" pad="15"/>
+<connect gate="G$1" pin="INT5" pad="10"/>
+<connect gate="G$1" pin="NC@1" pad="8"/>
+<connect gate="G$1" pin="NC@2" pad="18"/>
+<connect gate="G$1" pin="PS" pad="7"/>
+<connect gate="G$1" pin="SCX" pad="9"/>
+<connect gate="G$1" pin="SDO1" pad="17"/>
+<connect gate="G$1" pin="SDO2" pad="12"/>
+<connect gate="G$1" pin="SDX" pad="11"/>
+<connect gate="G$1" pin="VDD" pad="3"/>
+<connect gate="G$1" pin="VDDIO" pad="13"/>
 </connects>
 <technologies>
 <technology name=""/>
