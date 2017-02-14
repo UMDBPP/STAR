@@ -7727,10 +7727,10 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="393.7" y1="132.08" x2="393.7" y2="71.12" width="0.3048" layer="97" style="shortdash"/>
 <wire x1="393.7" y1="71.12" x2="317.5" y2="71.12" width="0.3048" layer="97" style="shortdash"/>
 <text x="274.32" y="22.86" size="5.08" layer="97">UART CTU</text>
-<text x="322.326" y="64.516" size="5.08" layer="97">TEMP SENSOR</text>
+<text x="319.786" y="64.516" size="5.08" layer="97">TEMP SENSOR</text>
 <wire x1="393.7" y1="71.12" x2="393.7" y2="30.48" width="0.3048" layer="97" style="shortdash"/>
 <wire x1="393.7" y1="30.48" x2="317.5" y2="30.48" width="0.3048" layer="97" style="shortdash"/>
-<text x="323.85" y="110.744" size="5.08" layer="97">PRESSURE SENSE</text>
+<text x="321.31" y="125.984" size="5.08" layer="97">PRESSURE SENSE</text>
 <wire x1="317.5" y1="-2.54" x2="393.7" y2="-2.54" width="0.3048" layer="97" style="shortdash"/>
 <wire x1="393.7" y1="-2.54" x2="393.7" y2="30.48" width="0.3048" layer="97" style="shortdash"/>
 <text x="-152.4" y="-10.16" size="5.08" layer="97">REAL TIME CLOCK</text>
