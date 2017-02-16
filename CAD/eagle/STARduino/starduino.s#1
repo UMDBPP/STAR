@@ -9115,7 +9115,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <pinref part="P+2" gate="1" pin="+5V"/>
 </segment>
 </net>
-<net name="LED_GND" class="0">
+<net name="N$16" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="FB"/>
 <pinref part="R8" gate="G$1" pin="2"/>
@@ -9125,7 +9125,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <junction x="-83.82" y="-76.2"/>
 </segment>
 </net>
-<net name="LED_V" class="0">
+<net name="N$17" class="0">
 <segment>
 <pinref part="JP4" gate="G$1" pin="2"/>
 <wire x1="-76.2" y1="-73.66" x2="-76.2" y2="-60.96" width="0.1524" layer="91"/>
