@@ -1,7 +1,7 @@
 [Eagle]
 Version="07 07 00"
 Platform="Linux"
-Serial="62191E841E-LSR-WLM-1EL"
+Serial="741C12C045-LSR-WLM-1ES"
 Globals="Globals"
 Desktop="Desktop"
 
@@ -347,26 +347,27 @@ UsedLibrary="/home/nick/.eagle/lbr/xilinx-xc9.lbr"
 UsedLibrary="/home/nick/.eagle/lbr/xilinx-xcv.lbr"
 UsedLibrary="/home/nick/.eagle/lbr/zetex.lbr"
 UsedLibrary="/home/nick/.eagle/lbr/zilog.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_XTAL.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_mcu.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_passives.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_switches.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_IC.lbr"
+UsedLibrary="/home/nick/Nearspace/STAR/CAD/eagle/lbr/AR_XTAL.lbr"
+UsedLibrary="/home/nick/Nearspace/STAR/CAD/eagle/lbr/AR_mcu.lbr"
+UsedLibrary="/home/nick/Nearspace/STAR/CAD/eagle/lbr/AR_passives.lbr"
+UsedLibrary="/home/nick/Nearspace/STAR/CAD/eagle/lbr/AR_switches.lbr"
+UsedLibrary="/home/nick/Nearspace/STAR/CAD/eagle/lbr/NR_IC.lbr"
+UsedLibrary="/home/nick/Nearspace/STAR/CAD/eagle/lbr/NR_connectors.lbr"
 
 [Win_1]
 Type="Library Editor"
-Loc="0 0 1919 1020"
-State=3
+Loc="0 0 1599 874"
+State=1
 Number=2
-File="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_IC.lbr"
+File="/home/nick/Nearspace/STAR/CAD/eagle/lbr/NR_IC.lbr"
 View="-52.832 -44.9072 52.832 44.9072"
-WireWidths=" 0 0.3048 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.127"
+WireWidths=" 0 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.127 0.254"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
 ViaDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 ViaDrills=" 0.5 0.7 0.8 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.6"
 HoleDrills=" 0.5 0.7 0.8 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.6"
-TextSizes=" 0.254 0.3048 0.4064 1.016 1.4224 1.6764 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.778 1.27 0.8128 0.6096"
+TextSizes=" 0.254 0.3048 0.4064 1.016 1.4224 1.6764 1.9304 2.1844 2.54 3.81 5.08 6.4516 0.6096 1.27 0.8128 1.778"
 PolygonSpacings=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.27"
 PolygonIsolates=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 MiterRadiuss=" 0.254 0.3175 0.635 1.27 2.54 1 2 2.5 5 7.5 10 0"
@@ -394,11 +395,11 @@ PinFunction=0
 PinLength=2
 PinVisible=3
 SwapLevel=0
-ArcDirection=0
+ArcDirection=1
 AddLevel=2
 PadsSameType=0
 Layer=94
-Device="ADXL375BCCZ"
+Device="S25FL127SABMFI101"
 
 [Win_2]
 Type="Schematic Editor"
@@ -406,14 +407,14 @@ Loc="0 0 1599 874"
 State=1
 Number=1
 File="starduino.sch"
-View="260.339 -24.4044 445.251 94.4676"
+View="6.04973 -140.728 272.324 30.4473"
 WireWidths=" 0 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.1524 0.3048"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
 ViaDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 ViaDrills=" 0.5 0.7 0.8 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.6"
 HoleDrills=" 0.5 0.7 0.8 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.6"
-TextSizes=" 0.254 0.3048 0.4064 0.6096 0.8128 1.4224 1.6764 1.9304 2.1844 2.54 3.81 6.4516 1.778 1.27 1.016 5.08"
+TextSizes=" 0.254 0.3048 0.4064 0.6096 0.8128 1.4224 1.6764 1.9304 2.54 3.81 6.4516 1.778 1.27 1.016 2.1844 5.08"
 PolygonSpacings=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 5.08 6.4516 1.27"
 PolygonIsolates=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 MiterRadiuss=" 0.254 0.3175 0.635 1.27 2.54 1 2 2.5 5 7.5 10 0"
@@ -445,7 +446,7 @@ ArcDirection=0
 AddLevel=2
 PadsSameType=0
 Layer=97
-Views=" 1: 260.339 -24.4044 445.251 94.4676"
+Views=" 1: 6.04973 -140.728 272.324 30.4473"
 Sheet="1"
 
 [Win_3]
@@ -455,7 +456,7 @@ State=2
 Number=0
 
 [Desktop]
-Screen="1920 1080"
+Screen="1600 900"
 Window="Win_1"
 Window="Win_2"
 Window="Win_3"
