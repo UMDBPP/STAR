@@ -1,7 +1,7 @@
 [Eagle]
 Version="07 07 00"
 Platform="Linux"
-Serial="62191E841E-LSR-WLM-1EL"
+Serial="741C12C045-LSR-WLM-1ES"
 Globals="Globals"
 Desktop="Desktop"
 
@@ -347,20 +347,10 @@ UsedLibrary="/home/nick/.eagle/lbr/xilinx-xc9.lbr"
 UsedLibrary="/home/nick/.eagle/lbr/xilinx-xcv.lbr"
 UsedLibrary="/home/nick/.eagle/lbr/zetex.lbr"
 UsedLibrary="/home/nick/.eagle/lbr/zilog.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_IC.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_XTAL.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_mcu.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_passives.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/AR_switches.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/MotorDriver.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_IC.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_Pinhead.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_connectors.lbr"
-UsedLibrary="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_LED.lbr"
 
 [Win_1]
 Type="Library Editor"
-Loc="0 0 1919 1048"
+Loc="0 0 1599 874"
 State=3
 Number=2
 File="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_LED.lbr"
@@ -403,11 +393,10 @@ ArcDirection=0
 AddLevel=2
 PadsSameType=0
 Layer=94
-Device="LED_1206_NS"
 
 [Win_2]
 Type="Schematic Editor"
-Loc="0 0 1919 1020"
+Loc="0 0 1599 874"
 State=1
 Number=1
 File="External_Sensor_Board.sch"
@@ -455,11 +444,11 @@ Sheet="1"
 
 [Win_3]
 Type="Board Editor"
-Loc="0 0 1919 1020"
+Loc="0 0 1599 874"
 State=1
 Number=3
 File="External_Sensor_Board.brd"
-View="-20.2632 -10.3529 94.1512 47.425"
+View="-2.47771 1.55599 63.7343 34.9923"
 WireWidths=" 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0 0.4064 0.3048 0.254"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
@@ -506,7 +495,7 @@ State=2
 Number=0
 
 [Desktop]
-Screen="1920 1080"
+Screen="1600 900"
 Window="Win_1"
 Window="Win_2"
 Window="Win_3"
