@@ -1,7 +1,7 @@
 [Eagle]
 Version="07 07 00"
 Platform="Linux"
-Serial="741C12C045-LSR-WLM-1ES"
+Serial="62191E841E-LSR-WLM-1EL"
 Globals="Globals"
 Desktop="Desktop"
 
@@ -351,7 +351,7 @@ UsedLibrary="/home/nick/.eagle/lbr/zilog.lbr"
 [Win_1]
 Type="Library Editor"
 Loc="0 0 1599 874"
-State=3
+State=0
 Number=2
 File="/home/nick/Nearspace/RockSat-X/STAR/CAD/eagle/lbr/NR_LED.lbr"
 View="-3.70146 -7.22376 6.50392 11.7958"
@@ -448,7 +448,7 @@ Loc="0 0 1599 874"
 State=1
 Number=3
 File="External_Sensor_Board.brd"
-View="-4.7352 3.04018 50.4415 30.9038"
+View="-19.3373 -7.83583 95.077 49.9423"
 WireWidths=" 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0 0.4064 0.3048 0.254"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
@@ -495,7 +495,7 @@ State=2
 Number=0
 
 [Desktop]
-Screen="1600 900"
+Screen="1920 1080"
 Window="Win_1"
 Window="Win_2"
 Window="Win_3"
