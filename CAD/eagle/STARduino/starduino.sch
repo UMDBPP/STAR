@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -14745,6 +14745,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="GND37" library="supply1" deviceset="GND" device=""/>
 <part name="JP7" library="pinhead" deviceset="PINHD-1X5" device=""/>
 <part name="R14" library="rcl" deviceset="R-US_" device="R0603" value="10k"/>
+<part name="+3V18" library="supply1" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15141,6 +15142,9 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="GND37" gate="1" x="-25.4" y="-96.52"/>
 <instance part="JP7" gate="A" x="358.14" y="99.06"/>
 <instance part="R14" gate="G$1" x="266.7" y="-99.06"/>
+<instance part="+3V18" gate="G$1" x="287.02" y="111.76" smashed="yes" rot="R270">
+<attribute name="VALUE" x="281.94" y="114.3" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -15314,6 +15318,11 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="JP7" gate="A" pin="1"/>
 <wire x1="345.44" y1="109.22" x2="345.44" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="345.44" y1="104.14" x2="355.6" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<wire x1="279.4" y1="111.76" x2="284.48" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="L4" gate="G$1" pin="2"/>
+<pinref part="+3V18" gate="G$1" pin="+3V3"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -15830,18 +15839,6 @@ Source: AVX .. aphvc.pdf</description>
 <label x="185.42" y="88.9" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="PA09" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA09/I2C/EIC/AIN17/SCOM2PAD1+/TC0"/>
-<wire x1="152.4" y1="86.36" x2="185.42" y2="86.36" width="0.1524" layer="91"/>
-<label x="185.42" y="86.36" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U9" gate="G$1" pin="EN"/>
-<wire x1="-111.76" y1="-78.74" x2="-132.08" y2="-78.74" width="0.1524" layer="91"/>
-<label x="-132.08" y="-78.74" size="1.016" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
 <net name="MISO" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="DATA_OUT"/>
@@ -16086,13 +16083,6 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="U8" gate="G$1" pin="!S!"/>
 <wire x1="93.98" y1="-30.48" x2="104.14" y2="-30.48" width="0.1524" layer="91"/>
 <label x="104.14" y="-30.48" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="VREFA_IN" class="0">
-<segment>
-<wire x1="279.4" y1="111.76" x2="284.48" y2="111.76" width="0.1524" layer="91"/>
-<label x="284.48" y="111.76" size="1.016" layer="95" xref="yes"/>
-<pinref part="L4" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="VREFB_IN" class="0">
@@ -16813,6 +16803,18 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="U10" gate="A" pin="P11"/>
 <wire x1="271.78" y1="-172.72" x2="269.24" y2="-172.72" width="0.1524" layer="91"/>
 <label x="269.24" y="-172.72" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="LED_CTRL" class="0">
+<segment>
+<pinref part="U9" gate="G$1" pin="EN"/>
+<wire x1="-111.76" y1="-78.74" x2="-132.08" y2="-78.74" width="0.1524" layer="91"/>
+<label x="-132.08" y="-78.74" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U1" gate="G$1" pin="PA09/I2C/EIC/AIN17/SCOM2PAD1+/TC0"/>
+<wire x1="152.4" y1="86.36" x2="185.42" y2="86.36" width="0.1524" layer="91"/>
+<label x="185.42" y="86.36" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
