@@ -4,6 +4,6 @@ CAD/eagle/STARduino/*
 !CAD/eagle/STARduino/eagle.epf
 !CAD/eagle/STARduino/DESCRIPTION
 CAD/eagle/External_Sensor_Board/*
-CAD/eagle/External_Sensor_Board/eagle.epf
-CAD/eagle/External_Sensor_Board/External_Sensor_Board.sch
-CAD/eagle/External_Sensor_Board/External_Sensor_Board.brd
+!CAD/eagle/External_Sensor_Board/eagle.epf
+!CAD/eagle/External_Sensor_Board/External_Sensor_Board.sch
+!CAD/eagle/External_Sensor_Board/External_Sensor_Board.brd
