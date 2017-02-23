@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -26330,7 +26330,7 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <parts>
 <part name="U1" library="AR_mcu" deviceset="ATSAMD21G18" device=""/>
 <part name="C1" library="resistor" deviceset="C-US" device="C0603" value="100nF"/>
-<part name="R1" library="resistor" deviceset="R-US_" device="R0603" value="330Ω"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="R0603" value="330"/>
 <part name="C2" library="resistor" deviceset="C-US" device="C0603" value="100nF"/>
 <part name="C3" library="resistor" deviceset="C-US" device="C0603" value="100nF"/>
 <part name="C4" library="resistor" deviceset="C-US" device="C0603" value="100nF"/>
@@ -26347,7 +26347,7 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="S1" library="AR_switches" deviceset="PTS525-SM15" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
-<part name="R2" library="resistor" deviceset="R-US_" device="R0603" value="10kΩ"/>
+<part name="R2" library="resistor" deviceset="R-US_" device="R0603" value="10k"/>
 <part name="C9" library="resistor" deviceset="C-US" device="C0603" value="100nF"/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
@@ -26366,11 +26366,11 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="L4" library="AR_passives" deviceset="INDUCTOR" device="-0603" value="10uH"/>
 <part name="XTAL1" library="AR_XTAL" deviceset="ABS07AIG-32.768KHZ-1-T" device="" value="ABS07AIG-32.768KHZ-1-T "/>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
-<part name="R3" library="resistor" deviceset="R-US_" device="R0603" value="3.6kΩ"/>
-<part name="R4" library="resistor" deviceset="R-US_" device="R0603" value="6.8kΩ"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="R0603" value="3.6k"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="R0603" value="6.8k"/>
 <part name="+3V5" library="supply1" deviceset="+3V3" device=""/>
-<part name="R5" library="resistor" deviceset="R-US_" device="R0603" value="4.7kΩ"/>
-<part name="R6" library="resistor" deviceset="R-US_" device="R0603" value="4.7kΩ"/>
+<part name="R5" library="resistor" deviceset="R-US_" device="R0603" value="4.7k"/>
+<part name="R6" library="resistor" deviceset="R-US_" device="R0603" value="4.7k"/>
 <part name="FRAME1" library="frames" deviceset="FRAME_C_L" device=""/>
 <part name="U3" library="NR_IC" deviceset="ADXL375BCCZ" device=""/>
 <part name="GND17" library="supply1" deviceset="GND" device=""/>
@@ -26382,7 +26382,7 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="GND18" library="supply1" deviceset="GND" device=""/>
 <part name="GND19" library="supply1" deviceset="GND" device=""/>
 <part name="U4" library="NR_IC" deviceset="MAX31725MTA+" device=""/>
-<part name="R7" library="resistor" deviceset="R-US_" device="R0603" value="4.7kΩ"/>
+<part name="R7" library="resistor" deviceset="R-US_" device="R0603" value="4.7k"/>
 <part name="+3V8" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND20" library="supply1" deviceset="GND" device=""/>
 <part name="C18" library="resistor" deviceset="C-US" device="C0603" value="100nF"/>
@@ -26417,7 +26417,7 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <part name="L6" library="AR_passives" deviceset="INDUCTOR" device="-VLF504012MT" value="22uH"/>
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>
 <part name="GND32" library="supply1" deviceset="GND" device=""/>
-<part name="R8" library="resistor" deviceset="R-US_" device="R0603" value="6.2Ω"/>
+<part name="R8" library="resistor" deviceset="R-US_" device="R0603" value="6.2"/>
 <part name="P+1" library="supply1" deviceset="+5V" device=""/>
 <part name="U11" library="MotorDriver" deviceset="DRV8846" device="RGER"/>
 <part name="R9" library="rcl" deviceset="R-US_" device="R0603" value="1.05"/>
@@ -27687,22 +27687,6 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <label x="12.7" y="25.4" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
-<net name="PA02" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA02/EIC/AIN"/>
-<wire x1="152.4" y1="104.14" x2="185.42" y2="104.14" width="0.1524" layer="91"/>
-<label x="185.42" y="104.14" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="R3" gate="G$1" pin="2"/>
-<pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="231.14" y1="60.96" x2="231.14" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="231.14" y1="58.42" x2="231.14" y2="55.88" width="0.1524" layer="91"/>
-<wire x1="231.14" y1="58.42" x2="236.22" y2="58.42" width="0.1524" layer="91"/>
-<junction x="231.14" y="58.42"/>
-<label x="236.22" y="58.42" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="VREFA" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="PA03/EIC/REF/AI/VREFA"/>
@@ -27732,13 +27716,6 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <label x="185.42" y="93.98" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="PA08" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA08/I2C/AIN16/SCOM2PAD0+/TC0"/>
-<wire x1="152.4" y1="88.9" x2="185.42" y2="88.9" width="0.1524" layer="91"/>
-<label x="185.42" y="88.9" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="MISO" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="DATA_OUT"/>
@@ -27754,34 +27731,6 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <pinref part="U1" gate="G$1" pin="PB09/EIC/AIN3/SCOM4PAD1//TC4"/>
 <wire x1="152.4" y1="30.48" x2="185.42" y2="30.48" width="0.1524" layer="91"/>
 <label x="185.42" y="30.48" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="PA14" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA14/XIN/EIC/SCOM2PAD2+/TC3"/>
-<wire x1="152.4" y1="73.66" x2="185.42" y2="73.66" width="0.1524" layer="91"/>
-<label x="185.42" y="73.66" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="PA15" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA15/XOUT/EIC/SCOM2PAD3+/TC3"/>
-<wire x1="152.4" y1="71.12" x2="185.42" y2="71.12" width="0.1524" layer="91"/>
-<label x="185.42" y="71.12" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="PA16" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA16/I2C/EIC/SCOM1PAD0+/TC2"/>
-<wire x1="152.4" y1="68.58" x2="185.42" y2="68.58" width="0.1524" layer="91"/>
-<label x="185.42" y="68.58" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="PA17" class="0">
-<segment>
-<pinref part="U1" gate="G$1" pin="PA17/I2C/EIC/SCOM1PAD1+/TC2"/>
-<wire x1="152.4" y1="66.04" x2="185.42" y2="66.04" width="0.1524" layer="91"/>
-<label x="185.42" y="66.04" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="TX1" class="0">
@@ -29061,6 +29010,22 @@ diameter 3 mm, horizontal, grid 12.7 mm</description>
 <wire x1="-53.34" y1="-119.38" x2="-53.34" y2="-116.84" width="0.1524" layer="91"/>
 <wire x1="-60.96" y1="-119.38" x2="-53.34" y2="-119.38" width="0.1524" layer="91"/>
 <junction x="-53.34" y="-119.38"/>
+</segment>
+</net>
+<net name="V_SENSE" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="PA02/EIC/AIN"/>
+<wire x1="152.4" y1="104.14" x2="185.42" y2="104.14" width="0.1524" layer="91"/>
+<label x="185.42" y="104.14" size="1.016" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R3" gate="G$1" pin="2"/>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="231.14" y1="60.96" x2="231.14" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="58.42" x2="231.14" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="231.14" y1="58.42" x2="236.22" y2="58.42" width="0.1524" layer="91"/>
+<junction x="231.14" y="58.42"/>
+<label x="236.22" y="58.42" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
