@@ -90,6 +90,8 @@
 <wire x1="4.9" y1="3.05" x2="3.5" y2="-3.05" width="0.127" layer="21"/>
 <wire x1="3.5" y1="-3.05" x2="-3.5" y2="-3.05" width="0.127" layer="21"/>
 <wire x1="-3.5" y1="-3.05" x2="-4.9" y2="3.05" width="0.127" layer="21"/>
+<text x="-5.08" y="5.08" size="1.27" layer="25">&gt;NAME</text>
+<text x="-5.08" y="-6.35" size="1.27" layer="27">&gt;VALUE</text>
 </package>
 <package name="ZKN-15">
 <pad name="5" x="0.635" y="-1.27" drill="0.8"/>
@@ -117,6 +119,8 @@
 <wire x1="6.85" y1="3.05" x2="5" y2="-3.05" width="0.127" layer="21"/>
 <wire x1="5" y1="-3.05" x2="-5" y2="-3.05" width="0.127" layer="21"/>
 <wire x1="-5" y1="-3.05" x2="-6.85" y2="3.05" width="0.127" layer="21"/>
+<text x="-6.35" y="-6.35" size="1.27" layer="27">&gt;VALUE</text>
+<text x="-6.35" y="5.08" size="1.27" layer="25">&gt;NAME</text>
 </package>
 <package name="ZKN-31">
 <pad name="8" x="-0.635" y="-1.27" drill="0.8"/>
@@ -160,6 +164,47 @@
 <wire x1="11.9" y1="3.05" x2="8.5" y2="-3.05" width="0.127" layer="21"/>
 <wire x1="8.5" y1="-3.05" x2="-8.5" y2="-3.05" width="0.127" layer="21"/>
 <wire x1="-8.5" y1="-3.05" x2="-11.9" y2="3.05" width="0.127" layer="21"/>
+<text x="-10.16" y="-6.35" size="1.27" layer="27">&gt;VALUE</text>
+<text x="-10.16" y="5.08" size="1.27" layer="25">&gt;NAME</text>
+</package>
+<package name="ZKN-25">
+<pad name="6" x="-1.27" y="-1.27" drill="0.9"/>
+<pad name="4" x="-3.81" y="-1.27" drill="0.9"/>
+<pad name="2" x="-6.35" y="-1.27" drill="0.9"/>
+<pad name="8" x="1.27" y="-1.27" drill="0.9"/>
+<pad name="10" x="3.81" y="-1.27" drill="0.9"/>
+<pad name="12" x="6.35" y="-1.27" drill="0.9"/>
+<pad name="7" x="0" y="-3.81" drill="0.9"/>
+<pad name="5" x="-2.54" y="-3.81" drill="0.9"/>
+<pad name="3" x="-5.08" y="-3.81" drill="0.9"/>
+<pad name="1" x="-7.62" y="-3.81" drill="0.9"/>
+<pad name="9" x="2.54" y="-3.81" drill="0.9"/>
+<pad name="11" x="5.08" y="-3.81" drill="0.9"/>
+<pad name="13" x="7.62" y="-3.81" drill="0.9"/>
+<pad name="20" x="0.635" y="1.27" drill="0.9"/>
+<pad name="18" x="-1.905" y="1.27" drill="0.9"/>
+<pad name="16" x="-4.445" y="1.27" drill="0.9"/>
+<pad name="14" x="-6.985" y="1.27" drill="0.9"/>
+<pad name="22" x="3.175" y="1.27" drill="0.9"/>
+<pad name="24" x="5.715" y="1.27" drill="0.9"/>
+<pad name="19" x="-0.635" y="3.81" drill="0.9"/>
+<pad name="17" x="-3.175" y="3.81" drill="0.9"/>
+<pad name="15" x="-5.715" y="3.81" drill="0.9"/>
+<pad name="21" x="1.905" y="3.81" drill="0.9"/>
+<pad name="23" x="4.445" y="3.81" drill="0.9"/>
+<pad name="25" x="6.985" y="3.81" drill="0.9"/>
+<hole x="-12.25" y="0" drill="2.3"/>
+<hole x="12.25" y="0" drill="2.3"/>
+<wire x1="-14.9" y1="3.8" x2="14.9" y2="3.8" width="0.127" layer="21"/>
+<wire x1="14.9" y1="3.8" x2="14.9" y2="-3.8" width="0.127" layer="21"/>
+<wire x1="14.9" y1="-3.8" x2="-14.9" y2="-3.8" width="0.127" layer="21"/>
+<wire x1="-14.9" y1="-3.8" x2="-14.9" y2="3.8" width="0.127" layer="21"/>
+<wire x1="-10" y1="3.05" x2="10" y2="3.05" width="0.127" layer="21"/>
+<wire x1="10" y1="3.05" x2="7.5" y2="-3.05" width="0.127" layer="21"/>
+<wire x1="7.5" y1="-3.05" x2="-7.5" y2="-3.05" width="0.127" layer="21"/>
+<wire x1="-7.5" y1="-3.05" x2="-10" y2="3.05" width="0.127" layer="21"/>
+<text x="-8.89" y="5.08" size="1.27" layer="25">&gt;NAME</text>
+<text x="-8.89" y="-6.35" size="1.27" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -254,6 +299,43 @@
 <text x="-2.54" y="40.64" size="1.778" layer="95">&gt;NAME</text>
 <text x="-2.54" y="-43.18" size="1.778" layer="96">&gt;VALUE</text>
 </symbol>
+<symbol name="25-PIN">
+<pin name="5" x="-5.08" y="10.16" visible="pad" length="middle" function="dot"/>
+<pin name="4" x="-5.08" y="15.24" visible="pad" length="middle" function="dot"/>
+<pin name="3" x="-5.08" y="20.32" visible="pad" length="middle" function="dot"/>
+<pin name="2" x="-5.08" y="25.4" visible="pad" length="middle" function="dot"/>
+<pin name="1" x="-5.08" y="30.48" visible="pad" length="middle" function="dot"/>
+<pin name="9" x="-5.08" y="-10.16" visible="pad" length="middle" function="dot"/>
+<pin name="8" x="-5.08" y="-5.08" visible="pad" length="middle" function="dot"/>
+<pin name="7" x="-5.08" y="0" visible="pad" length="middle" function="dot"/>
+<pin name="6" x="-5.08" y="5.08" visible="pad" length="middle" function="dot"/>
+<wire x1="-2.54" y1="30.988" x2="-2.54" y2="-31.242" width="0.254" layer="94"/>
+<wire x1="2.54" y1="28.956" x2="2.54" y2="-28.956" width="0.254" layer="94"/>
+<wire x1="-1.016" y1="-32.258" x2="1.016" y2="-31.242" width="0.254" layer="94"/>
+<wire x1="1.016" y1="31.242" x2="-0.508" y2="32.004" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="30.988" x2="-0.508" y2="32.004" width="0.254" layer="94" curve="-126.869898"/>
+<wire x1="-1.016" y1="-32.258" x2="-2.54" y2="-31.242" width="0.254" layer="94" curve="-126.869898"/>
+<wire x1="1.016" y1="31.242" x2="2.54" y2="28.956" width="0.254" layer="94" curve="-61.927513"/>
+<wire x1="1.016" y1="-31.242" x2="2.54" y2="-28.956" width="0.254" layer="94" curve="61.927513"/>
+<pin name="10" x="-5.08" y="-15.24" visible="pad" length="middle" function="dot"/>
+<pin name="11" x="-5.08" y="-20.32" visible="pad" length="middle" function="dot"/>
+<pin name="12" x="-5.08" y="-25.4" visible="pad" length="middle" function="dot"/>
+<pin name="13" x="-5.08" y="-30.48" visible="pad" length="middle" function="dot"/>
+<pin name="14" x="5.08" y="27.94" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="15" x="5.08" y="22.86" visible="pad" length="middle" function="dot" rot="R180"/>
+<text x="-2.54" y="33.02" size="1.778" layer="95">&gt;NAME</text>
+<text x="-2.54" y="-38.1" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="16" x="5.08" y="17.78" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="17" x="5.08" y="12.7" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="18" x="5.08" y="7.62" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="19" x="5.08" y="2.54" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="20" x="5.08" y="-2.54" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="21" x="5.08" y="-7.62" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="22" x="5.08" y="-12.7" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="23" x="5.08" y="-17.78" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="24" x="5.08" y="-22.86" visible="pad" length="middle" function="dot" rot="R180"/>
+<pin name="25" x="5.08" y="-27.94" visible="pad" length="middle" function="dot" rot="R180"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="J30J-9" prefix="J">
@@ -340,6 +422,45 @@
 <connect gate="G$1" pin="3" pad="3"/>
 <connect gate="G$1" pin="30" pad="30"/>
 <connect gate="G$1" pin="31" pad="31"/>
+<connect gate="G$1" pin="4" pad="4"/>
+<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="6" pad="6"/>
+<connect gate="G$1" pin="7" pad="7"/>
+<connect gate="G$1" pin="8" pad="8"/>
+<connect gate="G$1" pin="9" pad="9"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="J30J-25" prefix="J">
+<gates>
+<gate name="G$1" symbol="25-PIN" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="ZKN-25">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="10" pad="10"/>
+<connect gate="G$1" pin="11" pad="11"/>
+<connect gate="G$1" pin="12" pad="12"/>
+<connect gate="G$1" pin="13" pad="13"/>
+<connect gate="G$1" pin="14" pad="14"/>
+<connect gate="G$1" pin="15" pad="15"/>
+<connect gate="G$1" pin="16" pad="16"/>
+<connect gate="G$1" pin="17" pad="17"/>
+<connect gate="G$1" pin="18" pad="18"/>
+<connect gate="G$1" pin="19" pad="19"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="20" pad="20"/>
+<connect gate="G$1" pin="21" pad="21"/>
+<connect gate="G$1" pin="22" pad="22"/>
+<connect gate="G$1" pin="23" pad="23"/>
+<connect gate="G$1" pin="24" pad="24"/>
+<connect gate="G$1" pin="25" pad="25"/>
+<connect gate="G$1" pin="3" pad="3"/>
 <connect gate="G$1" pin="4" pad="4"/>
 <connect gate="G$1" pin="5" pad="5"/>
 <connect gate="G$1" pin="6" pad="6"/>
