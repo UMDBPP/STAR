@@ -116,9 +116,6 @@
 <smd name="23" x="-0.7501875" y="1.975" dx="0.28" dy="0.85" layer="1" rot="R180" stop="no" cream="no"/>
 <smd name="24" x="-1.250315625" y="1.975" dx="0.28" dy="0.85" layer="1" rot="R180" stop="no" cream="no"/>
 <smd name="25" x="0" y="0" dx="2.45" dy="2.45" layer="1" stop="no" cream="no"/>
-<pad name="V" x="-0.7874" y="-0.7874" drill="0.254" diameter="0.508"/>
-<pad name="V_1" x="-0.7874" y="0" drill="0.254" diameter="0.508"/>
-<pad name="V_2" x="-0.7874" y="0.7874" drill="0.254" diameter="0.508"/>
 <pad name="V_3" x="0" y="-0.7874" drill="0.254" diameter="0.508"/>
 <pad name="V_4" x="0" y="0" drill="0.254" diameter="0.508"/>
 <pad name="V_5" x="0" y="0.7874" drill="0.254" diameter="0.508"/>
@@ -605,7 +602,6 @@
 <polygon width="0.0254" layer="29">
 <vertex x="0.5874" y="1.2885"/>
 <vertex x="0.2" y="1.2885"/>
-<vertex x="0.2" y="-1.2885"/>
 <vertex x="0.5874" y="-1.2885"/>
 </polygon>
 <polygon width="0.0254" layer="29">
