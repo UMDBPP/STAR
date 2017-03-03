@@ -1,6 +1,13 @@
 Enable ssh on raspberry pi
 http://www.instructables.com/id/Use-ssh-to-talk-with-your-Raspberry-Pi/
 
+Configuring to Emulate Ethernet Over USB
+Open config.txt and add the following line at the very bottom:
+dtoverlay=dwc2
+Open cmdline.txt and add the following after rootwait (do not add spaces or alter what is being added):
+modules-load=dwc2,g_ether
+Another way to enable shh is to create a blank ssh.txt file in the boot directory
+
 Startup Photo_Capture_Loop program on startup
 sudo nano /etc/rc.local
 - add below line above exit 0
