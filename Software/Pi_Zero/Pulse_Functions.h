@@ -16,4 +16,4 @@
 void Setup_Pulse(void);
 void Start_Pulse(void);
 void End_Pulse(void);
-void Termintate_Pulse(void);
+void Terminate_Pulse(void);
