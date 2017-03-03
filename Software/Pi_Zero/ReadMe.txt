@@ -1,3 +1,6 @@
+Enable ssh on raspberry pi
+http://www.instructables.com/id/Use-ssh-to-talk-with-your-Raspberry-Pi/
+
 Startup Photo_Capture_Loop program on startup
 sudo nano /etc/rc.local
 - add below line above exit 0
