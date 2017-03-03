@@ -8,3 +8,12 @@ From home directory run
 vim .bashrc
 Add alias ‘killcam’
 alias killcam='sudo pkill -f ./Photo_Capture_Loop'
+
+Install cmake
+sudo apt-get install cmake
+
+Install raspicam
+Follow directions at:
+https://www.uco.es/investiga/grupos/ava/node/40
+Downloaded from:
+https://sourceforge.net/projects/raspicam/files/?
