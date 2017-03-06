@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -130,15 +130,6 @@
 <smd name="23" x="-0.7501875" y="1.975" dx="0.28" dy="0.85" layer="1" rot="R180" stop="no" cream="no"/>
 <smd name="24" x="-1.250315625" y="1.975" dx="0.28" dy="0.85" layer="1" rot="R180" stop="no" cream="no"/>
 <smd name="25" x="0" y="0" dx="2.45" dy="2.45" layer="1" stop="no" cream="no"/>
-<pad name="V" x="-0.7874" y="-0.7874" drill="0.254" diameter="0.508"/>
-<pad name="V_1" x="-0.7874" y="0" drill="0.254" diameter="0.508"/>
-<pad name="V_2" x="-0.7874" y="0.7874" drill="0.254" diameter="0.508"/>
-<pad name="V_3" x="0" y="-0.7874" drill="0.254" diameter="0.508"/>
-<pad name="V_4" x="0" y="0" drill="0.254" diameter="0.508"/>
-<pad name="V_5" x="0" y="0.7874" drill="0.254" diameter="0.508"/>
-<pad name="V_6" x="0.7874" y="-0.7874" drill="0.254" diameter="0.508"/>
-<pad name="V_7" x="0.7874" y="0" drill="0.254" diameter="0.508"/>
-<pad name="V_8" x="0.7874" y="0.7874" drill="0.254" diameter="0.508"/>
 <wire x1="-2.3368" y1="-2.3368" x2="-1.7272" y2="-2.3368" width="0.1524" layer="21"/>
 <wire x1="2.3368" y1="-2.3368" x2="2.3368" y2="-1.7272" width="0.1524" layer="21"/>
 <wire x1="2.3368" y1="2.3368" x2="1.7272" y2="2.3368" width="0.1524" layer="21"/>
@@ -583,50 +574,8 @@
 <polygon width="0.0254" layer="29">
 <vertex x="-1.2885" y="1.2885"/>
 <vertex x="1.2885" y="1.2885"/>
-<vertex x="1.2885" y="0.9874"/>
-<vertex x="-1.2885" y="0.9874"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="-1.2885" y="0.5874"/>
-<vertex x="1.2885" y="0.5874"/>
-<vertex x="1.2885" y="0.2"/>
-<vertex x="-1.2885" y="0.2"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="-1.2885" y="-0.2"/>
-<vertex x="1.2885" y="-0.2"/>
-<vertex x="1.2885" y="-0.5874"/>
-<vertex x="-1.2885" y="-0.5874"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="-1.2885" y="-0.9874"/>
-<vertex x="1.2885" y="-0.9874"/>
 <vertex x="1.2885" y="-1.2885"/>
 <vertex x="-1.2885" y="-1.2885"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="-1.2885" y="1.2885"/>
-<vertex x="-0.9874" y="1.2885"/>
-<vertex x="-0.9874" y="-1.2885"/>
-<vertex x="-1.2885" y="-1.2885"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="-0.2" y="1.2885"/>
-<vertex x="-0.5874" y="1.2885"/>
-<vertex x="-0.5874" y="-1.2885"/>
-<vertex x="-0.2" y="-1.2885"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="0.5874" y="1.2885"/>
-<vertex x="0.2" y="1.2885"/>
-<vertex x="0.2" y="-1.2885"/>
-<vertex x="0.5874" y="-1.2885"/>
-</polygon>
-<polygon width="0.0254" layer="29">
-<vertex x="0.9874" y="1.2885"/>
-<vertex x="1.2885" y="1.2885"/>
-<vertex x="1.2885" y="-1.2885"/>
-<vertex x="0.9874" y="-1.2885"/>
 </polygon>
 <wire x1="-2.0828" y1="0.8128" x2="-0.8128" y2="2.0828" width="0.1524" layer="51"/>
 <wire x1="1.397" y1="2.0828" x2="1.0922" y2="2.0828" width="0.1524" layer="51"/>
