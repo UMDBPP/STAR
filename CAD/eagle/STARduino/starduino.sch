@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -29747,9 +29747,9 @@ chip</description>
 <wire x1="398.78" y1="187.96" x2="391.16" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="PB08/EIC/AIN2/SCOM4PAD0/TC4"/>
-<wire x1="312.42" y1="327.66" x2="345.44" y2="327.66" width="0.1524" layer="91"/>
-<label x="345.44" y="327.66" size="1.016" layer="95" xref="yes"/>
+<pinref part="U6" gate="G$1" pin="PA08/I2C/AIN16/SCOM2PAD0+/TC0"/>
+<wire x1="312.42" y1="383.54" x2="345.44" y2="383.54" width="0.1524" layer="91"/>
+<label x="345.44" y="383.54" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="NENBL" class="0">

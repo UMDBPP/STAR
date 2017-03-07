@@ -1,0 +1,111 @@
+#include <stdio.h>      /* printf */
+#include <stdint.h>      /* printf */
+#include <assert.h>     /* assert */
+#include <string.h> // memcpy
+
+class Print{
+  public:
+    void println(const char*){
+      return;
+    }
+};
+
+#include "../Queue/QueueList.h"
+
+#define MAX_CMD_LEN 9
+
+typedef struct CCSDS_Cmd_t {
+  uint32_t timestamp;
+  uint8_t bytes[MAX_CMD_LEN];
+}CCSDS_Cmd_t;
+void print_cmd(CCSDS_Cmd_t tmp){
+    printf("Timestamp: %d, Cmd: %d %d %d %d %d %d %d %d %d\n",
+    tmp.timestamp,tmp.bytes[0],tmp.bytes[1],tmp.bytes[2],tmp.bytes[3],
+    tmp.bytes[4],tmp.bytes[5],tmp.bytes[6],tmp.bytes[7],
+    tmp.bytes[8]);
+}
+
+QueueList<CCSDS_Cmd_t> cmd_queue;
+
+
+bool check_inject_cmd(uint32_t MET){
+/*
+ * Checks if its time to execute a command from the queue
+ * 
+ * Inputs: 
+ * cmd_queue - Queue to read commands from
+ * MET - current mission elapsed time
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * true if a command should be executed, false otherwise
+ * 
+ */
+
+  // if queue is empty, it can't be time for a command
+  printf("Empty %d\n",cmd_queue.isEmpty());
+  if(cmd_queue.isEmpty()){
+    return false;
+  }
+  else{
+    // get next command from queue but don't remove it from the queue
+    CCSDS_Cmd_t tmp_cmd = cmd_queue.peek();
+  
+    print_cmd(tmp_cmd);
+  
+    // return if current time is greater than next command's timestamp
+    return MET >= tmp_cmd.timestamp;
+  }
+}
+
+int main(){
+  
+  CCSDS_Cmd_t tmp_cmd2;
+
+  assert(cmd_queue.isEmpty() == 1);
+  assert(cmd_queue.count() == 0);
+  //assert(check_inject_cmd(cmd_queue, 5) == false);
+
+  CCSDS_Cmd_t tmp_cmd = {.timestamp = 10, .bytes = {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+  cmd_queue.push(tmp_cmd);
+  tmp_cmd2 = cmd_queue.peek();
+  tmp_cmd2 = cmd_queue.peek();
+  printf("Added:\n");
+  print_cmd(tmp_cmd2);
+  
+  //tmp_cmd.timestamp = 110;
+  //uint8_t cmd[9] = {11, 12, 13, 14, 15, 16, 17, 18, 19};
+  //memcpy(tmp_cmd.bytes, cmd, sizeof(cmd));
+  
+  assert(cmd_queue.isEmpty() == 0);
+  assert(cmd_queue.count() == 1);
+  
+  printf("1:\n");
+  assert(check_inject_cmd(5) == false);
+  tmp_cmd2 = cmd_queue.peek();
+  print_cmd(tmp_cmd2);
+  
+  assert(cmd_queue.isEmpty() == 0);
+  assert(cmd_queue.count() == 1);
+  
+  printf("2:\n");
+  tmp_cmd2 = cmd_queue.peek();
+  print_cmd(tmp_cmd2);
+  assert(check_inject_cmd(9) == false);
+
+  assert(cmd_queue.isEmpty() == 0);
+  assert(cmd_queue.count() == 1);
+  
+  printf("3:\n");
+  assert(check_inject_cmd(15) == true);
+  
+  assert(cmd_queue.count() == 1);
+  tmp_cmd2 = cmd_queue.pop();
+  assert(cmd_queue.isEmpty() == 1);
+  assert(cmd_queue.count() == 0);
+  assert(check_inject_cmd(15) == false);
+
+  return 0;
+}

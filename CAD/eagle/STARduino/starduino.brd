@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -66,7 +66,7 @@
 <layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
-<layer number="90" name="Modules" color="5" fill="1" visible="no" active="yes"/>
+<layer number="90" name="Modules" color="5" fill="1" visible="no" active="no"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="no" active="no"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="no" active="no"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="no"/>
@@ -4421,6 +4421,9 @@ Please make sure your boards conform to these design rules.</description>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
@@ -4844,8 +4847,6 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="J5" pad="39"/>
 <contactref element="U10" pad="1"/>
 <contactref element="U10" pad="3"/>
-<contactref element="U10" pad="3"/>
-<contactref element="U16" pad="3"/>
 <contactref element="U16" pad="3"/>
 <contactref element="U16" pad="1"/>
 <contactref element="JP2" pad="1"/>
@@ -5465,8 +5466,8 @@ Please make sure your boards conform to these design rules.</description>
 </signal>
 <signal name="STEPFREQ">
 <contactref element="U10" pad="2"/>
-<contactref element="U6" pad="7"/>
-<wire x1="-42.3418" y1="16.256" x2="114.3" y2="21.52" width="0" layer="19" extent="1-1"/>
+<contactref element="U6" pad="13"/>
+<wire x1="-40.8432" y1="12.2682" x2="114.3" y2="21.52" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="NENBL">
 <contactref element="U14" pad="11"/>
