@@ -19,7 +19,7 @@
 #define SERIAL_PI Serial2 // FIXME
 
 // Pins
-#define PIN_SDCHIPSELECT 13 // FIXME
+#define PIN_SDCHIPSELECT 53 // FIXME
 #define PIN_LEDPWM 13 // FIXME
 #define PIN_MOTORPWM 13 // FIXME
 #define PIN_BIAS 13 // FIXME
@@ -30,6 +30,7 @@
 #define APID_STAR_FILELOADERR 110
 #define APID_STAR_TXTMSG 120
 #define APID_STAR_CMDRESP 130
+#define APID_STAR_STATUS 140
 
 // FcnCodes
 #define FCNCODE_NOOP_CMD 9
@@ -55,6 +56,15 @@
 #define ERROR_SDLOAD_SHORTHEAD -7
 #define ERROR_SDLOAD_SHORTPKT -8
 #define ERROR_SDLOAD_LONGCMD -2
+
+// Status
+#define STATUS_INITALIZED 1
+
+// Cmd Response
+#define CMDRESP_BAD_FCNCODE 2 
+#define CMDRESP_BAD_APID 3 
+#define CMDRESP_NOT_CMD 4
+#define CMDRESP_BAD_CHKSUM 5
 
 /* Define Parameters */
 #define MAX_CMD_LEN 9

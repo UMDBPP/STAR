@@ -65,6 +65,12 @@ void setSeqFlg(uint8_t _packet[], uint8_t seqflg) {
 	CCSDS_WR_SEQFLG((*header),seqflg);
 }
 
+uint16_t getPacketLength(uint8_t _packet[]) {
+	CCSDS_PriHdr_t header = getPrimaryHeader(_packet);
+
+	return CCSDS_RD_LEN(header);
+}
+
 void setPacketLength(uint8_t _packet[], uint16_t Len) {
 	CCSDS_PriHdr_t *header = (CCSDS_PriHdr_t*)_packet;
 

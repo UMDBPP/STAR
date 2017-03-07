@@ -29,22 +29,24 @@ void setup() {
   SERIAL_DEBUG.begin(57600);
   SERIAL_CTU.begin(57600); // do not change without concurrence from CTU
   SERIAL_PI.begin(57600);
- 
+  
+  pinMode(PIN_SDCHIPSELECT,OUTPUT);
   // see if the card is present and can be initialized:
   if (!SD.begin(PIN_SDCHIPSELECT)) {
-    //sendTxtMsg(SERIAL_DEBUG, "Card failed, or not present");
+    sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDINIT> SDcard failed to init");
   }
-
+  sendTxtMsg(SERIAL_DEBUG, "INIT: <SDINIT> SDcard init");
+  
   // Open logfiles
   // Note: Because the interface automatically logs outgoing messages,
   // no messages can be sent until the logfile_input is opened
   File logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
-  set_msg_logfile(logfile_interface);
+  //set_msg_logfile(logfile_interface);
   logfile_sensor = SD.open(FILENAME_SENSOR_LOG, FILE_WRITE);
   logfile_sync = SD.open(FILENAME_SYNC_LOG, FILE_WRITE);
   
   // open log files
-  sendTxtMsg(SERIAL_DEBUG, "INFO: <Init> SD/LogFiles initialized");
+  sendTxtMsg(SERIAL_DEBUG, "INFO: <Init> LogFiles init");
 
   // setup sync pulse interrupt
   //sendTxtMsg(SERIAL_DEBUG, "INFO: <Init> Setup sync interrupt");
@@ -62,9 +64,10 @@ void setup() {
   }
 
   // initialize sensors
+  //sendTxtMsg(SERIAL_DEBUG, "INFO: <Init> Sensors initalized");
 
   sendTxtMsg(SERIAL_DEBUG, "INFO: <Init> Initialized!");
-  send_cmd_response(100, 100);
+  send_status_msg(STATUS_INITALIZED);
 }
 
 void loop() {
@@ -83,7 +86,7 @@ void loop() {
  * 
  */
  
-  //sendTxtMsg(SERIAL_DEBUG, "Loop");
+  //sendTxtMsg(SERIAL_DEBUG, "DEBUG: <Loop> Loop");
 
   // initalization
   uint8_t Pkt_Buff[100];

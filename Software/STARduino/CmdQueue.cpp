@@ -51,20 +51,26 @@ int8_t load_cmdseq(char *fileName, uint16_t page_num){
   else if(load_stat == ERROR_SDLOAD_CMDCHKSUM){   
     sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDLOAD> Command checksum doesn't validate");
   }
+  else{
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <SDLOAD> Successful load from SD");
+  }
 
   // if fail, load from flash
   if(load_stat != 0){
     load_stat = load_cmds_flash(page_num, file_pos);
   }
-/*
+
   if(load_stat == ERROR_FLASHLOAD_NOTIMP){   
-    SERIAL_DEBUG.println("ERROR: <FLASHLOAD> flash load function is not implemented ");
+    sendTxtMsg(SERIAL_DEBUG, "ERROR: <FLASHLOAD> flash load function not implemented ");
   }
-*/
+  else{
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <FLASHLOAD> Successful load from flash");
+  }
+
   // if fail, log but execute anyways
   if(load_stat != 0){
     disable_cmd_queue();
-    //SERIAL_DEBUG.print("ERROR: <CMDLOAD> Command loading failed... disbled queue");
+    sendTxtMsg(SERIAL_DEBUG, "ERROR: <CMDLOAD> Command loading failed... disabled queue");
   }
   
 }
@@ -96,7 +102,11 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
 
   // attempt to open the file
   File cmdFile = SD.open(fileName);
-
+  
+  char buf[100];
+  sprintf(buf,"DEBUG: <SDLOAD> Found file with length %d",cmdFile.available());
+  sendTxtMsg(SERIAL_DEBUG, buf);
+    
   // if the file can't be opened, there's no point in continuing, so error
   if (!cmdFile) {
     send_fileload_error(ERROR_SDLOAD_OPENFILE, file_idx);
@@ -113,7 +123,10 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     // we can read a timestamp
     if(cmdFile.available() > sizeof(tmp_cmd.timestamp)){
        cmdFile.read((uint32_t*)&tmp_cmd.timestamp,sizeof(tmp_cmd.timestamp));
+       tmp_cmd.timestamp = __builtin_bswap32(tmp_cmd.timestamp);
        file_idx += sizeof(tmp_cmd.timestamp);
+       SERIAL_DEBUG.print("Read timestamp ");
+       SERIAL_DEBUG.println(tmp_cmd.timestamp, HEX);
     }
     else{
       //send_fileload_error(ERROR_SDLOAD_SHORTTIME, file_idx);
@@ -136,8 +149,11 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     }
     
     // read the packet length
-    CCSDS_WR_LEN(getPrimaryHeader(tmp_cmd.bytes),pkt_len);
-
+    pkt_len = getPacketLength(tmp_cmd.bytes);
+    
+    sprintf(buf,"DEBUG: <SDLOAD> Found pkt with length %d",pkt_len);
+    sendTxtMsg(SERIAL_DEBUG, buf);
+    
     // if the packet is too long, record an error
     if(pkt_len > MAX_CMD_LEN){
       //send_fileload_error(ERROR_SDLOAD_LONGCMD, file_idx);
@@ -147,8 +163,8 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
 
     // if there are more than bytes available than the remaining bytes 
     // of the pkt, we can read the rest of the pkt
-    if(cmdFile.available() > pkt_len-sizeof(CCSDS_PriHdr_t)){
-       cmdFile.read(tmp_cmd.bytes,pkt_len-sizeof(CCSDS_PriHdr_t));
+    if(cmdFile.available() > pkt_len-sizeof(CCSDS_PriHdr_t)+1){
+       cmdFile.read(tmp_cmd.bytes,pkt_len-sizeof(CCSDS_PriHdr_t)+1);
        file_idx += pkt_len-sizeof(CCSDS_PriHdr_t);
     }
     else{
@@ -166,11 +182,14 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     
     // put it in the command queue
     cmd_queue.push(tmp_cmd);
-
+    sendTxtMsg(SERIAL_DEBUG, "DEBUG: <SDLOAD> Added pkt");
+    
     // stop reading if we've reached the end of the file
-    if(cmdFile.available()<0){
+    if(cmdFile.available()==0){
       break;
     }
+    SERIAL_DEBUG.print("Bytes left: ");
+    SERIAL_DEBUG.println(cmdFile.available());
   }
 
   cmdFile.close();

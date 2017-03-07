@@ -9,8 +9,10 @@
 
 CCSDS_PriHdr_t getPrimaryHeader(uint8_t _packet[]);
 uint8_t validateChecksum(uint8_t _packet[]);
+
 uint16_t getAPID(uint8_t _packet[]);
 void setAPID(uint8_t _packet[], uint16_t APID);
+
 uint8_t getPacketType(uint8_t _packet[]);
 uint8_t getCmdFunctionCode(uint8_t _packet[]);
 void setSecHdrFlg(uint8_t _packet[], uint8_t SHDR);
@@ -18,9 +20,13 @@ void setPacketType(uint8_t _packet[], uint8_t Type);
 void setVer(uint8_t _packet[], uint8_t ver);
 void setSeqCtr(uint8_t _packet[], uint16_t seqctr);
 void setSeqFlg(uint8_t _packet[], uint8_t seqflg);
+
+uint16_t getPacketLength(uint8_t _packet[]);
 void setPacketLength(uint8_t _packet[], uint16_t Len);
+
 void setTlmTimeSec(uint8_t _packet[], uint32_t sec);
 void setTlmTimeSubSec(uint8_t _packet[], uint16_t subsec);
+
 CCSDS_CmdSecHdr_t getCmdHeader(uint8_t _packet[]);
 
 template<typename T> uint8_t addIntToTlm(const T& val, uint8_t payload[], uint8_t start_pos) {

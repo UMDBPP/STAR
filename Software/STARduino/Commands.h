@@ -16,6 +16,7 @@ void set_shaker(uint8_t shake_speed);
 void set_cutoff(uint8_t enable);
 void send_tlm(uint8_t tlm_requested);
 void send_cmd_response(uint8_t fcncode, uint8_t stat);
+void send_status_msg(uint8_t stat);
 
 #endif
 
