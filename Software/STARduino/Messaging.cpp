@@ -20,6 +20,7 @@ void sendTxtMsg(Stream &_serial, const char str[]){
   //_serial.print("' of length: ");
   //_serial.print(strlen(str));
   sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)str, strlen(str));
+  delay(10);
 }
 
 
