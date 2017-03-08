@@ -6397,6 +6397,96 @@ Source: AVX .. aphvc.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="pinhead">
+<description>&lt;b&gt;Pin Header Connectors&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="1X02">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<wire x1="-1.905" y1="1.27" x2="-0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="0" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="-0.635" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="-0.635" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="-1.27" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="0" y2="-0.635" width="0.1524" layer="21"/>
+<pad name="1" x="-1.27" y="0" drill="1.016" shape="long" rot="R90"/>
+<pad name="2" x="1.27" y="0" drill="1.016" shape="long" rot="R90"/>
+<text x="-2.6162" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
+<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
+</package>
+<package name="1X02/90">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<wire x1="-2.54" y1="-1.905" x2="0" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="0" y1="-1.905" x2="0" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="6.985" x2="-1.27" y2="1.27" width="0.762" layer="21"/>
+<wire x1="0" y1="-1.905" x2="2.54" y2="-1.905" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="-1.905" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="0.635" x2="0" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="6.985" x2="1.27" y2="1.27" width="0.762" layer="21"/>
+<pad name="1" x="-1.27" y="-3.81" drill="1.016" shape="long" rot="R90"/>
+<pad name="2" x="1.27" y="-3.81" drill="1.016" shape="long" rot="R90"/>
+<text x="-3.175" y="-3.81" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="4.445" y="-3.81" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
+<rectangle x1="-1.651" y1="0.635" x2="-0.889" y2="1.143" layer="21"/>
+<rectangle x1="0.889" y1="0.635" x2="1.651" y2="1.143" layer="21"/>
+<rectangle x1="-1.651" y1="-2.921" x2="-0.889" y2="-1.905" layer="21"/>
+<rectangle x1="0.889" y1="-2.921" x2="1.651" y2="-1.905" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="PINHD2">
+<wire x1="-6.35" y1="-2.54" x2="1.27" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="5.08" x2="-6.35" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-6.35" y1="5.08" x2="-6.35" y2="-2.54" width="0.4064" layer="94"/>
+<text x="-6.35" y="5.715" size="1.778" layer="95">&gt;NAME</text>
+<text x="-6.35" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-2.54" y="2.54" visible="pad" length="short" direction="pas" function="dot"/>
+<pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="PINHD-1X2" prefix="JP" uservalue="yes">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="PINHD2" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="1X02">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="/90" package="1X02/90">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -6437,6 +6527,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="J2" library="CM_J30J" deviceset="J30J-25" device=""/>
 <part name="+3V7" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
+<part name="JP1" library="pinhead" deviceset="PINHD-1X2" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -6449,7 +6540,8 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="7.62" y1="152.4" x2="7.62" y2="208.28" width="0.1524" layer="97" style="shortdash"/>
 <text x="71.12" y="203.2" size="2.54" layer="97">PRESSURE SENSOR</text>
 <wire x1="68.58" y1="152.4" x2="71.12" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
-<wire x1="71.12" y1="152.4" x2="127" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
+<wire x1="71.12" y1="152.4" x2="119.38" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
+<wire x1="119.38" y1="152.4" x2="127" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
 <wire x1="127" y1="152.4" x2="127" y2="170.18" width="0.1524" layer="97" style="shortdash"/>
 <wire x1="127" y1="170.18" x2="127" y2="208.28" width="0.1524" layer="97" style="shortdash"/>
 <wire x1="127" y1="208.28" x2="68.58" y2="208.28" width="0.1524" layer="97" style="shortdash"/>
@@ -6469,9 +6561,13 @@ Source: AVX .. aphvc.pdf</description>
 <text x="10.16" y="147.32" size="2.54" layer="97">I2C BUFFER</text>
 <wire x1="7.62" y1="152.4" x2="7.62" y2="109.22" width="0.1524" layer="97" style="shortdash"/>
 <wire x1="7.62" y1="109.22" x2="71.12" y2="109.22" width="0.1524" layer="97" style="shortdash"/>
-<wire x1="71.12" y1="109.22" x2="71.12" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
+<wire x1="71.12" y1="109.22" x2="71.12" y2="129.54" width="0.1524" layer="97" style="shortdash"/>
+<wire x1="71.12" y1="129.54" x2="71.12" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
 <wire x1="274.32" y1="121.92" x2="213.36" y2="121.92" width="0.1524" layer="97" style="shortdash"/>
 <wire x1="213.36" y1="121.92" x2="213.36" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
+<text x="73.66" y="147.32" size="2.54" layer="97">28V BIAS FRAMEWORK</text>
+<wire x1="71.12" y1="129.54" x2="119.38" y2="129.54" width="0.1524" layer="97" style="shortdash"/>
+<wire x1="119.38" y1="129.54" x2="119.38" y2="152.4" width="0.1524" layer="97" style="shortdash"/>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="0" y="0"/>
@@ -6501,6 +6597,7 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="J2" gate="G$1" x="243.84" y="165.1"/>
 <instance part="+3V7" gate="G$1" x="256.54" y="170.18"/>
 <instance part="GND7" gate="1" x="256.54" y="185.42"/>
+<instance part="JP1" gate="G$1" x="104.14" y="137.16"/>
 </instances>
 <busses>
 </busses>
@@ -6896,6 +6993,30 @@ Source: AVX .. aphvc.pdf</description>
 <pinref part="J2" gate="G$1" pin="25"/>
 <wire x1="248.92" y1="137.16" x2="251.46" y2="137.16" width="0.1524" layer="91"/>
 <label x="251.46" y="137.16" size="1.4224" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="BIAS_28V" class="0">
+<segment>
+<pinref part="JP1" gate="G$1" pin="1"/>
+<wire x1="101.6" y1="139.7" x2="93.98" y2="139.7" width="0.1524" layer="91"/>
+<label x="93.98" y="139.7" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J2" gate="G$1" pin="16"/>
+<wire x1="248.92" y1="182.88" x2="261.62" y2="182.88" width="0.1524" layer="91"/>
+<label x="261.62" y="182.88" size="1.4224" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="BIAS_GND" class="0">
+<segment>
+<pinref part="JP1" gate="G$1" pin="2"/>
+<wire x1="101.6" y1="137.16" x2="93.98" y2="137.16" width="0.1524" layer="91"/>
+<label x="93.98" y="137.16" size="1.4224" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="J2" gate="G$1" pin="18"/>
+<wire x1="248.92" y1="172.72" x2="261.62" y2="172.72" width="0.1524" layer="91"/>
+<label x="261.62" y="172.72" size="1.4224" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
