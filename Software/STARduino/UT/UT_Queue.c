@@ -1,5 +1,5 @@
 #include <stdio.h>      /* printf */
-#include <stdint.h>      /* printf */
+#include <stdint.h>     
 #include <assert.h>     /* assert */
 #include <string.h> // memcpy
 

@@ -1,7 +1,9 @@
 
+#ifndef _IS_UT_
 #include "CmdQueue.h"
+#endif
 
-QueueList <CCSDS_Cmd_t> cmd_queue;
+Queue <CCSDS_Cmd_t> cmd_queue;
 // Note: this doesn't appear to work if its passed into functions
 // so its defined as a global
 
@@ -106,16 +108,19 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
   char buf[100];
   sprintf(buf,"DEBUG: <SDLOAD> Found file with length %d",cmdFile.available());
   sendTxtMsg(SERIAL_DEBUG, buf);
-    
+
   // if the file can't be opened, there's no point in continuing, so error
   if (!cmdFile) {
     send_fileload_error(ERROR_SDLOAD_OPENFILE, file_idx);
     return ERROR_SDLOAD_OPENFILE;
   }
 
+  // infiloop protection counter
+  int16_t ctr = 10;
+  
   // read the entire file
-  while (1) {
-
+  while (ctr--) {
+    
     // initialize a temporary command to read into
     CCSDS_Cmd_t tmp_cmd;
 
@@ -125,6 +130,7 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
        cmdFile.read((uint32_t*)&tmp_cmd.timestamp,sizeof(tmp_cmd.timestamp));
        tmp_cmd.timestamp = __builtin_bswap32(tmp_cmd.timestamp);
        file_idx += sizeof(tmp_cmd.timestamp);
+       printf("Got Timestamp: %d \n",tmp_cmd.timestamp);
     }
     else{
       //send_fileload_error(ERROR_SDLOAD_SHORTTIME, file_idx);
@@ -135,6 +141,7 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     
     // if there are more bytes available that the length of a header, 
     // we can read a header
+    printf("Read Head: Remaining bytes %d \n",cmdFile.available());
     if(cmdFile.available() > sizeof(CCSDS_PriHdr_t)){
        cmdFile.read((uint8_t*)&tmp_cmd.bytes,sizeof(CCSDS_PriHdr_t));
        file_idx += sizeof(CCSDS_PriHdr_t);
@@ -161,6 +168,7 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
 
     // if there are more than bytes available than the remaining bytes 
     // of the pkt, we can read the rest of the pkt
+    printf("Read Pkt: Remaining bytes %d \n",cmdFile.available());
     if(cmdFile.available() >= pkt_len-sizeof(CCSDS_PriHdr_t)){
        cmdFile.read((uint8_t*)&tmp_cmd.bytes+sizeof(CCSDS_PriHdr_t),pkt_len-sizeof(CCSDS_PriHdr_t));
        file_idx += pkt_len-sizeof(CCSDS_PriHdr_t);
@@ -188,6 +196,11 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     }
   }
 
+  if(ctr < 0){
+    sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDLOAD> Aborted load SD due to InifLoop");
+    load_stat = ERROR_SDLOAD_INFILOOP;
+    file_pos = file_idx;
+  }
   cmdFile.close();
   return load_stat;
 }
@@ -272,7 +285,8 @@ bool time_for_queued_cmd(uint32_t MET){
   }
    
   // get next command from queue but don't remove it from the queue
-  CCSDS_Cmd_t tmp = cmd_queue.peek();
+  CCSDS_Cmd_t tmp;
+  cmd_queue.peek(tmp);
 
   // return if current time is greater than next command's timestamp
   return MET >= tmp.timestamp;
@@ -297,11 +311,12 @@ void inject_cmd(uint8_t Pkt_Buff[]){
  */
  
  // get next command from queue
- CCSDS_Cmd_t tmp = cmd_queue.pop();
- sendTxtMsg(SERIAL_DEBUG, "INFO: <INJCHECK> Injecting command");
-
- memcpy(Pkt_Buff,tmp.bytes,getPacketLength(tmp.bytes));
+ CCSDS_Cmd_t tmp;
+ cmd_queue.pop(tmp);
  
+ sendTxtMsg(SERIAL_DEBUG, "INFO: <INJCHECK> Injecting command");
+ memcpy(Pkt_Buff,tmp.bytes,getPacketLength(tmp.bytes));
+
  return;
 }
 
@@ -335,7 +350,7 @@ void disable_cmd_queue(){
  * N/A
  * 
  */
- sendTxtMsg(SERIAL_DEBUG, "INFO: <CMDQUEUE> Disabled command queue");
+  sendTxtMsg(SERIAL_DEBUG, "INFO: <CMDQUEUE> Disabled command queue");
   Queue_Enabled_Flag = false;
 }
 

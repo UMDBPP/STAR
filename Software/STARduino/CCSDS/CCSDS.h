@@ -1,5 +1,5 @@
-#ifndef _ccsds_
-#define _ccsds_
+#ifndef _ccsds_h_
+#define _ccsds_h_
 
 #include "stdint.h"
 #include "stdbool.h"
