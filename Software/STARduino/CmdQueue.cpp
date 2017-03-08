@@ -125,8 +125,6 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
        cmdFile.read((uint32_t*)&tmp_cmd.timestamp,sizeof(tmp_cmd.timestamp));
        tmp_cmd.timestamp = __builtin_bswap32(tmp_cmd.timestamp);
        file_idx += sizeof(tmp_cmd.timestamp);
-       SERIAL_DEBUG.print("Read timestamp ");
-       SERIAL_DEBUG.println(tmp_cmd.timestamp, HEX);
     }
     else{
       //send_fileload_error(ERROR_SDLOAD_SHORTTIME, file_idx);
@@ -163,8 +161,8 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
 
     // if there are more than bytes available than the remaining bytes 
     // of the pkt, we can read the rest of the pkt
-    if(cmdFile.available() > pkt_len-sizeof(CCSDS_PriHdr_t)+1){
-       cmdFile.read(tmp_cmd.bytes,pkt_len-sizeof(CCSDS_PriHdr_t)+1);
+    if(cmdFile.available() >= pkt_len-sizeof(CCSDS_PriHdr_t)){
+       cmdFile.read((uint8_t*)&tmp_cmd.bytes+sizeof(CCSDS_PriHdr_t),pkt_len-sizeof(CCSDS_PriHdr_t));
        file_idx += pkt_len-sizeof(CCSDS_PriHdr_t);
     }
     else{
@@ -188,8 +186,6 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     if(cmdFile.available()==0){
       break;
     }
-    SERIAL_DEBUG.print("Bytes left: ");
-    SERIAL_DEBUG.println(cmdFile.available());
   }
 
   cmdFile.close();
@@ -244,7 +240,7 @@ int8_t load_cmds_flash(uint16_t page_num, uint16_t &filepos){
   return ERROR_FLASHLOAD_NOTIMP;
 }
 
-bool check_inject_cmd(uint32_t MET){
+bool time_for_queued_cmd(uint32_t MET){
 /*
  * Checks if its time to execute a command from the queue
  * 
@@ -271,6 +267,7 @@ bool check_inject_cmd(uint32_t MET){
   // if queue is empty, it can't be time for a command, so return
   // false
   if(cmd_queue.isEmpty()){
+     disable_cmd_queue();
      return false;
   }
    
@@ -301,8 +298,9 @@ void inject_cmd(uint8_t Pkt_Buff[]){
  
  // get next command from queue
  CCSDS_Cmd_t tmp = cmd_queue.pop();
+ sendTxtMsg(SERIAL_DEBUG, "INFO: <INJCHECK> Injecting command");
 
- Pkt_Buff = tmp.bytes;
+ memcpy(Pkt_Buff,tmp.bytes,getPacketLength(tmp.bytes));
  
  return;
 }
@@ -337,6 +335,7 @@ void disable_cmd_queue(){
  * N/A
  * 
  */
+ sendTxtMsg(SERIAL_DEBUG, "INFO: <CMDQUEUE> Disabled command queue");
   Queue_Enabled_Flag = false;
 }
 

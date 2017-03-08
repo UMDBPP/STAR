@@ -91,13 +91,13 @@ void loop() {
   // initalization
   uint8_t Pkt_Buff[100];
   uint8_t BytesRead;
-  /*
+  
   // check if time to execute next command in buffer
-  if(check_inject_cmd(get_MET())){
+  if(time_for_queued_cmd(get_MET())){
     inject_cmd(Pkt_Buff);
     execute_command(Pkt_Buff);
   }
-  */
+  
   // read debug interface
   if(SERIAL_DEBUG.available()){
     BytesRead = SERIAL_DEBUG.readBytes((char*)Pkt_Buff, SERIAL_DEBUG.available());
