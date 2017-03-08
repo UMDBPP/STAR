@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -29176,9 +29176,9 @@ chip</description>
 <label x="264.16" y="259.08" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="PB09/EIC/AIN3/SCOM4PAD1//TC4"/>
-<wire x1="312.42" y1="325.12" x2="345.44" y2="325.12" width="0.1524" layer="91"/>
-<label x="345.44" y="325.12" size="1.016" layer="95" xref="yes"/>
+<pinref part="U6" gate="G$1" pin="PA12/I2C/EIC/SCOM2PAD0+/TC2"/>
+<wire x1="312.42" y1="373.38" x2="345.44" y2="373.38" width="0.1524" layer="91"/>
+<label x="345.44" y="373.38" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="TX1" class="0">
@@ -30120,14 +30120,14 @@ chip</description>
 </net>
 <net name="SYNC" class="0">
 <segment>
-<pinref part="U6" gate="G$1" pin="PA12/I2C/EIC/SCOM2PAD0+/TC2"/>
-<wire x1="312.42" y1="373.38" x2="345.44" y2="373.38" width="0.1524" layer="91"/>
-<label x="345.44" y="373.38" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="J5" gate="G$1" pin="BCM26"/>
 <wire x1="317.5" y1="96.52" x2="314.96" y2="96.52" width="0.1524" layer="91"/>
 <label x="314.96" y="96.52" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA15/XOUT/EIC/SCOM2PAD3+/TC3"/>
+<wire x1="312.42" y1="365.76" x2="345.44" y2="365.76" width="0.1524" layer="91"/>
+<label x="345.44" y="365.76" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="EXTERNAL_KILL" class="0">

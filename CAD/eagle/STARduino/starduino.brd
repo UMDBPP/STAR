@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -4421,6 +4421,9 @@ Please make sure your boards conform to these design rules.</description>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
+<param name="AutoGrid" value="1"/>
+<param name="Efforts" value="0"/>
+<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
 <param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
@@ -5118,9 +5121,9 @@ Please make sure your boards conform to these design rules.</description>
 <signal name="MISO">
 <contactref element="J2" pad="7"/>
 <contactref element="U5" pad="8"/>
-<contactref element="U6" pad="8"/>
-<wire x1="-42.3418" y1="15.748" x2="55.64" y2="7.21" width="0" layer="19" extent="1-1"/>
-<wire x1="-33.655" y1="58.9" x2="-42.3418" y2="15.748" width="0" layer="19" extent="1-1"/>
+<contactref element="U6" pad="21"/>
+<wire x1="-36.8554" y1="12.2682" x2="55.64" y2="7.21" width="0" layer="19" extent="1-1"/>
+<wire x1="-33.655" y1="58.9" x2="-36.8554" y2="12.2682" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="TX1">
 <contactref element="U6" pad="27"/>
@@ -5766,9 +5769,9 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="U6" pad="34"/>
 </signal>
 <signal name="SYNC">
-<contactref element="U6" pad="21"/>
 <contactref element="J5" pad="37"/>
-<wire x1="-36.8554" y1="12.2682" x2="78.74" y2="33.147" width="0" layer="19" extent="1-1"/>
+<contactref element="U6" pad="24"/>
+<wire x1="-35.3568" y1="12.2682" x2="78.74" y2="33.147" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="EXTERNAL_KILL">
 <contactref element="Q2" pad="2"/>
