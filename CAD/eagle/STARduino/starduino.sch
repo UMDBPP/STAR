@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -29216,9 +29216,9 @@ chip</description>
 <junction x="429.26" y="200.66"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P13"/>
-<wire x1="472.44" y1="116.84" x2="477.52" y2="116.84" width="0.1524" layer="91"/>
-<label x="477.52" y="116.84" size="1.016" layer="95" xref="yes"/>
+<pinref part="U11" gate="A" pin="P11"/>
+<wire x1="441.96" y1="121.92" x2="436.88" y2="121.92" width="0.1524" layer="91"/>
+<label x="436.88" y="121.92" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -29735,9 +29735,9 @@ chip</description>
 <label x="490.22" y="190.5" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<label x="436.88" y="132.08" size="1.016" layer="95" rot="R180" xref="yes"/>
-<pinref part="U11" gate="A" pin="P06"/>
-<wire x1="436.88" y1="132.08" x2="441.96" y2="132.08" width="0.1524" layer="91"/>
+<pinref part="U11" gate="A" pin="P14"/>
+<wire x1="472.44" y1="119.38" x2="477.52" y2="119.38" width="0.1524" layer="91"/>
+<label x="477.52" y="119.38" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="STEPFREQ" class="0">
@@ -29951,9 +29951,9 @@ chip</description>
 <label x="490.22" y="198.12" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P16"/>
-<wire x1="472.44" y1="124.46" x2="477.52" y2="124.46" width="0.1524" layer="91"/>
-<label x="477.52" y="124.46" size="1.016" layer="95" xref="yes"/>
+<pinref part="U11" gate="A" pin="P17"/>
+<wire x1="472.44" y1="127" x2="477.52" y2="127" width="0.1524" layer="91"/>
+<label x="477.52" y="127" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="I1" class="0">
@@ -29963,9 +29963,9 @@ chip</description>
 <label x="490.22" y="195.58" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P17"/>
-<wire x1="472.44" y1="127" x2="477.52" y2="127" width="0.1524" layer="91"/>
-<label x="477.52" y="127" size="1.016" layer="95" xref="yes"/>
+<pinref part="U11" gate="A" pin="P16"/>
+<wire x1="472.44" y1="124.46" x2="477.52" y2="124.46" width="0.1524" layer="91"/>
+<label x="477.52" y="124.46" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="M0" class="0">
@@ -29975,9 +29975,9 @@ chip</description>
 <label x="454.66" y="198.12" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P14"/>
-<wire x1="472.44" y1="119.38" x2="477.52" y2="119.38" width="0.1524" layer="91"/>
-<label x="477.52" y="119.38" size="1.016" layer="95" xref="yes"/>
+<label x="436.88" y="132.08" size="1.016" layer="95" rot="R180" xref="yes"/>
+<pinref part="U11" gate="A" pin="P06"/>
+<wire x1="436.88" y1="132.08" x2="441.96" y2="132.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="M1" class="0">
@@ -29987,9 +29987,9 @@ chip</description>
 <label x="454.66" y="195.58" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P15"/>
-<wire x1="472.44" y1="121.92" x2="477.52" y2="121.92" width="0.1524" layer="91"/>
-<label x="477.52" y="121.92" size="1.016" layer="95" xref="yes"/>
+<pinref part="U11" gate="A" pin="P10"/>
+<wire x1="441.96" y1="124.46" x2="436.88" y2="124.46" width="0.1524" layer="91"/>
+<label x="436.88" y="124.46" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$22" class="0">
@@ -30075,9 +30075,9 @@ chip</description>
 <label x="490.22" y="193.04" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P10"/>
-<wire x1="441.96" y1="124.46" x2="436.88" y2="124.46" width="0.1524" layer="91"/>
-<label x="436.88" y="124.46" size="1.016" layer="95" rot="R180" xref="yes"/>
+<pinref part="U11" gate="A" pin="P15"/>
+<wire x1="472.44" y1="121.92" x2="477.52" y2="121.92" width="0.1524" layer="91"/>
+<label x="477.52" y="121.92" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="DEC1" class="0">
@@ -30087,9 +30087,9 @@ chip</description>
 <label x="490.22" y="187.96" size="1.016" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U11" gate="A" pin="P11"/>
-<wire x1="441.96" y1="121.92" x2="436.88" y2="121.92" width="0.1524" layer="91"/>
-<label x="436.88" y="121.92" size="1.016" layer="95" rot="R180" xref="yes"/>
+<pinref part="U11" gate="A" pin="P13"/>
+<wire x1="472.44" y1="116.84" x2="477.52" y2="116.84" width="0.1524" layer="91"/>
+<label x="477.52" y="116.84" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="LED_CTRL" class="0">
