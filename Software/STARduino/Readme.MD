@@ -65,12 +65,12 @@ Guidelines
 - Dynamic memory allocation (i.e. `new`, `delete`, `malloc()`, and `free()`) should be avoided whenever possible
     - Stack/heap collisions are very possible when you don't have an operating system to check for these things. Be careful.
 - Function definitions should differentiate between function arguments, class members, and local variables
-    - i.e. arguments are written as `int _arg1`, class members are `int classMember`, local variables are `int localvariable`
+    - i.e. arguments are written as `int _arg1`, class members are `int classMember`, local variables are `int localvariable_`
         - function arguments are the inputs to the function; suggestion is prefixing these with an underscore
         - class members are variables accessible to the entire class you are working in (if you are using a class); suggestion
         for these is lowerCamelCase
         - local variables are variables that are only within the function you are currently writing; suggestion for these
-        is entirely lowercase names
+        is entirely lowercase names followed by a trailing underscore
     - You may use your own convention, so long as it is internally consistent
 - Class member variables should be private, and values set/read through setter/getter member functions
     - setters and getters should typically be named as such: `int get_member()` or `void set_member(int _newVal)`
