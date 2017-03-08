@@ -1366,6 +1366,36 @@ for trimmer refence see : &lt;u&gt;www.electrospec-inc.com/cross_references/trim
 </package>
 </packages>
 </library>
+<library name="pinhead">
+<description>&lt;b&gt;Pin Header Connectors&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="1X02">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<wire x1="-1.905" y1="1.27" x2="-0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="0" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="0" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="0" y1="-0.635" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="0.635" x2="-2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-1.905" y1="1.27" x2="-2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-2.54" y1="-0.635" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="-1.27" x2="-1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0" y1="0.635" x2="0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.905" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="1.27" x2="2.54" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="0.635" x2="2.54" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="2.54" y1="-0.635" x2="1.905" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="1.905" y1="-1.27" x2="0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="0" y2="-0.635" width="0.1524" layer="21"/>
+<pad name="1" x="-1.27" y="0" drill="1.016" shape="long" rot="R90"/>
+<pad name="2" x="1.27" y="0" drill="1.016" shape="long" rot="R90"/>
+<text x="-2.6162" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.54" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-1.524" y1="-0.254" x2="-1.016" y2="0.254" layer="51"/>
+<rectangle x1="1.016" y1="-0.254" x2="1.524" y2="0.254" layer="51"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1591,6 +1621,7 @@ Please make sure your boards conform to these design rules.</description>
 <attribute name="NAME" x="45.466" y="8.001" size="1.27" layer="25" rot="R90"/>
 </element>
 <element name="J2" library="CM_J30J" package="ZKN-25" value="J30J-25" x="24.13" y="40.64" smashed="yes"/>
+<element name="JP1" library="pinhead" package="1X02" value="" x="48.2854" y="44.1452" rot="R90"/>
 </elements>
 <signals>
 <signal name="+3V3">
@@ -1682,6 +1713,15 @@ Please make sure your boards conform to these design rules.</description>
 <via x="47.879" y="18.5928" extent="1-16" drill="0.3302"/>
 <via x="6.35" y="10.16" extent="1-16" drill="0.3302"/>
 <via x="40.64" y="8.89" extent="1-16" drill="0.3302"/>
+<via x="44.45" y="44.45" extent="1-16" drill="0.3302"/>
+<via x="49.53" y="40.64" extent="1-16" drill="0.3302"/>
+<via x="24.1554" y="45.7454" extent="1-16" drill="0.3302"/>
+<via x="27.305" y="43.4594" extent="1-16" drill="0.3302"/>
+<via x="25.3746" y="20.7518" extent="1-16" drill="0.3302"/>
+<via x="38.7858" y="14.8082" extent="1-16" drill="0.3302"/>
+<via x="29.21" y="17.78" extent="1-16" drill="0.3302"/>
+<via x="5.08" y="39.37" extent="1-16" drill="0.3302"/>
+<via x="2.54" y="44.45" extent="1-16" drill="0.3302"/>
 </signal>
 <signal name="SDA">
 <contactref element="U1" pad="1"/>
@@ -1995,10 +2035,10 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="LED2" pad="1"/>
 <contactref element="J2" pad="24"/>
 <wire x1="48.26" y1="14.85" x2="50.038" y2="16.628" width="0.3048" layer="16"/>
-<wire x1="50.038" y1="16.628" x2="50.038" y2="41.402" width="0.3048" layer="16"/>
-<wire x1="50.038" y1="41.402" x2="48.26" y2="43.18" width="0.3048" layer="16"/>
-<wire x1="48.26" y1="43.18" x2="31.115" y2="43.18" width="0.3048" layer="16"/>
+<wire x1="50.038" y1="16.628" x2="50.038" y2="37.592" width="0.3048" layer="16"/>
+<wire x1="44.45" y1="43.18" x2="31.115" y2="43.18" width="0.3048" layer="16"/>
 <wire x1="31.115" y1="43.18" x2="29.845" y2="41.91" width="0.3048" layer="16"/>
+<wire x1="44.45" y1="43.18" x2="50.038" y2="37.592" width="0.3048" layer="16"/>
 </signal>
 <signal name="N$2">
 <contactref element="LED1" pad="1"/>
@@ -2109,6 +2149,34 @@ Please make sure your boards conform to these design rules.</description>
 <wire x1="44.45" y1="41.91" x2="44.45" y2="43.18" width="0.2032" layer="1"/>
 <wire x1="44.45" y1="43.18" x2="43.18" y2="44.45" width="0.2032" layer="1"/>
 <wire x1="43.18" y1="44.45" x2="31.115" y2="44.45" width="0.2032" layer="1"/>
+</signal>
+<signal name="BIAS_28V">
+<contactref element="JP1" pad="1"/>
+<contactref element="J2" pad="16"/>
+<wire x1="19.685" y1="41.91" x2="20.32" y2="41.91" width="0.254" layer="16"/>
+<wire x1="20.32" y1="41.91" x2="21.59" y2="43.18" width="0.254" layer="16"/>
+<wire x1="21.59" y1="43.18" x2="22.0726" y2="43.18" width="0.254" layer="16"/>
+<wire x1="22.0726" y1="43.18" x2="22.3266" y2="43.434" width="0.254" layer="16"/>
+<wire x1="22.3266" y1="43.434" x2="22.3266" y2="45.4152" width="0.254" layer="16"/>
+<wire x1="22.3266" y1="45.4152" x2="23.3934" y2="46.482" width="0.254" layer="16"/>
+<wire x1="23.3934" y1="46.482" x2="46.5328" y2="46.482" width="0.254" layer="16"/>
+<wire x1="46.5328" y1="46.482" x2="46.7868" y2="46.736" width="0.254" layer="16"/>
+<wire x1="46.7868" y1="46.736" x2="49.5554" y2="46.736" width="0.254" layer="16"/>
+<wire x1="49.5554" y1="46.736" x2="50.292" y2="45.9994" width="0.254" layer="16"/>
+<wire x1="50.292" y1="45.9994" x2="50.292" y2="44.8818" width="0.254" layer="16"/>
+<wire x1="50.292" y1="44.8818" x2="48.2854" y2="42.8752" width="0.254" layer="16"/>
+</signal>
+<signal name="BIAS_GND">
+<contactref element="JP1" pad="2"/>
+<contactref element="J2" pad="18"/>
+<wire x1="22.225" y1="41.91" x2="22.86" y2="41.91" width="0.254" layer="16"/>
+<wire x1="22.86" y1="41.91" x2="24.13" y2="43.18" width="0.254" layer="16"/>
+<wire x1="24.13" y1="43.18" x2="24.5618" y2="43.18" width="0.254" layer="16"/>
+<wire x1="24.5618" y1="43.18" x2="24.7904" y2="43.4086" width="0.254" layer="16"/>
+<wire x1="24.7904" y1="43.4086" x2="24.7904" y2="45.1104" width="0.254" layer="16"/>
+<wire x1="24.7904" y1="45.1104" x2="25.4" y2="45.72" width="0.254" layer="16"/>
+<wire x1="25.4" y1="45.72" x2="47.9806" y2="45.72" width="0.254" layer="16"/>
+<wire x1="47.9806" y1="45.72" x2="48.2854" y2="45.4152" width="0.254" layer="16"/>
 </signal>
 </signals>
 <errors>
