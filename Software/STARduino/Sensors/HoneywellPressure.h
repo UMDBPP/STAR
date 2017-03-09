@@ -3,11 +3,20 @@
 
 #include <stdint.h>
 
+// Maximum samples for supersampling sensor
+#define PRESSURE_MAX_SAMPLES 5
+
+// Status code enum for pressure sensor (First 2 bits of data are status)
 enum PRESSURE_SENSOR_STATUS { NORMAL, COMMAND_MODE, STALE_DATA, DIAGNOSTIC_FAULT };
 
+// Class to handle communication with Honeywell SSC pressure sensor over I2C.
+// Supports software supersampling.
+// Retrieves data in one block (as sensor sends it), separates into pressure, temp, and status
+// Pressure, temp, status available individually through getters
 class HoneywellPressureI2C {
     public:
         HoneywellPressureI2C();
+        HoneywellPressureI2C(uint8_t _samples);
         ~HoneywellPressureI2C();
 
         void recieve_data();
