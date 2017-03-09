@@ -24,7 +24,7 @@ class VoltageSense {
 
 };
 
-// Class to read ACS722 analog current sensor
+// Class to read analog current sensor (Comes off 5V reg)
 // Supports software supersampling
 class CurrentSense {
     public:
