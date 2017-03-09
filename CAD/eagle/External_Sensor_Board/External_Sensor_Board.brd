@@ -1619,7 +1619,9 @@ Please make sure your boards conform to these design rules.</description>
 </element>
 <element name="J2" library="CM_J30J" package="ZKN-25" value="J30J-25" x="24.13" y="40.64" smashed="yes"/>
 <element name="JP1" library="pinhead" package="1X02" value="" x="48.2854" y="44.1452" rot="R90"/>
-<element name="U2" library="NR_IC" package="HSC-SMT-8" value="SSCMNNN015PA2A3" x="7.0358" y="28.9814"/>
+<element name="U2" library="NR_IC" package="HSC-SMT-8" value="SSCMNNN015PA2A3" x="7.0358" y="28.9814" smashed="yes">
+<attribute name="NAME" x="2.0828" y="35.4584" size="0.8128" layer="25"/>
+</element>
 </elements>
 <signals>
 <signal name="+3V3">
