@@ -106,7 +106,7 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
   File cmdFile = SD.open(fileName);
   
   char buf[100];
-  sprintf(buf,"DEBUG: <SDLOAD> Found file with length %d",cmdFile.available());
+  sprintf(buf,"SDLOAD: <DEBUG> Found file with length %d",cmdFile.available());
   sendTxtMsg(SERIAL_DEBUG, buf);
 
   // if the file can't be opened, there's no point in continuing, so error
@@ -130,7 +130,6 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
        cmdFile.read((uint32_t*)&tmp_cmd.timestamp,sizeof(tmp_cmd.timestamp));
        tmp_cmd.timestamp = __builtin_bswap32(tmp_cmd.timestamp);
        file_idx += sizeof(tmp_cmd.timestamp);
-       printf("Got Timestamp: %d \n",tmp_cmd.timestamp);
     }
     else{
       //send_fileload_error(ERROR_SDLOAD_SHORTTIME, file_idx);
@@ -141,7 +140,6 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     
     // if there are more bytes available that the length of a header, 
     // we can read a header
-    printf("Read Head: Remaining bytes %d \n",cmdFile.available());
     if(cmdFile.available() > sizeof(CCSDS_PriHdr_t)){
        cmdFile.read((uint8_t*)&tmp_cmd.bytes,sizeof(CCSDS_PriHdr_t));
        file_idx += sizeof(CCSDS_PriHdr_t);
@@ -156,19 +154,11 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     // read the packet length
     pkt_len = getPacketLength(tmp_cmd.bytes);
     
-    sprintf(buf,"DEBUG: <SDLOAD> Found pkt with length %d",pkt_len);
+    sprintf(buf,"SDLOAD: <DEBUG> Found pkt with length %d",pkt_len);
     sendTxtMsg(SERIAL_DEBUG, buf);
-    
-    // if the packet is too long, record an error
-    if(pkt_len > MAX_CMD_LEN){
-      //send_fileload_error(ERROR_SDLOAD_LONGCMD, file_idx);
-      load_stat = ERROR_SDLOAD_LONGCMD;
-      file_pos = file_idx;
-    }      
 
     // if there are more than bytes available than the remaining bytes 
     // of the pkt, we can read the rest of the pkt
-    printf("Read Pkt: Remaining bytes %d \n",cmdFile.available());
     if(cmdFile.available() >= pkt_len-sizeof(CCSDS_PriHdr_t)){
        cmdFile.read((uint8_t*)&tmp_cmd.bytes+sizeof(CCSDS_PriHdr_t),pkt_len-sizeof(CCSDS_PriHdr_t));
        file_idx += pkt_len-sizeof(CCSDS_PriHdr_t);
@@ -188,7 +178,7 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
     
     // put it in the command queue
     cmd_queue.push(tmp_cmd);
-    sendTxtMsg(SERIAL_DEBUG, "DEBUG: <SDLOAD> Added pkt");
+    sendTxtMsg(SERIAL_DEBUG, "SDLOAD: <DEBUG> Added pkt");
     
     // stop reading if we've reached the end of the file
     if(cmdFile.available()==0){
@@ -197,7 +187,7 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
   }
 
   if(ctr < 0){
-    sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDLOAD> Aborted load SD due to InifLoop");
+    sendTxtMsg(SERIAL_DEBUG, "SDLOAD: <ERROR> Aborted load SD due to InifLoop");
     load_stat = ERROR_SDLOAD_INFILOOP;
     file_pos = file_idx;
   }

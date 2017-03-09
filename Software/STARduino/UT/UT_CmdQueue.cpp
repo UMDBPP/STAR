@@ -1,9 +1,10 @@
 #include <stdio.h>      /* printf */
-#include <stdint.h>      /* printf */
+#include <stdint.h>     /* printf */
 #include <assert.h>     /* assert */
-#include <string.h> // memcpy
+#include <string.h>     /* memcpy */
 #include <iostream>
-#include <fstream> // for ifstream
+#include <fstream>      /* for ifstream */
+#include <stdlib.h>     /* malloc, free, rand */
 
 #include "../CCSDS/ccsds_utilities.h"
 #include "../Queue/StaticQueue.h"
@@ -11,6 +12,10 @@
 // flag indicating that we're testing
 #define _IS_UT_
 
+/*
+ * These are normally defined in Starduino.h 
+ * and are redefined here for testing
+ */
 #define SERIAL_DEBUG 0
 #define MAX_TLM_LEN 255
 #define MAX_CMD_LEN 9
@@ -30,22 +35,54 @@ typedef struct CCSDS_Cmd_t {
   uint8_t bytes[8];
 }CCSDS_Cmd_t;
 
+// create a fake Stream type for sendTxtMsg stub
 typedef uint8_t Stream;
-
 
 #include "Stub_SD.cpp"
 
-
-// stubbed sendTxtMsg
+/*
+ * Stubbed version of sendTxtMsg which just prints message
+ * to console
+ *
+ * Inputs:
+ * _serial - input ignored for this stubbed version of function
+ * str - string to print
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * none
+ */
 void sendTxtMsg(Stream _serial, const char str[]){
   printf(str);
   printf("\n");
 }
 
+/*
+ * Stubbed version of sendTlmMsg does nothing
+ *
+ * Inputs:
+ * _serial - input ignored for this stubbed version of function
+ * _APID - input ignored for this stubbed version 
+ * _payload - input ignored for this stubbed version
+ * _payload_size - input ignored for this stubbed version
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * none
+ */
 int sendTlmMsg(Stream _serial, uint16_t _APID, uint8_t _payload[], uint16_t _payload_size){
   
 }
 
+/*
+ * Function prototypes for CmdQueue.cpp
+ * Normally defined in CmdQueue.h but that's not included for 
+ * unit testing so we need to define them here.
+ */
 int8_t load_cmdseq(char *fileName, uint16_t page_num);
 int8_t load_cmds_sd(char *fileName, uint16_t &file_pos);
 int8_t load_cmds_flash(uint16_t page_num, uint16_t &file_pos);
@@ -55,8 +92,27 @@ void inject_cmd(uint8_t Pkt_Buff[]);
 void enable_cmd_queue();
 void disable_cmd_queue();
 
+/*
+ * Include CmdQueue.cpp
+ * While its not standard to include a cpp file, it seemed
+ * like it would be a pain to figure out how to swap the 
+ * header file that CmdQueue.cpp includes
+ */
 #include "../CmdQueue.cpp"
 
+
+/*
+ * Tests queue enable/disable functions
+ *
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * 1 if success (errors internally if fails)
+ */
 bool test_enable_queue_flag(){
   
   assert(Queue_Enabled_Flag == true);
@@ -67,6 +123,18 @@ bool test_enable_queue_flag(){
   return 1;
 }
 
+/*
+ * Tests inject_cmd function
+ *
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * 1 if success (errors internally if fails)
+ */
 bool test_inject_cmd(){
   uint8_t Pkt_Buff[25];
 
@@ -105,6 +173,18 @@ bool test_inject_cmd(){
   return 1;
 }
 
+/*
+ * Tests function which determines if time to inject cmd
+ *
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * 1 if success (errors internally if fails)
+ */
 bool test_time_for_cmd(){
   uint8_t Pkt_Buff[100];
 
@@ -142,6 +222,18 @@ bool test_time_for_cmd(){
   return 1;
 }
 
+/*
+ * Tests function loads command file from SD card
+ *
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * 1 if success (errors internally if fails)
+ */
 bool test_load_cmd_sd(){
   
   int8_t status = 0;
@@ -155,53 +247,60 @@ bool test_load_cmd_sd(){
   // verify a command with bad checksum is detected
   char fileName2[] = "ut_cmds_badchksum.cmd";
   status = load_cmds_sd(fileName2, file_pos);
-  printf("Status: %d \n",status);
+  printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
   assert(status == ERROR_SDLOAD_CMDCHKSUM);
   
   // verify a command with bad checksum is detected
   char fileName3[] = "ut_cmds_badchksum.cmd";
   status = load_cmds_sd(fileName3, file_pos);
-  printf("Status: %d \n",status);
+  printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
   assert(status == ERROR_SDLOAD_CMDCHKSUM);
   
   // verify a command with short timestamp is detected
   char fileName4[] = "ut_cmds_shorttime.cmd";
   status = load_cmds_sd(fileName4, file_pos);
-  printf("Status: %d \n",status);
+  printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
   assert(status == ERROR_SDLOAD_SHORTTIME);
   
   // verify a command with short header is detected
   char fileName5[] = "ut_cmds_shorthead.cmd";
   status = load_cmds_sd(fileName5, file_pos);
-  printf("Status: %d \n",status);
+  printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
   assert(status == ERROR_SDLOAD_SHORTHEAD);
   
   // verify a command with short pkt is detected
   char fileName6[] = "ut_cmds_shortpkt.cmd";
   status = load_cmds_sd(fileName6, file_pos);
-  printf("Status: %d \n",status);
+  printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
   assert(status == ERROR_SDLOAD_SHORTPKT);
   
   // verify a command with a long cmd is detected
-  char fileName7[] = "ut_cmds_long_cmd.cmd";
+  char fileName7[] = "ut_cmds_longcmd.cmd";
   status = load_cmds_sd(fileName7, file_pos);
-  printf("Status: %d \n",status);
-  assert(status == ERROR_SDLOAD_LONGCMD);
-
+  printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
+  assert(status == ERROR_SDLOAD_SHORTPKT);
 }
 
 int main(){
   
   if(test_enable_queue_flag()){
+    printf("/*********************************/ \n");
     printf("Queue functions passed!! \n");
+    printf("/*********************************/ \n");
   }
   if(test_inject_cmd()){
+    printf("/*********************************/ \n");
     printf("Inject cmd functions passed!  \n");
+    printf("/*********************************/ \n");
   }
   if(test_time_for_cmd()){
+    printf("/*********************************/ \n");
     printf("Time for cmd functions passed!  \n");
+    printf("/*********************************/ \n");
   }
   if(test_load_cmd_sd()){
+    printf("/*********************************/ \n");
     printf("Load cmd SD function passed!  \n");
+    printf("/*********************************/ \n");
   }
 }

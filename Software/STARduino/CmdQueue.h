@@ -1,7 +1,7 @@
 #ifndef _loadcmd_h_
 #define _loadcmd_h_
 
-#include <stdint.h>
+#include <stdint.h>  /* for int datatypes */
 #include "STARduino.h"
 #include "Messaging.h"
 

@@ -16,4 +16,4 @@ compile UT_CmdQueue (on Win10):
 
 
 compile UT_Stub_SD (on Win10):
->> >g++ UT_Stub_SD.cpp -o UT_Stub_SD
+>> g++ UT_Stub_SD.cpp -o UT_Stub_SD
