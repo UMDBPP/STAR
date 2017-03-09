@@ -18874,21 +18874,21 @@ Source: AVX .. aphvc.pdf</description>
 <library name="NR_Transistor">
 <packages>
 <package name="SC-70-6">
-<smd name="1" x="-0.65" y="-0.9" dx="1" dy="0.47" layer="1" rot="R90"/>
-<smd name="2" x="0" y="-0.9" dx="1" dy="0.47" layer="1" rot="R90"/>
-<smd name="3" x="0.65" y="-0.9" dx="1" dy="0.47" layer="1" rot="R90"/>
-<smd name="4" x="0.65" y="0.9" dx="1" dy="0.47" layer="1" rot="R90"/>
-<smd name="5" x="0" y="0.9" dx="1" dy="0.47" layer="1" rot="R90"/>
-<smd name="6" x="-0.65" y="0.9" dx="1" dy="0.47" layer="1" rot="R90"/>
-<wire x1="-1" y1="0.75" x2="-1.5" y2="0.75" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="0.75" x2="-1.5" y2="-0.75" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="-0.75" x2="-1" y2="-0.75" width="0.127" layer="21"/>
-<wire x1="1" y1="0.75" x2="1.5" y2="0.75" width="0.127" layer="21"/>
-<wire x1="1.5" y1="0.75" x2="1.5" y2="-0.75" width="0.127" layer="21"/>
-<wire x1="1.5" y1="-0.75" x2="1" y2="-0.75" width="0.127" layer="21"/>
+<smd name="1" x="-0.65" y="-0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="2" x="0" y="-0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="3" x="0.65" y="-0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="4" x="0.65" y="0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="5" x="0" y="0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="6" x="-0.65" y="0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<wire x1="-1" y1="0.75" x2="-1.2" y2="0.75" width="0.127" layer="21"/>
+<wire x1="-1.2" y1="0.75" x2="-1.2" y2="-0.75" width="0.127" layer="21"/>
+<wire x1="-1.2" y1="-0.75" x2="-1" y2="-0.75" width="0.127" layer="21"/>
+<wire x1="1" y1="0.75" x2="1.2" y2="0.75" width="0.127" layer="21"/>
+<wire x1="1.2" y1="0.75" x2="1.2" y2="-0.75" width="0.127" layer="21"/>
+<wire x1="1.2" y1="-0.75" x2="1" y2="-0.75" width="0.127" layer="21"/>
 <circle x="-1.5" y="-1.5" radius="0.25" width="0.254" layer="21"/>
-<text x="-2" y="1.75" size="0.8128" layer="25">&gt;NAME</text>
-<text x="-1" y="-2.25" size="0.6096" layer="27">&gt;VALUE</text>
+<text x="-2" y="1.45" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-1" y="-1.95" size="0.6096" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -29613,20 +29613,6 @@ We've spent an enormous amount of time creating and checking these footprints an
 <label x="345.44" y="381" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="USB_D-" class="0">
-<segment>
-<pinref part="U6" gate="G$1" pin="PA24/EIC/SCOM3PAD2+/TC5"/>
-<wire x1="312.42" y1="342.9" x2="345.44" y2="342.9" width="0.1524" layer="91"/>
-<label x="345.44" y="342.9" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="USB_D+" class="0">
-<segment>
-<pinref part="U6" gate="G$1" pin="PA25/EIC/SCOM3PAD3+/TC5"/>
-<wire x1="312.42" y1="340.36" x2="345.44" y2="340.36" width="0.1524" layer="91"/>
-<label x="345.44" y="340.36" size="1.016" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="SYNC" class="0">
 <segment>
 <pinref part="J5" gate="G$1" pin="BCM26"/>
@@ -30204,12 +30190,22 @@ We've spent an enormous amount of time creating and checking these footprints an
 <wire x1="165.1" y1="109.22" x2="162.56" y2="109.22" width="0.1524" layer="91"/>
 <label x="162.56" y="109.22" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA25/EIC/SCOM3PAD3+/TC5"/>
+<wire x1="312.42" y1="340.36" x2="345.44" y2="340.36" width="0.1524" layer="91"/>
+<label x="345.44" y="340.36" size="1.016" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="USB_D_N" class="0">
 <segment>
 <pinref part="J3" gate="G$1" pin="4"/>
 <wire x1="165.1" y1="104.14" x2="162.56" y2="104.14" width="0.1524" layer="91"/>
 <label x="162.56" y="104.14" size="1.016" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA24/EIC/SCOM3PAD2+/TC5"/>
+<wire x1="312.42" y1="342.9" x2="345.44" y2="342.9" width="0.1524" layer="91"/>
+<label x="345.44" y="342.9" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
