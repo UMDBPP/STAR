@@ -280,7 +280,18 @@ bool test_load_cmd_sd(){
   printf("UT_CmdQueue: <DEBUG> Status: %d \n",status);
   assert(status == ERROR_SDLOAD_SHORTPKT);
 }
-
+bool test_load_cmdseq(){
+  
+  uint16_t dummy = 0;
+  char fileName1[] = "cmds.cmd";
+  
+  // not sure how to test this... want to stub out load_cmds_sd()
+  // for this portion of the test
+  load_cmdseq(fileName1, dummy);
+    
+  // make this fail for now
+  assert(1==0)
+}
 int main(){
   
   if(test_enable_queue_flag()){
@@ -303,4 +314,10 @@ int main(){
     printf("Load cmd SD function passed!  \n");
     printf("/*********************************/ \n");
   }
+  if(test_load_cmdseq(){
+    printf("/*********************************/ \n");
+    printf("Load cmdseq function passed!  \n");
+    printf("/*********************************/ \n");
+  }
+  
 }
