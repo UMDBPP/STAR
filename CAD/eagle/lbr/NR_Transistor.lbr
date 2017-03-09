@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.3" altunitdist="mm" altunit="mm"/>
+<grid distance="0.05" unitdist="inch" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -69,12 +69,12 @@
 <text x="3.175" y="-1.27" size="0.8128" layer="27" rot="R90">&gt;VALUE</text>
 </package>
 <package name="SC-70-6">
-<smd name="1" x="-0.65" y="-0.95" dx="0.5" dy="0.4" layer="1" rot="R90"/>
-<smd name="2" x="0" y="-0.95" dx="0.5" dy="0.4" layer="1" rot="R90"/>
-<smd name="3" x="0.65" y="-0.95" dx="0.5" dy="0.4" layer="1" rot="R90"/>
-<smd name="4" x="0.65" y="0.95" dx="0.5" dy="0.4" layer="1" rot="R90"/>
-<smd name="5" x="0" y="0.95" dx="0.5" dy="0.4" layer="1" rot="R90"/>
-<smd name="6" x="-0.65" y="0.95" dx="0.5" dy="0.4" layer="1" rot="R90"/>
+<smd name="1" x="-0.65" y="-0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="2" x="0" y="-0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="3" x="0.65" y="-0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="4" x="0.65" y="0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="5" x="0" y="0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
+<smd name="6" x="-0.65" y="0.95" dx="0.9" dy="0.4" layer="1" rot="R90"/>
 <wire x1="-1" y1="0.75" x2="-1.2" y2="0.75" width="0.127" layer="21"/>
 <wire x1="-1.2" y1="0.75" x2="-1.2" y2="-0.75" width="0.127" layer="21"/>
 <wire x1="-1.2" y1="-0.75" x2="-1" y2="-0.75" width="0.127" layer="21"/>
