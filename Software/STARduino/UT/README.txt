@@ -24,6 +24,7 @@ compile UT_CmdQueue (on Win10):
 >> g++ UT_CmdQueue.cpp ../ccsds/ccsds_utilities.cpp ../ccsds/ccsds.cpp -o UT_CmdQueue
 expect warnings about "anonymous type with no linkage for TlmHeader_u and CmdHEader_u"
 
-Expected result: PASSING (2017-03-09)
+Expected result: FAILING (2017-03-09)
 There are a fair number of messages printed with this test
+Expect all tests except for 'cmdseq function' to pass
 
