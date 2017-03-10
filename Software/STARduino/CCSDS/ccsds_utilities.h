@@ -2,6 +2,7 @@
 #define _ccsds_utilities_h_
 
 #include <stdint.h>
+#include <string.h> // memcpy
 #include "ccsds.h"
 
 #define CCSDS_CMD_PKT 1

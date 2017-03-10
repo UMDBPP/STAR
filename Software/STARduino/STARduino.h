@@ -31,7 +31,7 @@
 #define MAX_CMDS_IN_QUEUE 10
 
 // alias this to the name StaticQueue expects
-#define QUEUE_LEN MAX_CMDS_IN_QUEUE
+#define QUEUE_LEN 10//MAX_CMDS_IN_QUEUE
 
 /* Include project libraries */
 #include "CCSDS/CCSDS.h"

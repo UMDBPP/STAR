@@ -96,6 +96,6 @@ CCSDS_CmdSecHdr_t getCmdHeader(uint8_t _packet[]) {
 uint8_t extractStrFromTlm(char str[], uint8_t _packet[], uint8_t start_pos, uint8_t len){
   // FIXME: Needs to be tested
   
-  memcpy(str,_packet[start_pos],len);
+  memcpy(str,_packet + start_pos,len);
   return start_pos+len;
 }

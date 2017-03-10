@@ -67,7 +67,7 @@ void execute_CTU_command(Cmd_Pkt_Buff_t _Pkt_Buff){
  _Pkt_Buff.end_pos = 0;
 }
 
-void execute_PI_command(Cmd_Pkt_Buff_t &_Pkt_Buff){
+void execute_PI_command(Cmd_Pkt_Buff_t _Pkt_Buff){
   /*
  * Executes a command from the PiZero. No commands are currently 
  * executable from the Pi.
@@ -392,7 +392,7 @@ void execute_command(uint8_t _Pkt_Buff[]){
       pkt_pos = extractFromTlm(filesize, _Pkt_Buff, pkt_pos);
       
       // respond to the command
-      write_file(filename,_Pkt_Buff[pkt_pos],filesize);
+      //write_file(filename,_Pkt_Buff[pkt_pos],filesize);
       
       break;
     }
