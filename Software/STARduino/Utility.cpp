@@ -21,6 +21,24 @@ uint32_t get_MET(){
   return millis() - millis_epoch;
 }
 
+
+bool time_for_cycle(uint32_t last_cycle_time){
+/*
+ * Prints a datestamp to a file.
+ * 
+ * Inputs: 
+ * write_file - file to write to
+ * time_millis - time to write
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * none
+ */
+ return last_cycle_time - get_MET() > 1/DESIRED_CYCLE_HZ;
+}
+
 void print_datestamp(File write_file, uint32_t time_millis){
 /*
  * Prints a datestamp to a file.

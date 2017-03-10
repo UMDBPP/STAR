@@ -27,6 +27,8 @@ void setPacketLength(uint8_t _packet[], uint16_t Len);
 void setTlmTimeSec(uint8_t _packet[], uint32_t sec);
 void setTlmTimeSubSec(uint8_t _packet[], uint16_t subsec);
 
+uint8_t extractStrFromTlm(char str[], uint8_t _packet[], uint8_t start_pos, uint8_t len);
+
 CCSDS_CmdSecHdr_t getCmdHeader(uint8_t _packet[]);
 
 template<typename T> uint8_t addIntToTlm(const T& val, uint8_t payload[], uint8_t start_pos) {
