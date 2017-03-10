@@ -392,7 +392,7 @@ void execute_command(uint8_t _Pkt_Buff[]){
       pkt_pos = extractFromTlm(filesize, _Pkt_Buff, pkt_pos);
       
       // respond to the command
-      //write_file(filename,_Pkt_Buff[pkt_pos],filesize);
+      write_file(filename,_Pkt_Buff + pkt_pos,filesize);
       
       break;
     }
