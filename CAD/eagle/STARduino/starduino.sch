@@ -27191,7 +27191,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0.2032" drill="0.381">
+<class number="0" name="default" width="0.1524" drill="0.381">
 <clearance class="0" value="0.1524"/>
 </class>
 <class number="1" name="PWR_SIG" width="0.254" drill="0.381">
@@ -28689,18 +28689,6 @@ We've spent an enormous amount of time creating and checking these footprints an
 <label x="96.52" y="81.28" size="1.016" layer="95" xref="yes"/>
 <wire x1="91.44" y1="81.28" x2="96.52" y2="81.28" width="0.1524" layer="91"/>
 <junction x="91.44" y="81.28"/>
-</segment>
-</net>
-<net name="PRESSURE_IN" class="0">
-<segment>
-<pinref part="U6" gate="G$1" pin="PA06/EIC/AIN6/SCOM0PAD2"/>
-<wire x1="312.42" y1="388.62" x2="345.44" y2="388.62" width="0.1524" layer="91"/>
-<label x="345.44" y="388.62" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="J4" gate="G$1" pin="11"/>
-<wire x1="215.9" y1="106.68" x2="213.36" y2="106.68" width="0.1524" layer="91"/>
-<label x="213.36" y="106.68" size="1.016" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="MISO" class="0">
