@@ -1,4 +1,7 @@
 
+// when _IS_UT_ is defined this file doesn't include it's normal 
+// header file which allows the UT to define what it needs
+// to for the test
 #ifndef _IS_UT_
 #include "CmdQueue.h"
 #endif
@@ -24,9 +27,7 @@ int8_t load_cmdseq(char *fileName, uint16_t page_num){
  * 
  * Return:
  * 0 if load completed successfully or the error code of the last error encountered. 
- * 
  */
-
 
   int8_t load_stat;
   uint16_t file_pos;
@@ -46,9 +47,6 @@ int8_t load_cmdseq(char *fileName, uint16_t page_num){
   }
   else if(load_stat == ERROR_SDLOAD_SHORTPKT){   
     sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDLOAD> Not enough bytes available to read pkt");
-  }
-  else if(load_stat == ERROR_SDLOAD_LONGCMD){   
-    sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDLOAD> Pkt header indicates a command which is too long");
   }
   else if(load_stat == ERROR_SDLOAD_CMDCHKSUM){   
     sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDLOAD> Command checksum doesn't validate");
@@ -75,6 +73,7 @@ int8_t load_cmdseq(char *fileName, uint16_t page_num){
     sendTxtMsg(SERIAL_DEBUG, "ERROR: <CMDLOAD> Command loading failed... disabled queue");
   }
   
+  return load_stat;
 }
 
 int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
@@ -95,12 +94,10 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
  */
 
   // Initialize variables
-  int8_t load_stat = 0;
+  int8_t load_stat = ERROR_SDLOAD_SUCCESS;
   uint8_t cmd_buf[MAX_CMD_LEN];
   uint8_t pkt_len = 0;
-  //uint8_t pkt_idx = 0;
-  uint16_t file_idx = 0;
-
+  uint16_t file_idx = 0; // tracks current position in file
 
   // attempt to open the file
   File cmdFile = SD.open(fileName);
@@ -116,18 +113,24 @@ int8_t load_cmds_sd(char *fileName, uint16_t &file_pos){
   }
 
   // infiloop protection counter
-  int16_t ctr = 10;
+  // will decrement once for each command read, 
+  // read loop will end if counter reaches zero
+  int16_t ctr = MAX_CMDS_IN_QUEUE;
   
   // read the entire file
   while (ctr--) {
     
-    // initialize a temporary command to read into
+    // initialize a temporary command to read data into
     CCSDS_Cmd_t tmp_cmd;
 
     // if there are more bytes available than the length of a timestamp, 
     // we can read a timestamp
     if(cmdFile.available() > sizeof(tmp_cmd.timestamp)){
        cmdFile.read((uint32_t*)&tmp_cmd.timestamp,sizeof(tmp_cmd.timestamp));
+
+       // during testing (on win10 desktop machine) it was noted that 
+       // timestamps were read with opposite endian so this was added
+       // it may need to be removed on the embedded system
        tmp_cmd.timestamp = __builtin_bswap32(tmp_cmd.timestamp);
        file_idx += sizeof(tmp_cmd.timestamp);
     }
@@ -238,9 +241,15 @@ int8_t load_cmds_flash(uint16_t page_num, uint16_t &filepos){
  * 
  */
  
+  // initalize load status
+  int8_t load_stat = ERROR_FLASHLOAD_SUCCESS;
+ 
+  // set it to fail
+  load_stat = ERROR_FLASHLOAD_NOTIMP;
   // Need more info to implement
   send_fileload_error(ERROR_FLASHLOAD_NOTIMP, 0);
-  return ERROR_FLASHLOAD_NOTIMP;
+  
+  return load_stat;
 }
 
 bool time_for_queued_cmd(uint32_t MET){

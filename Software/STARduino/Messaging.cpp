@@ -4,6 +4,40 @@
 uint32_t _SentPktCtr = 0;
 File logfile_interface;
 
+void read_serial(Stream &_serial, Cmd_Pkt_Buff_t &_Pkt_Buff){
+
+  // increment the counter which tracks how long since the last read
+  _Pkt_Buff.cycles_since_last_read++;
+
+  // if there's data in the buffer but its been a while since it was read,
+  // assume it was a partial packet and "clear" it from the buffer to discard it
+  // so that we can receive new commands
+  if(_Pkt_Buff.end_pos > 0 && _Pkt_Buff.cycles_since_last_read > MAX_READ_CYCLES_STALENESS){
+    _Pkt_Buff.end_pos = 0;
+  }
+  
+  // if data is available, attempt to read it
+  if(_serial.available()){
+
+    // don't read if reading would overflow the buffer
+    if(_serial.available() > _Pkt_Buff.end_pos + _Pkt_Buff.buf_size){
+      sendTxtMsg(SERIAL_DEBUG,"ERROR: <READ_SERIAL> Buffer overflow imminent, not reading command");
+    }
+    else{
+      uint8_t BytesRead = 0;
+  
+      BytesRead = SERIAL_DEBUG.readBytes((char*)_Pkt_Buff.bytes[_Pkt_Buff.end_pos+1], _serial.available());
+      _Pkt_Buff.end_pos += BytesRead;
+      _Pkt_Buff.cycles_since_last_read = 0;
+    }
+  }
+}
+
+bool full_cmd_available(Cmd_Pkt_Buff_t _Pkt_Buff){
+
+  return _Pkt_Buff.end_pos > getPacketLength(_Pkt_Buff.bytes);
+}
+
 void set_msg_logfile(File logfile){
   logfile_interface = logfile;
 }
@@ -106,4 +140,10 @@ void log_sent_pkt(uint8_t pkt_buf[], uint16_t pkt_size){
     logfile_interface.println();
     logfile_interface.flush();
   }
+}
+
+uint8_t addStrToTlm(char *s, uint8_t payload[], uint8_t start_pos){
+
+  memcpy(payload+start_pos,s,strlen(s));
+  return start_pos + strlen(s);
 }

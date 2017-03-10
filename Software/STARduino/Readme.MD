@@ -73,7 +73,9 @@ Guidelines
         is entirely lowercase names followed by a trailing underscore
     - You may use your own convention, so long as it is internally consistent
 - Class member variables should be private, and values set/read through setter/getter member functions
-    - setters and getters should typically be named as such: `int get_member()` or `void set_member(int _newVal)`
+    - Setters and getters should typically be named as such: `int get_member()` or `void set_member(int _newVal)`
+- Global variables should be avoided when possible.
+    - If global variables *are* needed, naming suggestion is all caps with a trailing underscore: `int MY_GLOBAL_VAR_`
 - Single-line loops and conditionals should be avoided for code readability
 - Files should contain a single blank line at the end (this is just to keep git from complaining.)
 

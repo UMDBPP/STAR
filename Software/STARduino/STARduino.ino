@@ -6,9 +6,20 @@
 #include "STARduino.h"
 
 /* Declare Variables */
+// Logfiles
 File logfile_sensor;
 File logfile_sync;
 
+// Command Buffers
+Cmd_Pkt_Buff_t Debug_Pkt_Buff = {.buf_size = MAX_CMD_LEN, .end_pos = 0, .cycles_since_last_read = 0};
+Cmd_Pkt_Buff_t CTU_Pkt_Buff = {.buf_size = MAX_CMD_LEN, .end_pos = 0, .cycles_since_last_read = 0};
+Cmd_Pkt_Buff_t PI_Pkt_Buff = {.buf_size = MAX_CMD_LEN, .end_pos = 0, .cycles_since_last_read = 0};
+uint8_t Queued_Pkt_Buff[MAX_QUEUE_CMD_LEN];
+
+// Cycle info
+uint32_t last_cycle_start_time = 0;
+
+/* Define Functions */
 void setup() {
 /*
  * Initalizes the STAR payload. Opens the serial connections, opens log files,
@@ -24,6 +35,10 @@ void setup() {
  * none 
  * 
  */
+
+  // disable the watchdog timer immediately in case it was on because of a 
+  // commanded reboot
+  wdt_disable();
  
   // setup comms
   SERIAL_DEBUG.begin(57600);
@@ -85,53 +100,50 @@ void loop() {
  * none 
  * 
  */
- 
-  //sendTxtMsg(SERIAL_DEBUG, "DEBUG: <Loop> Loop");
 
-  // initalization
-  uint8_t Pkt_Buff[100];
-  uint8_t BytesRead;
+  if(time_for_cycle(last_cycle_start_time)){
+    
+    last_cycle_start_time = get_MET();
+    
+    //sendTxtMsg(SERIAL_DEBUG, "DEBUG: <Loop> Loop Start");
+    
+    // check if time to execute next command in buffer
+    if(time_for_queued_cmd(get_MET())){
+      inject_cmd(Queued_Pkt_Buff);
+      execute_queued_command(Queued_Pkt_Buff);
+    }
+    
+    // read debug interface
+    read_serial(SERIAL_DEBUG,Debug_Pkt_Buff);
   
-  // check if time to execute next command in buffer
-  if(time_for_queued_cmd(get_MET())){
-    inject_cmd(Pkt_Buff);
-    execute_command(Pkt_Buff);
-  }
+    // execute debug command
+    if(full_cmd_available(Debug_Pkt_Buff)){
+      execute_DEBUG_command(Debug_Pkt_Buff);
+    }
+     
+    // read CTU interface
+    read_serial(SERIAL_CTU,CTU_Pkt_Buff);
   
-  // read debug interface
-  if(SERIAL_DEBUG.available()){
-    BytesRead = SERIAL_DEBUG.readBytes((char*)Pkt_Buff, SERIAL_DEBUG.available());
-    // FIXME: Need to add logic to combine partial packets received over multiple 
-    // timesteps
-    execute_command(Pkt_Buff);
+    // execute CTU command
+    if(full_cmd_available(CTU_Pkt_Buff)){
+      execute_CTU_command(CTU_Pkt_Buff);
+    }
+  
+    // read CTU interface
+    read_serial(SERIAL_PI,PI_Pkt_Buff);
+  
+    // execute CTU command
+    if(full_cmd_available(PI_Pkt_Buff)){
+      execute_PI_command(PI_Pkt_Buff);
+    }
+  
+    // read sensor data
+  
+    // write to sensor log file
+  
+    // log FSW status
+    
   }
-   
-  // read CTU interface
-  if(SERIAL_CTU.available()){
-    BytesRead = SERIAL_CTU.readBytes((char*)Pkt_Buff, SERIAL_CTU.available());
-    // FIXME: If comms with CTU is un-descoped, create a reduced version of 
-    // execute_command() which only allows execution of the send_tlm command so 
-    // that CTU can't accidentally command STAR in any other way
-    execute_command(Pkt_Buff);
-  }
-
-  // read PI interface
-  if(SERIAL_PI.available()){
-    BytesRead = SERIAL_PI.readBytes((char*)Pkt_Buff, SERIAL_PI.available());
-    // FIXME: If comms with PI is un-descoped, create a reduced version of 
-    // execute_command() which only allows execution of a command to log the 
-    // frame number so that the Pi can't accidentally command STAR in any other way
-    execute_command(Pkt_Buff);
-  }
-
-  // read sensor data
-
-  // write to sensor log file
-
-  // log FSW status
-
-  // delay until next cycle
-  delay(10);
 
 }
 

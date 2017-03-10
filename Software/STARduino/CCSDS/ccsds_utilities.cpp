@@ -92,3 +92,10 @@ void setTlmTimeSubSec(uint8_t _packet[], uint16_t subsec) {
 CCSDS_CmdSecHdr_t getCmdHeader(uint8_t _packet[]) {
 	return *(CCSDS_CmdSecHdr_t*)(_packet+sizeof(CCSDS_PriHdr_t)-1);
 }
+
+uint8_t extractStrFromTlm(char str[], uint8_t _packet[], uint8_t start_pos, uint8_t len){
+  // FIXME: Needs to be tested
+  
+  memcpy(str,_packet + start_pos,len);
+  return start_pos+len;
+}
