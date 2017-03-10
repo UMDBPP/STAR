@@ -28,5 +28,5 @@ https://www.uco.es/investiga/grupos/ava/node/40
 Downloaded from:
 https://sourceforge.net/projects/raspicam/files/?
 
-Install openCV - at step 4 of install
-http://www.pyimagesearch.com/2015/10/26/how-to-install-opencv-3-on-raspbian-jessie/
+Install openCV - just pulls deb file then unpacks - saves a bunch of time!!!
+https://github.com/jabelone/OpenCV-for-Pi
