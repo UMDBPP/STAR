@@ -419,7 +419,7 @@ void execute_command(uint8_t _Pkt_Buff[]){
   }
 }
 
-void write_file(char _filename[13],uint8_t _Pkt_Buff[], uint16_t _filesize){
+void write_file(char _filename[13], uint8_t _Pkt_Buff[], uint16_t _filesize){
 /*
  * Writes a buffer of data to a file on the SD card
  * 
@@ -436,7 +436,7 @@ void write_file(char _filename[13],uint8_t _Pkt_Buff[], uint16_t _filesize){
  * 
  */
  
- File new_file = SD.open(_filename);
+  File new_file = SD.open(_filename);
 
   new_file.write(_Pkt_Buff,_filesize);
 
@@ -621,7 +621,7 @@ void find_fileinfo(uint8_t _fileidx){
     filesize = entry.size();    
     
     payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
-    payloadLength = addIntToTlm(entry.size(), payload_buff, payloadLength);
+    payloadLength = addIntToTlm(filesize, payload_buff, payloadLength);
   
     sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEINFO, payload_buff, payloadLength);
 

@@ -4,6 +4,7 @@
 uint32_t _SentPktCtr = 0;
 File logfile_interface;
 
+
 void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff){
 /*
  * Reads data from the serial into the current end of the buffer, 
@@ -77,12 +78,12 @@ bool full_cmd_available(Cmd_Pkt_Buff_t _Pkt_Buff){
   return _Pkt_Buff.end_pos > 0 && (_Pkt_Buff.end_pos >= getPacketLength(_Pkt_Buff.bytes));
 }
 
-void set_msg_logfile(File logfile){
+void set_msg_logfile(){
 /*
  * Sets the logfile to log interface I/O to
  * 
  * Inputs: 
- * logfile - file to log to
+ * logfile - handle of file to log to
  * 
  * Output:
  * none 
@@ -91,8 +92,12 @@ void set_msg_logfile(File logfile){
  * none
  * 
  */
-
-  logfile_interface = logfile;
+  //logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
+  SERIAL_DEBUG.print("Logfile name: ");
+   SERIAL_DEBUG.print(logfile_interface.name());
+   SERIAL_DEBUG.print(", Logfile handle: ");
+   SERIAL_DEBUG.println(logfile_interface);
+  //logfile_interface = _logfile;
 }
 
 void sendTxtMsg(Stream &_serial, const char _str[]){
@@ -116,8 +121,8 @@ void sendTxtMsg(Stream &_serial, const char _str[]){
     return;
   }
 
-  //_serial.println(_str);
-  sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(_str));
+ _serial.println(_str);
+  //sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(_str));
 
   // Not sure if we want this, but Cosmos appears to have trouble dealing with 
   // packets too closely spaced
@@ -206,6 +211,12 @@ void log_sent_pkt(uint8_t pkt_buf[], uint16_t pkt_size){
     }
     logfile_interface.println();
     logfile_interface.flush();
+  }
+  else{
+    //sendTxtMsg(SERIAL_DEBUG, "ERROR: <LOGPKT> Logfile isn't open.");
+    //SERIAL_DEBUG.print("ERROR: <LOGPKT> Logfile isn't open.");
+    //SERIAL_DEBUG.print("Logfile name: ");
+    //SERIAL_DEBUG.println(logfile_interface.name());
   }
 }
 

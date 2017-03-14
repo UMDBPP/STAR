@@ -56,8 +56,12 @@ void setup() {
   // Open logfiles
   // Note: Because the interface automatically logs outgoing messages,
   // no messages can be sent until the logfile_input is opened
-  File logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
-  //set_msg_logfile(logfile_interface);
+  //logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
+  //SERIAL_DEBUG.print("Logfile name: ");
+    //SERIAL_DEBUG.print(logfile_interface.name());
+    //SERIAL_DEBUG.print(", Logfile handle: ");
+    //SERIAL_DEBUG.println(logfile_interface);
+  set_msg_logfile();
   logfile_sensor = SD.open(FILENAME_SENSOR_LOG, FILE_WRITE);
   logfile_sync = SD.open(FILENAME_SYNC_LOG, FILE_WRITE);
   

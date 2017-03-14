@@ -2,16 +2,55 @@
 #include "ccsds_utilities.h"
 
 CCSDS_PriHdr_t getPrimaryHeader(uint8_t _packet[]) {
+/*
+ * Returns a pointer to the primary header of the packet
+ * 
+ * Inputs: 
+ * _packet - array contains packet
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * CCSDS_PriHdr_t pointer to array containing packet 
+ * 
+ */
 	return *(CCSDS_PriHdr_t*)(_packet);
 }
 
 uint8_t validateChecksum(uint8_t _packet[]) {
+/*
+ * Validates the checksum contained within a CCSDS packet
+ * 
+ * Inputs: 
+ * _packet - array contains packet
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * flag indicating if checksum is correct [1=correct, 0=not]
+ * 
+ */
 	CCSDS_CmdPkt_t *header = (CCSDS_CmdPkt_t*) _packet;
 
 	return CCSDS_ValidCheckSum(header);
 }
 
 uint16_t getAPID(uint8_t _packet[]) {
+/*
+ * Returns the APID from an array containing a CCSDS packet
+ * 
+ * Inputs: 
+ * _packet - array contains packet
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * APID of packet
+ * 
+ */
 	CCSDS_PriHdr_t header = getPrimaryHeader(_packet);
 
 	return CCSDS_RD_APID(header);
