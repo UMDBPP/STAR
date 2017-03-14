@@ -46,6 +46,7 @@ void setup() {
   SERIAL_PI.begin(57600);
   
   pinMode(PIN_SDCHIPSELECT,OUTPUT);
+  
   // see if the card is present and can be initialized:
   if (!SD.begin(PIN_SDCHIPSELECT)) {
     sendTxtMsg(SERIAL_DEBUG, "ERROR: <SDINIT> SDcard failed to init");
@@ -65,6 +66,7 @@ void setup() {
 
   // setup sync pulse interrupt
   //sendTxtMsg(SERIAL_DEBUG, "INFO: <Init> Setup sync interrupt");
+
     
   // load command table
   char cmds_filename[sizeof(FILENAME_CMDSEQ)];
@@ -104,7 +106,7 @@ void loop() {
   if(time_for_cycle(last_cycle_start_time)){
     
     last_cycle_start_time = get_MET();
-    
+
     //sendTxtMsg(SERIAL_DEBUG, "DEBUG: <Loop> Loop Start");
     
     // check if time to execute next command in buffer
@@ -114,15 +116,17 @@ void loop() {
     }
     
     // read debug interface
-    read_serial(SERIAL_DEBUG,Debug_Pkt_Buff);
+    read_serial(SERIAL_DEBUG,&Debug_Pkt_Buff);
   
     // execute debug command
     if(full_cmd_available(Debug_Pkt_Buff)){
+      //SERIAL_DEBUG.println();
+      //SERIAL_DEBUG.println("Executing cmd1");
       execute_DEBUG_command(Debug_Pkt_Buff);
     }
      
     // read CTU interface
-    read_serial(SERIAL_CTU,CTU_Pkt_Buff);
+    read_serial(SERIAL_CTU,&CTU_Pkt_Buff);
   
     // execute CTU command
     if(full_cmd_available(CTU_Pkt_Buff)){
@@ -130,7 +134,7 @@ void loop() {
     }
   
     // read CTU interface
-    read_serial(SERIAL_PI,PI_Pkt_Buff);
+    read_serial(SERIAL_PI,&PI_Pkt_Buff);
   
     // execute CTU command
     if(full_cmd_available(PI_Pkt_Buff)){

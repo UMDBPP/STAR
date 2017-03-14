@@ -10,7 +10,7 @@ Queue <CCSDS_Cmd_t> cmd_queue;
 // Note: this doesn't appear to work if its passed into functions
 // so its defined as a global
 
-bool Queue_Enabled_Flag = true;
+bool Queue_Enabled_Flag = false;
 
 int8_t load_cmdseq(char *fileName, uint16_t page_num){
 /*
@@ -64,7 +64,7 @@ int8_t load_cmdseq(char *fileName, uint16_t page_num){
     sendTxtMsg(SERIAL_DEBUG, "ERROR: <FLASHLOAD> flash load function not implemented ");
   }
   else{
-    sendTxtMsg(SERIAL_DEBUG, "INFO: <FLASHLOAD> Successful load from flash");
+    //sendTxtMsg(SERIAL_DEBUG, "INFO: <FLASHLOAD> Successful load from flash");
   }
 
   // if fail, log but execute anyways

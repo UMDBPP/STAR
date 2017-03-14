@@ -4,56 +4,141 @@
 uint32_t _SentPktCtr = 0;
 File logfile_interface;
 
-void read_serial(Stream &_serial, Cmd_Pkt_Buff_t &_Pkt_Buff){
-
+void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff){
+/*
+ * Reads data from the serial into the current end of the buffer, 
+ * updates the buffer length, and handles clearing the buffer when 
+ * data has expired
+ * 
+ * Inputs: 
+ * _serial - serial to read data from
+ * _Pkt_Buff - data structure to update/read data into
+ * 
+ * Output:
+ * _Pkt_Buff - updated data structure
+ * 
+ * Return:
+ * none
+ * 
+ */
+ 
   // increment the counter which tracks how long since the last read
-  _Pkt_Buff.cycles_since_last_read++;
+  _Pkt_Buff->cycles_since_last_read++;
 
   // if there's data in the buffer but its been a while since it was read,
   // assume it was a partial packet and "clear" it from the buffer to discard it
   // so that we can receive new commands
-  if(_Pkt_Buff.end_pos > 0 && _Pkt_Buff.cycles_since_last_read > MAX_READ_CYCLES_STALENESS){
-    _Pkt_Buff.end_pos = 0;
+
+  if(_Pkt_Buff->end_pos > 0 && (_Pkt_Buff->cycles_since_last_read > MAX_READ_CYCLES_STALENESS)){
+    sendTxtMsg(SERIAL_DEBUG,"INFO: <READ_SERIAL> clearing buffer");
+    _Pkt_Buff->end_pos = 0;
   }
+
+  uint8_t BytesRead = 0;
   
   // if data is available, attempt to read it
-  if(_serial.available()){
+  if(BytesRead = _serial.available()){
 
+    //_serial.print("Data available ");
+    //_serial.println(BytesRead);
+    
     // don't read if reading would overflow the buffer
-    if(_serial.available() > _Pkt_Buff.end_pos + _Pkt_Buff.buf_size){
-      sendTxtMsg(SERIAL_DEBUG,"ERROR: <READ_SERIAL> Buffer overflow imminent, not reading command");
+    if(BytesRead > _Pkt_Buff->end_pos + _Pkt_Buff->buf_size){
+      sendTxtMsg(_serial,"ERROR: <READ_SERIAL> Buffer overflow imminent, not reading command");
     }
     else{
-      uint8_t BytesRead = 0;
-  
-      BytesRead = SERIAL_DEBUG.readBytes((char*)_Pkt_Buff.bytes[_Pkt_Buff.end_pos+1], _serial.available());
-      _Pkt_Buff.end_pos += BytesRead;
-      _Pkt_Buff.cycles_since_last_read = 0;
+      
+      /*
+ _serial.print(F("Reading "));
+      _serial.print(BytesRead);
+      _serial.println(F(" bytes "));
+      */
+      
+      BytesRead = _serial.readBytes((char*)_Pkt_Buff->bytes +_Pkt_Buff->end_pos, BytesRead);
+
+      // update packet reading variables
+      _Pkt_Buff->end_pos += BytesRead;
+      _Pkt_Buff->cycles_since_last_read = 0;
+
     }
   }
 }
 
 bool full_cmd_available(Cmd_Pkt_Buff_t _Pkt_Buff){
+/*
+ * Returns if a full command is available for execution
+ * 
+ * Inputs: 
+ * _Pkt_Buff - data structure containing command
+ * 
+ * Output:
+ * none 
+ * 
+ * Return:
+ * flag indicating if there's a command to execute
+ * 
+ */
+ 
+ /*
+      SERIAL_DEBUG.print(F("EndPos "));
 
-  return _Pkt_Buff.end_pos > getPacketLength(_Pkt_Buff.bytes);
+      SERIAL_DEBUG.print(_Pkt_Buff.end_pos);
+      SERIAL_DEBUG.print(F(", "));
+      for(int i = 0; i < 9; i++){
+        SERIAL_DEBUG.print(_Pkt_Buff.bytes[i],HEX);
+        SERIAL_DEBUG.print(" ");
+      }
+      SERIAL_DEBUG.print(F("PktLen "));
+      SERIAL_DEBUG.print(getPacketLength(_Pkt_Buff.bytes));
+      SERIAL_DEBUG.println();
+      */
+  return _Pkt_Buff.end_pos > 0 && (_Pkt_Buff.end_pos >= getPacketLength(_Pkt_Buff.bytes));
 }
 
 void set_msg_logfile(File logfile){
+/*
+ * Sets the logfile to log interface I/O to
+ * 
+ * Inputs: 
+ * logfile - file to log to
+ * 
+ * Output:
+ * none 
+ * 
+ * Return:
+ * none
+ * 
+ */
+
   logfile_interface = logfile;
 }
 
-void sendTxtMsg(Stream &_serial, const char str[]){
-
+void sendTxtMsg(Stream &_serial, const char _str[]){
+/*
+ * Sends a telemetry packet containing text
+ * 
+ * Inputs: 
+ * _serial - serial to write message to
+ * str - string to write into packet
+ * 
+ * Output:
+ * none 
+ * 
+ * Return:
+ * none
+ * 
+ */
+ 
   // if the string is too long, don't send it
-  if(strlen(str)+12 > MAX_TLM_LEN){
+  if(strlen(_str)+12 > MAX_TLM_LEN){
     return;
   }
 
-  //_serial.print("Sending: '");
-  //_serial.print(str);
-  //_serial.print("' of length: ");
-  //_serial.print(strlen(str));
-  sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)str, strlen(str));
+  //_serial.println(_str);
+  sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(str));
+
+  // Not sure if we want this, but Cosmos appears to have trouble dealing with 
+  // packets too closely spaced
   delay(10);
 }
 
@@ -142,8 +227,23 @@ void log_sent_pkt(uint8_t pkt_buf[], uint16_t pkt_size){
   }
 }
 
-uint8_t addStrToTlm(char *s, uint8_t payload[], uint8_t start_pos){
-
-  memcpy(payload+start_pos,s,strlen(s));
-  return start_pos + strlen(s);
+uint8_t addStrToTlm(char *_str, uint8_t _payload[], uint8_t _start_pos){
+/*
+ * Copies a string to a position in an array and returns the new length
+ * 
+ * Inputs: 
+ * _str - string to add to array
+ * _payload - array to copy _str into
+ * _start_pos - position in array to copy _str into
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * new length of array
+ * 
+ */
+ 
+  memcpy(_payload+_start_pos,_str,strlen(_str));
+  return _start_pos + strlen(_str);
 }

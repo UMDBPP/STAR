@@ -24,7 +24,7 @@ void execute_queued_command(uint8_t _Pkt_Buff[]){
  execute_command(_Pkt_Buff);
 }
 
-void execute_DEBUG_command(Cmd_Pkt_Buff_t _Pkt_Buff){
+void execute_DEBUG_command(Cmd_Pkt_Buff_t &_Pkt_Buff){
   /*
  * Executes a command from DEBUG. All commands are executable
  * from this interface.
@@ -39,13 +39,14 @@ void execute_DEBUG_command(Cmd_Pkt_Buff_t _Pkt_Buff){
  * none
  * 
  */
+ //SERIAL_DEBUG.println("Executing cmd");
  execute_command(_Pkt_Buff.bytes);
  
  // reset the end position of the buffer (effectively "emptying" it)
  _Pkt_Buff.end_pos = 0;
 }
 
-void execute_CTU_command(Cmd_Pkt_Buff_t _Pkt_Buff){
+void execute_CTU_command(Cmd_Pkt_Buff_t &_Pkt_Buff){
   /*
  * Executes a command from CTU. Only the SEND_TLM command
  * is executable from CTU. 
@@ -67,7 +68,7 @@ void execute_CTU_command(Cmd_Pkt_Buff_t _Pkt_Buff){
  _Pkt_Buff.end_pos = 0;
 }
 
-void execute_PI_command(Cmd_Pkt_Buff_t _Pkt_Buff){
+void execute_PI_command(Cmd_Pkt_Buff_t &_Pkt_Buff){
   /*
  * Executes a command from the PiZero. No commands are currently 
  * executable from the Pi.
@@ -579,8 +580,22 @@ void send_file(uint8_t _fileidx){
   sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEINFO, payload_buff, payloadLength);
   
 }
+
+
 void find_fileinfo(uint8_t _fileidx){
-  
+/*
+ * Sends file information (name and size) via telemetry
+ * 
+ * Inputs: 
+ * fileidx - index of file on SD card
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * none
+ * 
+ */
   uint32_t filesize;
   File entry;
   File rootdir = SD.open("/");

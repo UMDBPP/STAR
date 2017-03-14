@@ -36,7 +36,7 @@ bool time_for_cycle(uint32_t last_cycle_time){
  * Return:
  * none
  */
- return last_cycle_time - get_MET() > 1/DESIRED_CYCLE_HZ;
+ return (get_MET() - last_cycle_time) > (1000/DESIRED_CYCLE_HZ);
 }
 
 void print_datestamp(File write_file, uint32_t time_millis){

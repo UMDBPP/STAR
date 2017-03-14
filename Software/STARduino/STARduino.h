@@ -22,10 +22,10 @@
 #define MAX_TLM_LEN 255
 
 // cycles that a partial packet will be kept before being discarded
-#define MAX_READ_CYCLES_STALENESS 15
+#define MAX_READ_CYCLES_STALENESS 50
 
 // cycles that a partial packet will be kept before being discarded
-#define DESIRED_CYCLE_HZ 30
+#define DESIRED_CYCLE_HZ 10
 
 // define the max number of commands allowed in a queue
 #define MAX_CMDS_IN_QUEUE 10

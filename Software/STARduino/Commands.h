@@ -10,9 +10,9 @@
 /* Define prototypes */
 void execute_command(uint8_t Pkt_Buff[]);
 void execute_queued_command(uint8_t Pkt_Buff[]);
-void execute_CTU_command(Cmd_Pkt_Buff_t _Pkt_Buff);
-void execute_PI_command(Cmd_Pkt_Buff_t _Pkt_Buff);
-void execute_DEBUG_command(Cmd_Pkt_Buff_t _Pkt_Buff);
+void execute_CTU_command(Cmd_Pkt_Buff_t &_Pkt_Buff);
+void execute_PI_command(Cmd_Pkt_Buff_t &_Pkt_Buff);
+void execute_DEBUG_command(Cmd_Pkt_Buff_t &_Pkt_Buff);
 
 // Command execution 
 void set_LED(uint8_t);

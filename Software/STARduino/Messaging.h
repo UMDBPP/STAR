@@ -5,7 +5,7 @@
 #include "STARduino.h"
 #include "Utility.h"
 
-void read_serial(Stream &_serial, Cmd_Pkt_Buff_t &_Pkt_Buff);
+void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff);
 bool full_cmd_available(Cmd_Pkt_Buff_t);
 void set_msg_logfile(File logfile);
 void sendTxtMsg(Stream &_serial, const char str[]);
