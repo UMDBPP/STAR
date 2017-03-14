@@ -39,8 +39,6 @@ void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff){
   // if data is available, attempt to read it
   if(BytesRead = _serial.available()){
 
-    //_serial.print("Data available ");
-    //_serial.println(BytesRead);
     
     // don't read if reading would overflow the buffer
     if(BytesRead > _Pkt_Buff->end_pos + _Pkt_Buff->buf_size){
@@ -48,12 +46,7 @@ void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff){
     }
     else{
       
-      /*
- _serial.print(F("Reading "));
-      _serial.print(BytesRead);
-      _serial.println(F(" bytes "));
-      */
-      
+      // read the bytes directly into the current end of the buffer
       BytesRead = _serial.readBytes((char*)_Pkt_Buff->bytes +_Pkt_Buff->end_pos, BytesRead);
 
       // update packet reading variables
@@ -78,20 +71,9 @@ bool full_cmd_available(Cmd_Pkt_Buff_t _Pkt_Buff){
  * flag indicating if there's a command to execute
  * 
  */
- 
- /*
-      SERIAL_DEBUG.print(F("EndPos "));
 
-      SERIAL_DEBUG.print(_Pkt_Buff.end_pos);
-      SERIAL_DEBUG.print(F(", "));
-      for(int i = 0; i < 9; i++){
-        SERIAL_DEBUG.print(_Pkt_Buff.bytes[i],HEX);
-        SERIAL_DEBUG.print(" ");
-      }
-      SERIAL_DEBUG.print(F("PktLen "));
-      SERIAL_DEBUG.print(getPacketLength(_Pkt_Buff.bytes));
-      SERIAL_DEBUG.println();
-      */
+  // command is available if buffer isn't empty and length of packet in the buffer is 
+  // shorter than the current length of the buffer
   return _Pkt_Buff.end_pos > 0 && (_Pkt_Buff.end_pos >= getPacketLength(_Pkt_Buff.bytes));
 }
 
@@ -135,7 +117,7 @@ void sendTxtMsg(Stream &_serial, const char _str[]){
   }
 
   //_serial.println(_str);
-  sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(str));
+  sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(_str));
 
   // Not sure if we want this, but Cosmos appears to have trouble dealing with 
   // packets too closely spaced
@@ -227,23 +209,4 @@ void log_sent_pkt(uint8_t pkt_buf[], uint16_t pkt_size){
   }
 }
 
-uint8_t addStrToTlm(char *_str, uint8_t _payload[], uint8_t _start_pos){
-/*
- * Copies a string to a position in an array and returns the new length
- * 
- * Inputs: 
- * _str - string to add to array
- * _payload - array to copy _str into
- * _start_pos - position in array to copy _str into
- * 
- * Output:
- * none
- * 
- * Return:
- * new length of array
- * 
- */
- 
-  memcpy(_payload+_start_pos,_str,strlen(_str));
-  return _start_pos + strlen(_str);
-}
+

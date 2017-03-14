@@ -99,3 +99,24 @@ uint8_t extractStrFromTlm(char str[], uint8_t _packet[], uint8_t start_pos, uint
   memcpy(str,_packet + start_pos,len);
   return start_pos+len;
 }
+
+uint8_t addStrToTlm(char *_str, uint8_t _payload[], uint8_t _start_pos){
+/*
+ * Copies a string to a position in an array and returns the new length
+ * 
+ * Inputs: 
+ * _str - string to add to array
+ * _payload - array to copy _str into
+ * _start_pos - position in array to copy _str into
+ * 
+ * Output:
+ * none
+ * 
+ * Return:
+ * new length of array
+ * 
+ */
+ 
+  memcpy(_payload+_start_pos,_str,strlen(_str));
+  return _start_pos + strlen(_str);
+}

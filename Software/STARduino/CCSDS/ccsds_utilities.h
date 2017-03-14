@@ -29,6 +29,7 @@ void setTlmTimeSec(uint8_t _packet[], uint32_t sec);
 void setTlmTimeSubSec(uint8_t _packet[], uint16_t subsec);
 
 uint8_t extractStrFromTlm(char str[], uint8_t _packet[], uint8_t start_pos, uint8_t len);
+uint8_t addStrToTlm(char *s, uint8_t payload[], uint8_t start_pos);
 
 CCSDS_CmdSecHdr_t getCmdHeader(uint8_t _packet[]);
 
