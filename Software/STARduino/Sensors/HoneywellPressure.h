@@ -7,7 +7,9 @@
 #define PRESSURE_MAX_SAMPLES 5
 
 // Status code enum for pressure sensor (First 2 bits of data are status)
-enum PRESSURE_SENSOR_STATUS { NORMAL, COMMAND_MODE, STALE_DATA, DIAGNOSTIC_FAULT };
+// NOTE: This is an enum class, so to reference it, you MUST do PRESSURE_SENSOR_STATUS::NORMAL, etc.
+// Enum class used to avoid enum naming conflicts.
+enum class PRESSURE_SENSOR_STATUS { NORMAL, COMMAND_MODE, STALE_DATA, DIAGNOSTIC_FAULT };
 
 // Class to handle communication with Honeywell SSC pressure sensor over I2C.
 // Supports software supersampling.
