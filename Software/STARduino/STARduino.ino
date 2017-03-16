@@ -9,6 +9,7 @@
 // Logfiles
 File logfile_sensor;
 File logfile_sync;
+File logfile_interface;
 
 // Command Buffers
 Cmd_Pkt_Buff_t Debug_Pkt_Buff = {.buf_size = MAX_CMD_LEN, .end_pos = 0, .cycles_since_last_read = 0};
@@ -56,12 +57,12 @@ void setup() {
   // Open logfiles
   // Note: Because the interface automatically logs outgoing messages,
   // no messages can be sent until the logfile_input is opened
-  //logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
+  logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
   //SERIAL_DEBUG.print("Logfile name: ");
     //SERIAL_DEBUG.print(logfile_interface.name());
     //SERIAL_DEBUG.print(", Logfile handle: ");
     //SERIAL_DEBUG.println(logfile_interface);
-  set_msg_logfile();
+  set_msg_logfile(logfile_interface);
   logfile_sensor = SD.open(FILENAME_SENSOR_LOG, FILE_WRITE);
   logfile_sync = SD.open(FILENAME_SYNC_LOG, FILE_WRITE);
   

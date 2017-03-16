@@ -59,8 +59,8 @@ void print_datestamp(File write_file, uint32_t time_millis){
   uint32_t h = nowMS / 3600;
   uint32_t m = nowMS % 3600 / 60;
   uint32_t s = nowMS % 3600 % 60;
-  char buf[21];
-  sprintf(buf, "%02d/%02d/%02d %02d:%02d:%02d.%03d, ", 0, 0, 0, h, m, s, time_millis%1000);  // print milliseconds);
+  char buf[23];
+  sprintf(buf, "%02d/%02d/%02dT%02d:%02d:%02d.%03d,", 0, 0, 0, h, m, s, time_millis%1000);  // print milliseconds);
   write_file.print(buf);
 }
 
@@ -79,5 +79,29 @@ void set_epoch(){
  * 
  */
   millis_epoch = millis();
+}
+
+int8_t open_fileidx(File &rootdir, File &entry, uint8_t _fileIdx){
+
+  // move to beginning of directory structure
+  rootdir.seek(0);
+
+  // iterate through until we get to the file we want
+  for(uint8_t i = 0; i < _fileIdx; i++){
+    // open next file
+    entry =  rootdir.openNextFile();
+  }
+
+  if (entry){
+    if(entry.isDirectory()){
+      return ERROR_OPENFILEIDX_DIR;
+    }
+    else{
+      return ERROR_OPENFILEIDX_SUCCESS;
+    }
+  }
+  else{
+    return ERROR_OPENFILEIDX_NOEXIST;
+  }
 }
 

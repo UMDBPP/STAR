@@ -2,7 +2,7 @@
 #include "Messaging.h"
 
 uint32_t _SentPktCtr = 0;
-File logfile_interface;
+File logfile_interface_ptr;
 
 
 void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff){
@@ -31,7 +31,10 @@ void read_serial(Stream &_serial, Cmd_Pkt_Buff_t *_Pkt_Buff){
   // so that we can receive new commands
 
   if(_Pkt_Buff->end_pos > 0 && (_Pkt_Buff->cycles_since_last_read > MAX_READ_CYCLES_STALENESS)){
-    sendTxtMsg(SERIAL_DEBUG,"INFO: <READ_SERIAL> clearing buffer");
+
+    char buf[100];
+    sprintf(buf,"INFO: <READ_SERIAL> Have %d bytes of data, clearing buffer",_Pkt_Buff->end_pos);
+    sendTxtMsg(SERIAL_DEBUG,buf);
     _Pkt_Buff->end_pos = 0;
   }
 
@@ -78,7 +81,7 @@ bool full_cmd_available(Cmd_Pkt_Buff_t _Pkt_Buff){
   return _Pkt_Buff.end_pos > 0 && (_Pkt_Buff.end_pos >= getPacketLength(_Pkt_Buff.bytes));
 }
 
-void set_msg_logfile(){
+void set_msg_logfile(File &_logfile){
 /*
  * Sets the logfile to log interface I/O to
  * 
@@ -92,12 +95,8 @@ void set_msg_logfile(){
  * none
  * 
  */
-  //logfile_interface = SD.open(FILENAME_INTERFACE_LOG, FILE_WRITE);
-  SERIAL_DEBUG.print("Logfile name: ");
-   SERIAL_DEBUG.print(logfile_interface.name());
-   SERIAL_DEBUG.print(", Logfile handle: ");
-   SERIAL_DEBUG.println(logfile_interface);
-  //logfile_interface = _logfile;
+  
+  logfile_interface_ptr = _logfile;
 }
 
 void sendTxtMsg(Stream &_serial, const char _str[]){
@@ -106,7 +105,7 @@ void sendTxtMsg(Stream &_serial, const char _str[]){
  * 
  * Inputs: 
  * _serial - serial to write message to
- * str - string to write into packet
+ * _str - string to write into packet
  * 
  * Output:
  * none 
@@ -121,12 +120,12 @@ void sendTxtMsg(Stream &_serial, const char _str[]){
     return;
   }
 
- _serial.println(_str);
-  //sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(_str));
+ //_serial.println(_str);
+  sendTlmMsg(_serial, APID_STAR_TXTMSG, (uint8_t*)_str, strlen(_str));
 
   // Not sure if we want this, but Cosmos appears to have trouble dealing with 
   // packets too closely spaced
-  delay(10);
+  delay(50);
 }
 
 
@@ -194,29 +193,28 @@ void log_sent_pkt(uint8_t pkt_buf[], uint16_t pkt_size){
  * none
  * 
  */
-  if(logfile_interface){
+ 
+  if(logfile_interface_ptr){
     // log 'S' to show its a sent packet
-    logfile_interface.print("S ");
+    logfile_interface_ptr.print("S ");
   
     // print the time of the message
-    print_datestamp(logfile_interface, get_MET());
+    print_datestamp(logfile_interface_ptr, get_MET());
     // print the packet
-    logfile_interface.print(" ");
+    logfile_interface_ptr.print(" ");
     
     char buf[5];
     // print the data in hex
     for(int i = 0; i < pkt_size; i++){
         sprintf(buf, "%02x, ", pkt_buf[i]);
-        logfile_interface.print(buf);
+        logfile_interface_ptr.print(buf);
     }
-    logfile_interface.println();
-    logfile_interface.flush();
+    logfile_interface_ptr.println();
+    logfile_interface_ptr.flush();
   }
   else{
-    //sendTxtMsg(SERIAL_DEBUG, "ERROR: <LOGPKT> Logfile isn't open.");
-    //SERIAL_DEBUG.print("ERROR: <LOGPKT> Logfile isn't open.");
-    //SERIAL_DEBUG.print("Logfile name: ");
-    //SERIAL_DEBUG.println(logfile_interface.name());
+    // don't do anything because our logfile isn't open
+    SERIAL_DEBUG.println("ERROR: <LOGPKT> LogFile isn't open!");
   }
 }
 

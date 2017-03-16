@@ -22,13 +22,16 @@
 #define MAX_TLM_LEN 255
 
 // cycles that a partial packet will be kept before being discarded
-#define MAX_READ_CYCLES_STALENESS 50
+#define MAX_READ_CYCLES_STALENESS 15
 
 // cycles that a partial packet will be kept before being discarded
-#define DESIRED_CYCLE_HZ 10
+#define DESIRED_CYCLE_HZ 30
 
 // define the max number of commands allowed in a queue
 #define MAX_CMDS_IN_QUEUE 10
+
+// define the number of bytes of a file sent in each packet
+#define FILE_BYTES_PER_PKT 100
 
 // alias this to the name StaticQueue expects
 #define QUEUE_LEN 10//MAX_CMDS_IN_QUEUE
@@ -46,10 +49,10 @@
 
 // Pins
 #define PIN_SDCHIPSELECT 53 // FIXME
-#define PIN_LEDPWM 13 // FIXME
-#define PIN_MOTORPWM 13 // FIXME
-#define PIN_BIAS 13 // FIXME
-#define PIN_CUTOFF 13 // FIXME
+#define PIN_LEDPWM 14 // FIXME
+#define PIN_MOTORPWM 14 // FIXME
+#define PIN_BIAS 14 // FIXME
+#define PIN_CUTOFF 14 // FIXME
 
 // APIDs
 #define APID_STAR_CMD 100
@@ -59,6 +62,9 @@
 #define APID_STAR_STATUS 140
 #define APID_STAR_FILEINFO 150
 #define APID_STAR_FILECHKSUM 160
+#define APID_STAR_BEGIN_FILESEND 170
+#define APID_STAR_FILEDATA 171
+#define APID_STAR_END_FILESEND 172
 
 // FcnCodes
 #define FCNCODE_NOOP_CMD 9
@@ -73,7 +79,6 @@
 #define FCNCODE_REBOOT_CMD 18
 #define FCNCODE_SENDFILE_CMD 19
 #define FCNCODE_DELFILE_CMD 20
-#define FCNCODE_FILECHKSUM_CMD 21
 #define FCNCODE_RCVFILE_CMD 22
 
 // Filenames1
@@ -92,6 +97,9 @@
 #define ERROR_SDLOAD_INFILOOP -9
 #define ERROR_SDLOAD_SUCCESS 0
 #define ERROR_FLASHLOAD_SUCCESS 0
+#define ERROR_OPENFILEIDX_DIR -1
+#define ERROR_OPENFILEIDX_NOEXIST -2
+#define ERROR_OPENFILEIDX_SUCCESS 1
 
 // Status
 #define STATUS_INITALIZED 1

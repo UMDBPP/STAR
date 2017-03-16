@@ -345,27 +345,6 @@ void execute_command(uint8_t _Pkt_Buff[]){
       
       break;
     }
-    case FCNCODE_FILECHKSUM_CMD:{
-      /*  
-       *   FcnCode FCNCODE_FILECHKSUM_CMD is a command which returns
-       *   the checksum of a file. The function is defined with the 
-       *   following format:
-       *   
-       *   CCSDS Command Header (8 bytes)
-       *   FileIdx (1 byte)
-       */
-      sendTxtMsg(SERIAL_DEBUG,"INFO: <CMD> FILE_CHKSUM command received");
-      
-      uint8_t fileidx = 0;
-      
-      // extract the file index from the command
-      extractFromTlm(fileidx, _Pkt_Buff, 8);
-      
-      // respond to the command
-      get_file_checksum(fileidx);
-      
-      break;
-    }
     case FCNCODE_RCVFILE_CMD:{
       /*  
        *   FcnCode FCNCODE_RCVFILE_CMD is a command will receive part
@@ -443,52 +422,6 @@ void write_file(char _filename[13], uint8_t _Pkt_Buff[], uint16_t _filesize){
   new_file.close();
 }
 
-void get_file_checksum(uint8_t _fileidx){
-/*
- * Sends a file's checksum via telemetry
- * 
- * Inputs: 
- * fileidx - index of file on SD card
- * 
- * Output:
- * none
- * 
- * Return:
- * none
- * 
- */
-  File entry;
-  File rootdir = SD.open("/");
-  rootdir.seek(0);
-  // FIXME: can we seek straight to a file instead of iterating openNextFile?
-
-  for(uint8_t i = 0; i < _fileidx; i++){
-
-    // open next file
-    entry =  rootdir.openNextFile();
-  }
-
-  // initalize checksum
-  uint8_t CheckSum = 0xFF;
-  
-  // if file idx exists
-  if (entry && !entry.isDirectory()) {
-
-    // iterate through file and calculate checksum
-    while(entry.available()){
-      CheckSum ^= entry.read();
-    }
-  }
-  
-  // make the telemetry message
-  uint8_t payload_buff[4];
-  uint8_t payloadLength = 0;
-  
-  payloadLength = addIntToTlm(CheckSum, payload_buff, payloadLength);
-
-  sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILECHKSUM, payload_buff, payloadLength);
-  
-}
 
 void delete_file(uint8_t _fileidx){
 /*
@@ -504,29 +437,34 @@ void delete_file(uint8_t _fileidx){
  * none
  * 
  */
-  uint32_t filesize;
+
+ 
   File entry;
   File rootdir = SD.open("/");
-  rootdir.seek(0);
+  int8_t file_status = 0;
   char filename[13]; // max filename is 8 characters + 1 period + 3 letter extention + 1 null term
 
-  for(uint8_t i = 0; i < _fileidx; i++){
+   file_status = open_fileidx(rootdir, entry, _fileidx);
 
-    // open next file
-    entry =  rootdir.openNextFile();
+  // send back message indicating it was a directory
+  if(file_status == ERROR_OPENFILEIDX_DIR){
+    sendTxtMsg(SERIAL_DEBUG,"ERROR: <DELFILE> Cannot delete a directory");
   }
-
-  // if file idx exists
-  if (entry && !entry.isDirectory()) {
-
-    // Add counter values to the pkt
+  // send back message indicating the file doesn't exist
+  else if(file_status == ERROR_OPENFILEIDX_NOEXIST){
+    sendTxtMsg(SERIAL_DEBUG,"ERROR: <DELFILE> File doesn't exist, not deleted");
+  }
+  // otherwise, delete the file
+  else{
+  
     sprintf(filename,"%12s",entry.name());
     SD.remove(filename);
     sendTxtMsg(SERIAL_DEBUG,"INFO: <DELFILE> File deleted");
   }
-  else{
-    sendTxtMsg(SERIAL_DEBUG,"ERROR: <DELFILE> File NOT deleted");
-  }
+
+  rootdir.close();
+  entry.close();
+  return;
  
 }
 
@@ -546,39 +484,84 @@ void send_file(uint8_t _fileidx){
  * none
  * 
  */
- // Not implemented for now.
- sendTxtMsg(SERIAL_DEBUG,"ERROR: <SENDFILE> SEND_FILE is not yet implemented");
- return;
-  uint32_t filesize;
+ 
   File entry;
   File rootdir = SD.open("/");
-  rootdir.seek(0);
-  char filename[13]; // max filename is 8 characters + 1 period + 3 letter extention + 1 null term
+  int8_t file_status = 0;
+  
+  file_status = open_fileidx(rootdir, entry, _fileidx);
 
-  for(uint8_t i = 0; i < _fileidx; i++){
-
-    // open next file
-    entry =  rootdir.openNextFile();
+  
+  // send back message indicating it was a directory
+  if(file_status == ERROR_OPENFILEIDX_DIR){
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> File is a directory, can't send");
   }
+  // send back message indicating the file doesn't exist
+  else if(file_status == ERROR_OPENFILEIDX_NOEXIST){
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> File doesn't exist, can't send");
+  }
+  // otherwise, send the file
+  else{
 
-  // if file idx exists
-  if (entry && !entry.isDirectory()) {
-
-    // Add counter values to the pkt
+    // first send a begin_send message
+    // this is actually just a FileInfo message with a different APID, but the 
+    // ground system needs to handle it differently
+    uint8_t payload_buff[FILE_BYTES_PER_PKT+12];
+    uint8_t payloadLength = 0;  
+    uint32_t filesize;
+    uint8_t checkSum = 0xFF;  
+    char filename[13]; // max filename is 8 characters + 1 period + 3 letter extention + 1 null term
+    uint16_t bytes_available = 0;
+    
     sprintf(filename,"%12s",entry.name());
+    filesize = entry.size();
+    payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
+    payloadLength = addIntToTlm(filesize, payload_buff, payloadLength);
+    
+    // iterate through file and calculate checksum
+    while(entry.available()){
+      checkSum ^= entry.read();
+    }
 
-    filesize = entry.size();    
+    payloadLength = addIntToTlm(checkSum, payload_buff, payloadLength);
+  
+    sendTlmMsg(SERIAL_DEBUG, APID_STAR_BEGIN_FILESEND, payload_buff, payloadLength);
+
+    // then send the packet data
+    entry.seek(0);
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> sent beginfile");
+    //loop through packets sending bytes
+    for (uint16_t i = 0; i < floor(filesize / FILE_BYTES_PER_PKT); i++){
+
+      // read file data into packet and send it
+      entry.read(payload_buff,FILE_BYTES_PER_PKT);
+      sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEDATA, payload_buff, payloadLength);
+      sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> sent 100 bytes");
+    }
+
+    // one last packet to finish file
+    bytes_available = entry.available();
+    if(bytes_available < FILE_BYTES_PER_PKT){
+      entry.read(payload_buff,entry.available());
+      sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEDATA, payload_buff, bytes_available);
+    }
+    else{
+      sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> Calculation error!");
+    }
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> sent filedata");
+    // then send a end_send message
+    payloadLength = 0;
+    payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
+    payloadLength = addIntToTlm(filesize, payload_buff, payloadLength);
+    payloadLength = addIntToTlm(checkSum, payload_buff, payloadLength);
+  
+    sendTlmMsg(SERIAL_DEBUG, APID_STAR_END_FILESEND, payload_buff, payloadLength);
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <SENDFILE> sent endfile");
   }
   
-  // make the telemetry message
-  uint8_t payload_buff[13+4];
-  uint8_t payloadLength = 0;
-  
-  payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
-  payloadLength = addIntToTlm(entry.size(), payload_buff, payloadLength);
-
-  sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEINFO, payload_buff, payloadLength);
-  
+  rootdir.close();
+  entry.close();
+  return;
 }
 
 
@@ -596,46 +579,55 @@ void find_fileinfo(uint8_t _fileidx){
  * none
  * 
  */
-  uint32_t filesize;
   File entry;
   File rootdir = SD.open("/");
-  rootdir.seek(0);
+  int8_t file_status = 0;
   char filename[13]; // max filename is 8 characters + 1 period + 3 letter extention + 1 null term
+  uint8_t payload_buff[13+4+1];
+  uint8_t payloadLength = 0;  
+  uint8_t checkSum = 0xFF;  
+  uint32_t filesize;
 
-  for(uint8_t i = 0; i < _fileidx; i++){
+  file_status = open_fileidx(rootdir, entry, _fileidx);
 
-    // open next file
-    entry =  rootdir.openNextFile();
-  }
-
-   // make the telemetry message
-  uint8_t payload_buff[13+4];
-  uint8_t payloadLength = 0;
-
-  // if file idx exists
-  if (entry && !entry.isDirectory()) {
-
-    // Add counter values to the pkt
+  // send back message indicating it was a directory
+  if(file_status == ERROR_OPENFILEIDX_DIR){
     sprintf(filename,"%12s",entry.name());
-
-    filesize = entry.size();    
-    
     payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
-    payloadLength = addIntToTlm(filesize, payload_buff, payloadLength);
-  
+    payloadLength = addIntToTlm(0, payload_buff, payloadLength);
+    payloadLength = addIntToTlm(checkSum, payload_buff, payloadLength);
     sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEINFO, payload_buff, payloadLength);
-
-    return;
   }
-  else{
-
+  // send back message indicating the file doesn't exist
+  else if(file_status == ERROR_OPENFILEIDX_NOEXIST){
     strcpy(filename,"no_exist.noo");
     payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
     payloadLength = addIntToTlm(0, payload_buff, payloadLength);
+    payloadLength = addIntToTlm(checkSum, payload_buff, payloadLength);
     sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEINFO, payload_buff, payloadLength);
-
-    return;
   }
+  // otherwise, send back the filename and length
+  else{
+  
+    sprintf(filename,"%12s",entry.name());
+    filesize = entry.size();
+    payloadLength = addStrToTlm(filename, payload_buff, payloadLength);
+    payloadLength = addIntToTlm(filesize, payload_buff, payloadLength);
+    
+    // iterate through file and calculate checksum
+    while(entry.available()){
+      checkSum ^= entry.read();
+    }
+
+    payloadLength = addIntToTlm(checkSum, payload_buff, payloadLength);
+  
+    sendTlmMsg(SERIAL_DEBUG, APID_STAR_FILEINFO, payload_buff, payloadLength);
+  }
+
+  rootdir.close();
+  entry.close();
+  return;
+ 
 }
 
 void set_LED(uint8_t _brightness){
@@ -661,10 +653,10 @@ void set_bias(uint8_t _enable){
   digitalWrite(PIN_BIAS, _enable);
 
   if(_enable){
-    sendTxtMsg(SERIAL_DEBUG, "INFO: <SHAKE> Set bias to enabled.");
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <BIAS> Set bias to enabled.");
   }
   else{
-    sendTxtMsg(SERIAL_DEBUG, "INFO: <SHAKE> Set bias to disabled");
+    sendTxtMsg(SERIAL_DEBUG, "INFO: <BIAS> Set bias to disabled");
   }
 }
 
