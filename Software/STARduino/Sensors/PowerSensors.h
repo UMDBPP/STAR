@@ -18,9 +18,11 @@ class VoltageSense {
 
         void set_number_samples(uint8_t _numSamples) { numSamples = _numSamples; }
         uint8_t get_number_samples() { return numSamples; }
+		void set_sensePin(int _sensePin) {sensePin = _sensePin;}
 
     private:
         uint8_t numSamples;
+		int sensePin;
 
 };
 
@@ -35,9 +37,11 @@ class CurrentSense {
 
         void set_number_samples(uint8_t _numSamples) { numSamples = _numSamples; }
         uint8_t get_number_samples() { return numSamples; }
-
+		void set_sensePin(int _sensePin) {sensePin = _sensePin;}
+		
     private:
         uint8_t numSamples;
+		int sensePin;
 
 };
 
