@@ -3,9 +3,22 @@
 
 #include <stdint.h>
 
-// Maximum samples for sensor supersampling
+// Maximum samples for sensor supersampling (currently not used)
 #define VOLTAGE_MAX_SAMPLES 10
 #define CURRENT_MAX_SAMPLES 10
+
+// Analog Pins for sensors
+#define voltage_sensePin A0
+#define current_sensePin A4
+
+//number of samples for sensor supersampling 
+#define voltage_numSamples
+#define current_numSamples 
+
+//Constants for converting sensor readings to usable units
+#define voltage_constant 1
+#define current_constant 1
+
 
 // Voltage reading class for analog VSENSE
 // Supports software supersampling
@@ -18,7 +31,7 @@ class VoltageSense {
 
         void set_number_samples(uint8_t _numSamples) { numSamples = _numSamples; }
         uint8_t get_number_samples() { return numSamples; }
-		void set_sensePin(int _sensePin) {sensePin = _sensePin;}
+		void set_sense_pin(int _sensePin) {sensePin = _sensePin;}
 
     private:
         uint8_t numSamples;
@@ -37,7 +50,7 @@ class CurrentSense {
 
         void set_number_samples(uint8_t _numSamples) { numSamples = _numSamples; }
         uint8_t get_number_samples() { return numSamples; }
-		void set_sensePin(int _sensePin) {sensePin = _sensePin;}
+		void set_sense_pin(int _sensePin) {sensePin = _sensePin;}
 		
     private:
         uint8_t numSamples;
