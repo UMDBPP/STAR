@@ -2,9 +2,9 @@
 //Michael Walker
 #include "PowerSensors.h"
 
-VoltageSense::VoltageSense(int _sensePin = voltage_sensePin, uint8_t _numSamples=1){
+VoltageSense::VoltageSense(int _sensePin = VOLTAGE_SENSE_PIN_DEFAULT, uint8_t _numSamples=1){
 /*
- * constructor implementation
+ * constructor implementation of class that reads voltage from analog pin A0
  * 
  * Inputs: 
  * _sensePin - the analog pin the data will be taken from
@@ -16,6 +16,13 @@ VoltageSense::VoltageSense(int _sensePin = voltage_sensePin, uint8_t _numSamples
  * Return:
  * none
  */	
+	if (_numSamples >= VOLTAGE_MAX_SAMPLES){
+		_numSamples = VOLTAGE_MAX_SAMPLES;
+	}
+	elseif (_numSamples <= 1){
+		_numSamples = 1;
+	}
+	
 	set_sense_pin(_sensePin)
 	set_number_samples(_numsamples)
 	pinMode(sensePin,INPUT);
@@ -24,12 +31,11 @@ VoltageSense::VoltageSense(int _sensePin = voltage_sensePin, uint8_t _numSamples
 
 uint16_t VoltageSense::read_voltage(){
 /*
- * Reads voltage analog sensors from anlong pin A0 
+ * Reads voltage analog sensors from anlong pin A0 (if not specified)
  * Supersampling support
  * 
  * Inputs: 
- * voltage_sensePin - the analog pin the data will be taken from
- * numSamples - number of samples that are avearged
+ * none
  * 
  * Output:
  * none
@@ -38,21 +44,21 @@ uint16_t VoltageSense::read_voltage(){
  * voltage_value - Sensor value or supersample average
  */	
 	
-	int voltage_value = 0;
+	int voltagevalue_ = 0;
 		
 	for( uint8_t i=0; i < numSamples; i++){
-		voltage_value += analogRead(sensePin);
+		voltagevalue_ += analogRead(sensePin);
 	}
-	voltage_value = voltage_value/numSamples; //averaging
-	voltage_value = voltage_value*voltage_constant; //for converting to usable units
-	return voltage_value;
+	voltagevalue_ = voltagevalue_/numSamples; //averaging
+	voltagevalue_ = voltagevalue_*VOLTAGE_CONSTANT; //for converting to usable units
+	return voltagevalue_;
 }
 
 VoltageSense::~VoltageSense(){ }
 
-CurrentSense::CurrentSense(int _sensePin = A4, uint8_t _numSamples=1){
+CurrentSense::CurrentSense(int _sensePin = CURRENT_SENSE_PIN_DEFAULT, uint8_t _numSamples=1){
 /*
- * Reads voltage analog sensors from analog pin A4 
+ * Builds the class for sampling current from analog pin A4
  * Supersampling support
  * 
  * Inputs: 
@@ -65,7 +71,14 @@ CurrentSense::CurrentSense(int _sensePin = A4, uint8_t _numSamples=1){
  * Return:
  * none
  */		
- 	set_sense_pin(_sensePin)
+ 	if (_numSamples >= CURRENT_MAX_SAMPLES){
+		_numSamples = CURRENT_MAX_SAMPLES;
+	}
+	elseif (_numSamples <= 1){
+		_numSamples = 1;
+	}
+	
+	set_sense_pin(_sensePin)
 	set_number_samples(_numSamples)
 	pinMode(sensePin,INPUT);
 	
@@ -73,27 +86,26 @@ CurrentSense::CurrentSense(int _sensePin = A4, uint8_t _numSamples=1){
 
 uint16_t CurrentSense::read_current(){
 /*
- * Reads current analog sensors from anlong pin A4 
+ * Reads current analog sensors from anlong pin A4 (if not specified) 
  * Supersampling support
  * 
  * Inputs: 
- * voltage_sensePin - the analog pin the data will be taken from
- * numSamples - number of samples that are avearged
+ * none
  * 
  * Output:
  * none
  * 
  * Return:
- * current_value - Sensor value or supersample average
+ * currentvalue_ - Sensor value or supersample average
  */		
-	int current_value = 0;
+	int currentvalue_ = 0;
 	
 	for( uint8_t i=0; i < numSamples; i++){
-		current_value += analogRead(sensePin);
+		currentvalue_ += analogRead(sensePin);
 	}
-	current_value = current_value/numSamples; //making the sum an average
-	current_value = current_value*current_constant; //convert to different units
-	return current_value;
+	currentvalue_ = currentvalue_/numSamples; //making the sum an average
+	currentvalue_ = currentvalue_*CURRENT_CONSTANT; //convert to different units
+	return currentvalue_;
 }	
 
 CurrentSense::~CurrentSense(){ }
