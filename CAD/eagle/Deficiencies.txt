@@ -1,0 +1,3 @@
+Diodes polarity markings
+IC pin 1 markers
+22uH inductor package is wrong
