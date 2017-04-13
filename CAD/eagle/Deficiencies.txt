@@ -1,3 +1,14 @@
 Diodes polarity markings
 IC pin 1 markers
 22uH inductor package is wrong
+load capacitors are wrong for XTAL
+switch to 10 pin 50 mil cortex debug connector
+inductors closer to chip than caps
+upgrade FDG8842
+Swap P82B buffer with something else, use enable pin equipped part (NO MOSFETS)
+Missing 100pF decoupling capacitor on PCA9306 VREF2 pin
+Fix SERCOMs to avoid custom arduino core
+load on 28V bias
+Fix 3111 overshoot
+upgrade LDO to handle transients
+Zener on all voltage buses except 28V
