@@ -3,8 +3,10 @@
 
 #include<Wire.h>
 
-#define TCA_ADDRESS 0x20 // TODO
+// I2C address of the TCA9535
+#define TCA_ADDRESS 0x27
 
+// Command byte definitions from the TCA9535 datasheet
 #define TCA_CMD_BYTE_IN_0 0x00; // Command byte for input port 0
 #define TCA_CMD_BYTE_IN_1 0x01; // Command byte for input port 1
 #define TCA_CMD_BYTE_OUT_0 0x02; // Command byte for output port 0
