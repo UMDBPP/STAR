@@ -13,3 +13,6 @@ Fix 3111 overshoot
 upgrade LDO to handle transients
 Zener on all voltage buses except 28V
 Add Pi-style protection circuitry
+Route bias voltage control pin
+External board - tent vias
+Add pullup resistor to SWCLK
