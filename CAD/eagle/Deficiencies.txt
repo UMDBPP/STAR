@@ -1,9 +1,9 @@
+Dash(-)=done
 Diodes polarity markings
 IC pin 1 markers
 22uH inductor package is wrong
-load capacitors are wrong for XTAL
 switch to 10 pin 50 mil cortex debug connector
-inductors closer to chip than caps
+-inductors closer to chip than caps
 upgrade FDG8842
 Swap P82B buffer with something else, use enable pin equipped part (NO MOSFETS)
 Missing 100pF decoupling capacitor on PCA9306 VREF2 pin
@@ -16,3 +16,8 @@ Add Pi-style protection circuitry
 Route bias voltage control pin
 External board - tent vias
 Add pullup resistor to SWCLK
+-3.3V reg: output cap to 2.2uF ceramic, add bypass cap (100nF)
+-Changed crystal to 7pf tuning
+-Switched i2c pullups to single resistor network
+External remove buffer
+External fill routed hole
