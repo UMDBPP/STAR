@@ -21,4 +21,4 @@ Add pullup resistor to SWCLK
 -Switched i2c pullups to single resistor network
 -External remove buffer
 -External fill routed hole
-External reroute w/ filled hole
+-External reroute w/ filled hole
