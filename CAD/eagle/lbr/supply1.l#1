@@ -667,7 +667,7 @@
 </device>
 </devices>
 </deviceset>
-<deviceset name="5V_S" prefix="P+">
+<deviceset name="5V_S">
 <gates>
 <gate name="G$1" symbol="5V_S" x="0" y="0"/>
 </gates>

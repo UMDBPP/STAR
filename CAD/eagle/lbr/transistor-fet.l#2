@@ -3878,7 +3878,7 @@ Source: www.vishay.com</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="DMG2305UX" prefix="Q">
+<deviceset name="DMG2505UX">
 <gates>
 <gate name="G$1" symbol="P-MOSFET" x="0" y="0"/>
 </gates>
