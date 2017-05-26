@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -37954,9 +37954,9 @@ by R. Vogg  15.March.2002</description>
 <wire x1="523.24" y1="157.48" x2="528.32" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="PA21/EIC/SCOM5PAD3+"/>
-<wire x1="312.42" y1="350.52" x2="345.44" y2="350.52" width="0.1524" layer="91"/>
-<label x="345.44" y="350.52" size="1.016" layer="95" xref="yes"/>
+<pinref part="U6" gate="G$1" pin="PA17/I2C/EIC/SCOM1PAD1+/TC2"/>
+<wire x1="312.42" y1="360.68" x2="345.44" y2="360.68" width="0.1524" layer="91"/>
+<label x="345.44" y="360.68" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$23" class="0">
@@ -38138,26 +38138,26 @@ by R. Vogg  15.March.2002</description>
 </net>
 <net name="TX2" class="0">
 <segment>
-<pinref part="U6" gate="G$1" pin="PA04/EIC/REF/AIN4/SCOM0PAD0/VREFB"/>
-<wire x1="312.42" y1="393.7" x2="345.44" y2="393.7" width="0.1524" layer="91"/>
-<label x="345.44" y="393.7" size="1.016" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="J3" gate="G$1" pin="10"/>
 <wire x1="175.26" y1="111.76" x2="177.8" y2="111.76" width="0.1524" layer="91"/>
 <label x="177.8" y="111.76" size="1.016" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA20/EIC/SCOM5PAD2+"/>
+<wire x1="312.42" y1="353.06" x2="345.44" y2="353.06" width="0.1524" layer="91"/>
+<label x="345.44" y="353.06" size="1.016" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="RX2" class="0">
-<segment>
-<pinref part="U6" gate="G$1" pin="PA07/EIC/AIN7/SCOM0PAD3"/>
-<wire x1="312.42" y1="386.08" x2="345.44" y2="386.08" width="0.1524" layer="91"/>
-<label x="345.44" y="386.08" size="1.016" layer="95" xref="yes"/>
-</segment>
 <segment>
 <pinref part="J3" gate="G$1" pin="9"/>
 <wire x1="175.26" y1="116.84" x2="177.8" y2="116.84" width="0.1524" layer="91"/>
 <label x="177.8" y="116.84" size="1.016" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="PA21/EIC/SCOM5PAD3+"/>
+<wire x1="312.42" y1="350.52" x2="345.44" y2="350.52" width="0.1524" layer="91"/>
+<label x="345.44" y="350.52" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="DEC0" class="0">
@@ -38269,9 +38269,9 @@ by R. Vogg  15.March.2002</description>
 <pinref part="Q1" gate="N" pin="G"/>
 </segment>
 <segment>
-<pinref part="U6" gate="G$1" pin="PA20/EIC/SCOM5PAD2+"/>
-<wire x1="312.42" y1="353.06" x2="345.44" y2="353.06" width="0.1524" layer="91"/>
-<label x="345.44" y="353.06" size="1.016" layer="95" xref="yes"/>
+<pinref part="U6" gate="G$1" pin="PA16/I2C/EIC/SCOM1PAD0+/TC2"/>
+<wire x1="312.42" y1="363.22" x2="345.44" y2="363.22" width="0.1524" layer="91"/>
+<label x="345.44" y="363.22" size="1.016" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$38" class="0">
