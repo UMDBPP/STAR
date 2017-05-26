@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.001" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -101,8 +101,16 @@
 <smd name="22" x="-0.25" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
 <smd name="23" x="-0.75" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
 <smd name="24" x="-1.25" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
-<circle x="-1.75" y="1.75" radius="0.1581125" width="0.127" layer="51"/>
+<circle x="-1.75" y="1.75" radius="0.1581125" width="0.127" layer="21"/>
 <smd name="PPAD" x="0" y="0" dx="2.45" dy="2.45" layer="1"/>
+<wire x1="-1.575" y1="2.075" x2="-2.075" y2="2.075" width="0.127" layer="21"/>
+<wire x1="-2.075" y1="2.075" x2="-2.075" y2="1.6" width="0.127" layer="21"/>
+<wire x1="1.6" y1="2.075" x2="2.075" y2="2.075" width="0.127" layer="21"/>
+<wire x1="2.075" y1="2.075" x2="2.075" y2="1.6" width="0.127" layer="21"/>
+<wire x1="2.075" y1="-1.6" x2="2.075" y2="-2.075" width="0.127" layer="21"/>
+<wire x1="2.075" y1="-2.075" x2="1.625" y2="-2.075" width="0.127" layer="21"/>
+<wire x1="-1.625" y1="-2.075" x2="-2.075" y2="-2.075" width="0.127" layer="21"/>
+<wire x1="-2.075" y1="-2.075" x2="-2.075" y2="-1.625" width="0.127" layer="21"/>
 </package>
 <package name="RTW24_2P45X2P45">
 <smd name="1" x="-1.975" y="1.25" dx="0.28" dy="0.85" layer="1" rot="R270" stop="no" cream="no"/>
@@ -133,11 +141,9 @@
 <wire x1="-2.3368" y1="-2.3368" x2="-1.7272" y2="-2.3368" width="0.1524" layer="21"/>
 <wire x1="2.3368" y1="-2.3368" x2="2.3368" y2="-1.7272" width="0.1524" layer="21"/>
 <wire x1="2.3368" y1="2.3368" x2="1.7272" y2="2.3368" width="0.1524" layer="21"/>
-<wire x1="-2.3368" y1="2.3368" x2="-2.3368" y2="1.7272" width="0.1524" layer="21"/>
 <wire x1="-2.3368" y1="-1.7272" x2="-2.3368" y2="-2.3368" width="0.1524" layer="21"/>
 <wire x1="1.7272" y1="-2.3368" x2="2.3368" y2="-2.3368" width="0.1524" layer="21"/>
 <wire x1="2.3368" y1="1.7272" x2="2.3368" y2="2.3368" width="0.1524" layer="21"/>
-<wire x1="-1.7272" y1="2.3368" x2="-2.3368" y2="2.3368" width="0.1524" layer="21"/>
 <polygon width="0.0254" layer="21">
 <vertex x="0.0595625" y="-2.654"/>
 <vertex x="0.0595625" y="-2.908"/>
@@ -150,7 +156,6 @@
 <vertex x="0.9406875" y="2.908"/>
 <vertex x="0.9406875" y="2.654"/>
 </polygon>
-<text x="-3.6068" y="1.2446" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <polygon width="0.0254" layer="31">
 <vertex x="-2.375" y="1.365"/>
 <vertex x="-2.375" y="1.135"/>
@@ -606,8 +611,12 @@
 <wire x1="2.0828" y1="-2.0828" x2="2.0828" y2="2.0828" width="0.1524" layer="51"/>
 <wire x1="2.0828" y1="2.0828" x2="-2.0828" y2="2.0828" width="0.1524" layer="51"/>
 <wire x1="-2.0828" y1="2.0828" x2="-2.0828" y2="-2.0828" width="0.1524" layer="51"/>
-<text x="-3.6068" y="1.2446" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
 <text x="-3.2766" y="-0.635" size="1.27" layer="25" ratio="6" rot="SR0">&gt;Name</text>
+<polygon width="0.1524" layer="21">
+<vertex x="-2.3368" y="1.651"/>
+<vertex x="-1.651" y="2.3368"/>
+<vertex x="-2.3368" y="2.3368"/>
+</polygon>
 </package>
 <package name="PW0020A">
 <smd name="1" x="-2.85" y="2.925" dx="1.35" dy="0.35" layer="1" roundness="100" rot="R180"/>
