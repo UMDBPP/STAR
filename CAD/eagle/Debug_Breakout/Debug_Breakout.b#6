@@ -114,14 +114,6 @@
 <wire x1="26.67" y1="0" x2="26.67" y2="39.37" width="0" layer="20"/>
 <wire x1="26.67" y1="39.37" x2="0" y2="39.37" width="0" layer="20"/>
 <wire x1="0" y1="39.37" x2="0" y2="0" width="0" layer="20"/>
-<text x="22.733" y="33.274" size="1.27" layer="21" rot="R180">VIN</text>
-<text x="26.416" y="33.274" size="1.27" layer="21" rot="R180">GND</text>
-<text x="18.542" y="28.067" size="1.27" layer="21" rot="R90">5V OUT</text>
-<text x="15.875" y="31.623" size="1.27" layer="21" rot="R90">GND</text>
-<text x="6.477" y="27.432" size="1.778" layer="21" rot="R90">FTDI</text>
-<text x="8.763" y="25.908" size="1.778" layer="21" rot="R90">SERIAL</text>
-<text x="21.082" y="15.621" size="1.778" layer="22" rot="MR0">STARDUINO USB</text>
-<text x="9.652" y="5.461" size="1.778" layer="22" rot="MR0">PI USB</text>
 </plain>
 <libraries>
 <library name="resistor">
@@ -1605,7 +1597,7 @@ Source: RS Components</description>
 <class number="0" name="default" width="0" drill="0">
 </class>
 </classes>
-<designrules name="oshpark-2layer *">
+<designrules name="oshpark-2layer">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -1669,7 +1661,7 @@ Please make sure your boards conform to these design rules.</description>
 <param name="mlMaxStopFrame" value="2.5mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
-<param name="mlViaStopLimit" value="25mil"/>
+<param name="mlViaStopLimit" value="0mil"/>
 <param name="srRoundness" value="0"/>
 <param name="srMinRoundness" value="0mil"/>
 <param name="srMaxRoundness" value="0mil"/>
@@ -1781,50 +1773,32 @@ Please make sure your boards conform to these design rules.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="C1" library="resistor" package="C0603" value="1uF" x="15.24" y="20.32" smashed="yes" rot="R90">
-<attribute name="NAME" x="16.51" y="23.368" size="1.27" layer="25" rot="R180"/>
-</element>
-<element name="C2" library="resistor" package="C0603" value="1uF" x="16.51" y="8.89" smashed="yes" rot="R270">
-<attribute name="NAME" x="15.621" y="5.969" size="1.27" layer="25"/>
-</element>
-<element name="F1" library="CM_passives" package="PTC-1206" value="PTCSMD" x="7.62" y="20.32" smashed="yes" rot="R270">
+<element name="C1" library="resistor" package="C0603" value="1uF" x="15.24" y="20.32" rot="R90"/>
+<element name="C2" library="resistor" package="C0603" value="1uF" x="16.51" y="8.89" rot="R270"/>
+<element name="F1" library="CM_passives" package="PTC-1206" value="PTCSMD" x="7.62" y="20.32" rot="R270">
 <attribute name="PROD_ID" value="RES-11150" x="7.62" y="20.32" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="7.239" y="22.606" size="0.6096" layer="25"/>
 </element>
-<element name="F2" library="CM_passives" package="PTC-1206" value="PTCSMD" x="8.89" y="8.89" smashed="yes" rot="R180">
+<element name="F2" library="CM_passives" package="PTC-1206" value="PTCSMD" x="8.89" y="8.89" rot="R180">
 <attribute name="PROD_ID" value="RES-11150" x="8.89" y="8.89" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="10.414" y="7.62" size="0.6096" layer="25" rot="R180"/>
 </element>
-<element name="JP1" library="pinhead" package="1X11" value="" x="24.13" y="15.875" smashed="yes" rot="R90">
-<attribute name="VALUE" x="27.305" y="1.905" size="1.27" layer="27" rot="R90"/>
-</element>
+<element name="JP1" library="pinhead" package="1X11" value="" x="24.13" y="15.875" rot="R90"/>
 <element name="JP2" library="pinhead" package="1X06" value="" x="2.54" y="30.48" smashed="yes" rot="R90">
 <attribute name="VALUE" x="5.715" y="22.86" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="JP3" library="pinhead" package="1X02" value="" x="11.43" y="20.32" smashed="yes" rot="R90">
-<attribute name="VALUE" x="14.605" y="17.78" size="1.27" layer="27" rot="R90"/>
-</element>
-<element name="JP4" library="pinhead" package="1X02" value="" x="12.7" y="8.89" smashed="yes" rot="R270">
-<attribute name="VALUE" x="9.525" y="11.43" size="1.27" layer="27" rot="R270"/>
-</element>
+<element name="JP3" library="pinhead" package="1X02" value="" x="11.43" y="20.32" rot="R90"/>
+<element name="JP4" library="pinhead" package="1X02" value="" x="12.7" y="8.89" rot="R270"/>
 <element name="JP5" library="CM_connectors" package="1X02_2.54_SCREWTERM" value="M022.54MM_SCREWTERM" x="21.59" y="36.83"/>
-<element name="JP6" library="pinhead" package="1X02" value="" x="16.51" y="36.83" smashed="yes">
-<attribute name="VALUE" x="13.97" y="33.655" size="1.27" layer="27"/>
-</element>
+<element name="JP6" library="pinhead" package="1X02" value="" x="16.51" y="36.83"/>
 <element name="MCU" library="CM_connectors" package="MICRO-B-10118194" value="USB_MICROB_PLUG10118194" x="1.27" y="16.51" rot="R270"/>
 <element name="PI" library="CM_connectors" package="MICRO-B-10118194" value="USB_MICROB_PLUG10118194" x="1.27" y="6.35" rot="R270"/>
 <element name="Q1" library="CM_IC" package="SOT143-4" value="CM1213A-02SR" x="8.89" y="15.24" smashed="yes" rot="R270">
-<attribute name="NAME" x="8.033" y="12.16" size="1.27" layer="25"/>
+<attribute name="NAME" x="10.89" y="17.24" size="1.27" layer="25" rot="R270"/>
 </element>
 <element name="Q2" library="CM_IC" package="SOT143-4" value="CM1213A-02SR" x="8.89" y="3.81" smashed="yes" rot="R270">
-<attribute name="NAME" x="7.906" y="0.73" size="1.27" layer="25"/>
+<attribute name="NAME" x="10.89" y="5.81" size="1.27" layer="25" rot="R270"/>
 </element>
-<element name="R1" library="SparkFun-Passives" package="0603-ARV" value="22" x="15.24" y="15.24" smashed="yes" rot="R90">
-<attribute name="NAME" x="16.637" y="13.335" size="1.27" layer="25" ratio="10" rot="R180"/>
-</element>
-<element name="R2" library="SparkFun-Passives" package="0603-ARV" value="22" x="15.24" y="3.81" smashed="yes" rot="R90">
-<attribute name="NAME" x="16.51" y="2.032" size="1.27" layer="25" ratio="10" rot="R180"/>
-</element>
+<element name="R1" library="SparkFun-Passives" package="0603-ARV" value="22" x="15.24" y="15.24" rot="R90"/>
+<element name="R2" library="SparkFun-Passives" package="0603-ARV" value="22" x="15.24" y="3.81" rot="R90"/>
 </elements>
 <signals>
 <signal name="MCU_D_P">
@@ -1923,18 +1897,6 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="PI" pad="S2"/>
 <contactref element="PI" pad="S3"/>
 <contactref element="PI" pad="S4"/>
-<via x="8.89" y="36.83" extent="1-16" drill="0.3302"/>
-<via x="15.367" y="33.02" extent="1-16" drill="0.3302"/>
-<via x="12.7" y="27.94" extent="1-16" drill="0.3302"/>
-<via x="5.08" y="21.59" extent="1-16" drill="0.3302"/>
-<via x="15.24" y="17.907" extent="1-16" drill="0.3302"/>
-<via x="8.636" y="17.018" extent="1-16" drill="0.3302"/>
-<via x="3.937" y="11.557" extent="1-16" drill="0.3302"/>
-<via x="17.272" y="11.684" extent="1-16" drill="0.3302"/>
-<via x="12.954" y="5.334" extent="1-16" drill="0.3302"/>
-<via x="8.001" y="6.35" extent="1-16" drill="0.3302"/>
-<via x="3.937" y="1.27" extent="1-16" drill="0.3302"/>
-<via x="13.081" y="1.524" extent="1-16" drill="0.3302"/>
 </signal>
 <signal name="PI_D_N">
 <contactref element="JP1" pad="3"/>
