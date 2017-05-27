@@ -29,9 +29,9 @@
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
@@ -177,7 +177,7 @@
 <circle x="3.175" y="34.925" radius="2.286" width="0.254" layer="51"/>
 <circle x="98.425" y="3.175" radius="2.286" width="0.254" layer="51"/>
 <circle x="98.425" y="34.925" radius="2.286" width="0.254" layer="51"/>
-<text x="21.59" y="2.460625" size="1.27" layer="22" font="vector" rot="MR0">3-2017 Rev. 1</text>
+<text x="21.59" y="2.460625" size="1.27" layer="22" font="vector" rot="MR0">5-2017 Rev. 2</text>
 <text x="21.351875" y="5.318125" size="1.27" layer="22" font="vector" rot="MR0">UMD Nearspace
 MDSGC</text>
 <wire x1="22.145625" y1="35.08375" x2="22.145625" y2="33.893125" width="0.2032" layer="160"/>

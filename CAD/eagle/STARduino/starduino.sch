@@ -36173,7 +36173,7 @@ by R. Vogg  15.March.2002</description>
 </libraries>
 <attributes>
 <attribute name="DOC_NUM" value="1"/>
-<attribute name="REVISION" value="1.0"/>
+<attribute name="REVISION" value="2.0"/>
 </attributes>
 <variantdefs>
 </variantdefs>
