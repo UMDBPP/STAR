@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -130,6 +130,17 @@ POWER</text>
 <wire x1="13.335" y1="20.32" x2="12.7" y2="20.32" width="0.254" layer="21"/>
 <wire x1="10.541" y1="11.557" x2="10.541" y2="10.922" width="0.254" layer="21"/>
 <wire x1="10.541" y1="10.922" x2="10.795" y2="10.668" width="0.254" layer="21"/>
+<text x="20.32" y="27.94" size="1.27" layer="21">5V</text>
+<text x="19.05" y="20.32" size="1.27" layer="21">VCC</text>
+<text x="20.32" y="22.86" size="1.27" layer="21">TX</text>
+<text x="20.32" y="25.4" size="1.27" layer="21">RX</text>
+<text x="19.05" y="17.78" size="1.27" layer="21">GND</text>
+<text x="17.78" y="12.7" size="1.27" layer="21">MCU+</text>
+<text x="17.78" y="15.24" size="1.27" layer="21">MCU-</text>
+<text x="19.05" y="10.16" size="1.27" layer="21">GND</text>
+<text x="19.05" y="7.62" size="1.27" layer="21">PI-</text>
+<text x="19.05" y="5.08" size="1.27" layer="21">PI+</text>
+<text x="19.05" y="2.54" size="1.27" layer="21">GND</text>
 </plain>
 <libraries>
 <library name="resistor">
@@ -6772,11 +6783,8 @@ Please make sure your boards conform to these design rules.</description>
 <autorouter>
 <pass name="Default">
 <param name="RoutingGrid" value="50mil"/>
-<param name="AutoGrid" value="1"/>
-<param name="Efforts" value="0"/>
-<param name="TopRouterVariant" value="1"/>
 <param name="tpViaShape" value="round"/>
-<param name="PrefDir.1" value="a"/>
+<param name="PrefDir.1" value="|"/>
 <param name="PrefDir.2" value="0"/>
 <param name="PrefDir.3" value="0"/>
 <param name="PrefDir.4" value="0"/>
@@ -6791,7 +6799,7 @@ Please make sure your boards conform to these design rules.</description>
 <param name="PrefDir.13" value="0"/>
 <param name="PrefDir.14" value="0"/>
 <param name="PrefDir.15" value="0"/>
-<param name="PrefDir.16" value="a"/>
+<param name="PrefDir.16" value="-"/>
 <param name="cfVia" value="8"/>
 <param name="cfNonPref" value="5"/>
 <param name="cfChangeDir" value="2"/>
