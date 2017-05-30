@@ -7218,7 +7218,7 @@ Please make sure your boards conform to these design rules.</description>
 <contactref element="Q1" pad="P$4"/>
 <contactref element="MCU" pad="1"/>
 <contactref element="F1" pad="2"/>
-<polygon width="0.2032" layer="1" thermals="no">
+<polygon width="0" layer="1" thermals="no">
 <vertex x="4.572" y="17.526"/>
 <vertex x="8.89" y="17.526"/>
 <vertex x="8.89" y="19.812"/>
