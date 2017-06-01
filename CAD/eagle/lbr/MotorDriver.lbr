@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.001" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -38,7 +38,7 @@
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
@@ -102,7 +102,7 @@
 <smd name="23" x="-0.75" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
 <smd name="24" x="-1.25" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
 <circle x="-1.75" y="1.75" radius="0.1581125" width="0.127" layer="21"/>
-<smd name="PPAD" x="0" y="0" dx="2.45" dy="2.45" layer="1"/>
+<smd name="PPAD" x="0" y="0" dx="2.45" dy="2.45" layer="1" cream="no"/>
 <wire x1="-1.575" y1="2.075" x2="-2.075" y2="2.075" width="0.127" layer="21"/>
 <wire x1="-2.075" y1="2.075" x2="-2.075" y2="1.6" width="0.127" layer="21"/>
 <wire x1="1.6" y1="2.075" x2="2.075" y2="2.075" width="0.127" layer="21"/>
@@ -111,6 +111,7 @@
 <wire x1="2.075" y1="-2.075" x2="1.625" y2="-2.075" width="0.127" layer="21"/>
 <wire x1="-1.625" y1="-2.075" x2="-2.075" y2="-2.075" width="0.127" layer="21"/>
 <wire x1="-2.075" y1="-2.075" x2="-2.075" y2="-1.625" width="0.127" layer="21"/>
+<rectangle x1="-0.635" y1="-0.635" x2="0.635" y2="0.635" layer="31"/>
 </package>
 <package name="RTW24_2P45X2P45">
 <smd name="1" x="-1.975" y="1.25" dx="0.28" dy="0.85" layer="1" rot="R270" stop="no" cream="no"/>

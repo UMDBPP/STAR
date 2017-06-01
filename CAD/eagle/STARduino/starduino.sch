@@ -6543,7 +6543,7 @@ Metric Code Size 5664</description>
 <smd name="6" x="1.475" y="-0.325" dx="0.7" dy="0.35" layer="1"/>
 <smd name="7" x="1.475" y="0.325" dx="0.7" dy="0.35" layer="1"/>
 <smd name="8" x="1.475" y="0.975" dx="0.7" dy="0.35" layer="1"/>
-<smd name="9" x="0" y="0" dx="1.58" dy="2.35" layer="1"/>
+<smd name="9" x="0" y="0" dx="1.58" dy="2.35" layer="1" cream="no"/>
 <wire x1="-2" y1="1.5" x2="-2" y2="-1.5" width="0.127" layer="21"/>
 <wire x1="-2" y1="-1.5" x2="2" y2="-1.5" width="0.127" layer="21"/>
 <wire x1="2" y1="-1.5" x2="2" y2="1.5" width="0.127" layer="21"/>
@@ -6551,6 +6551,7 @@ Metric Code Size 5664</description>
 <circle x="-1.65" y="2.01" radius="0.325" width="0.127" layer="21"/>
 <text x="-2" y="1.75" size="0.8128" layer="25">&gt;NAME</text>
 <text x="-2" y="-2.25" size="0.6096" layer="25">&gt;VALUE</text>
+<rectangle x1="-0.635" y1="-0.889" x2="0.635" y2="0.889" layer="31"/>
 </package>
 <package name="LGA-20">
 <smd name="1" x="1.2625" y="1.5" dx="0.675" dy="0.25" layer="1"/>
@@ -7141,7 +7142,7 @@ Metric Code Size 5664</description>
 <smd name="23" x="-0.75" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
 <smd name="24" x="-1.25" y="1.975" dx="0.85" dy="0.28" layer="1" rot="R270"/>
 <circle x="-1.75" y="1.75" radius="0.1581125" width="0.127" layer="21"/>
-<smd name="PPAD" x="0" y="0" dx="2.45" dy="2.45" layer="1"/>
+<smd name="PPAD" x="0" y="0" dx="2.45" dy="2.45" layer="1" cream="no"/>
 <wire x1="-1.575" y1="2.075" x2="-2.075" y2="2.075" width="0.127" layer="21"/>
 <wire x1="-2.075" y1="2.075" x2="-2.075" y2="1.6" width="0.127" layer="21"/>
 <wire x1="1.6" y1="2.075" x2="2.075" y2="2.075" width="0.127" layer="21"/>
@@ -7150,6 +7151,7 @@ Metric Code Size 5664</description>
 <wire x1="2.075" y1="-2.075" x2="1.625" y2="-2.075" width="0.127" layer="21"/>
 <wire x1="-1.625" y1="-2.075" x2="-2.075" y2="-2.075" width="0.127" layer="21"/>
 <wire x1="-2.075" y1="-2.075" x2="-2.075" y2="-1.625" width="0.127" layer="21"/>
+<rectangle x1="-0.635" y1="-0.635" x2="0.635" y2="0.635" layer="31"/>
 </package>
 <package name="RTW24_2P45X2P45">
 <smd name="1" x="-1.975" y="1.25" dx="0.28" dy="0.85" layer="1" rot="R270" stop="no" cream="no"/>

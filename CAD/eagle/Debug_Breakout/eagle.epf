@@ -41,8 +41,8 @@ Type="Schematic Editor"
 Loc="652 321 1251 720"
 State=1
 Number=3
-File="F:/UMD/Balloon Payload/Rocksat/STARduino/STAR/CAD/eagle/STARduino/starduino.sch"
-View="-11.7002 -9.16016 570.292 440.752"
+File="F:/Camden/Documents/eagle/Balloonduino/EVT2.2/Payload-mega/balloonduino mega.sch"
+View="108.782 84.9473 213.417 152.721"
 WireWidths=" 0 0.3048 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.1524"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.5 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8"
@@ -81,6 +81,7 @@ ArcDirection=0
 AddLevel=2
 PadsSameType=0
 Layer=91
+Views=" 1: 108.782 84.9473 213.417 152.721 2: -21.883 -29.4331 518.012 320.267"
 Sheet=1
 
 [Win_2]
@@ -88,8 +89,8 @@ Type="Board Editor"
 Loc="1320 0 1919 399"
 State=1
 Number=1
-File="F:/UMD/Balloon Payload/Rocksat/STARduino/STAR/CAD/eagle/STARduino/starduino.brd"
-View="-14.781 -16.5526 114.811 46.5851"
+File="F:/Camden/Documents/eagle/Balloonduino/EVT2.2/Payload-mega/balloonduino mega.brd"
+View="-17.8412 6.1371 80.7358 59.0152"
 WireWidths=" 0 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0.4064 0.254 0.1524 0.2032"
 PadDiameters=" 0.254 0.3048 0.4064 0.6096 0.8128 1.016 1.27 1.4224 1.6764 1.778 1.9304 2.1844 2.54 3.81 6.4516 0"
 PadDrills=" 0.6 0.7 0.9 1 1.1 1.2 1.3 1.4 1.5 1.6 2 2.2 2.8 3.2 0.8 2.75"
@@ -136,7 +137,7 @@ State=2
 Number=0
 
 [Desktop]
-Screen="3840 1080"
+Screen="1920 1080"
 Window="Win_1"
 Window="Win_2"
 Window="Win_3"
