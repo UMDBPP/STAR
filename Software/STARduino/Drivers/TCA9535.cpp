@@ -14,7 +14,7 @@
  */
 uint8_t read_TCA_register(uint8_t command_byte) {
     Wire.beginTransmission(TCA_ADDRESS);
-    Wire.send(command_byte);
+    Wire.write(command_byte);
     Wire.requestFrom(TCA_ADDRESS,1);
     uint8_t result = Wire.read();
     Wire.endTransmission();
@@ -30,12 +30,22 @@ uint8_t read_TCA_register(uint8_t command_byte) {
  *
  * Output:
  * none
+ *
+ * Return:
+ * 0 for success in sending, 1 for failure
  */
- void write_TCA_register(uint8_t command_byte, uint8_t data) {
+ uint8_t write_TCA_register(uint8_t command_byte, uint8_t data) {
+    if(command_byte >= 8) { // Check if command byte is valid
+        return 1; // Return 1 for invalid command byte
+    }
     Wire.beginTransmission(TCA_ADDRESS);
-    Wire.send(command_byte);
-    Wire.send(data);
+    uint8_t bytesSent = Wire.write(command_byte);
+    if(bytesSent != 1) { // Verify command byte was sent successfully
+        return 1;
+    }   
+    bytesSent = Wire.write(data);
     Wire.endTransmission();
+    return !bytesSent;
 }
 
 /*
@@ -129,7 +139,8 @@ uint8_t read_TCA_output_0(void) {
  *
  * Return:
  * An 8-bit bitfield representing whether each pin on the TCA's port 1 is an input (1) or an output (0)
- */uint8_t read_TCA_config_1(void) {
+ */
+ uint8_t read_TCA_config_1(void) {
     return read_TCA_register(TCA_CMD_BYTE_CFG_0);
 }
 
@@ -141,9 +152,12 @@ uint8_t read_TCA_output_0(void) {
  *
  * Output:
  * none
+ *
+ * Return:
+ * 0 for success in sending, 1 for failure
  */
-void write_TCA_output_0(uint8_t data) {
-    write_TCA_register(TCA_CMD_BYTE_OUT_0, data);
+uint8_t write_TCA_output_0(uint8_t data) {
+    return write_TCA_register(TCA_CMD_BYTE_OUT_0, data);
 }
 
 /*
@@ -154,9 +168,12 @@ void write_TCA_output_0(uint8_t data) {
  *
  * Output:
  * none
+ *
+ * Return:
+ * 0 for success in sending, 1 for failure
  */
-void write_TCA_output_1(uint8_t data) {
-    write_TCA_register(TCA_CMD_BYTE_OUT_1, data);
+uint8_t write_TCA_output_1(uint8_t data) {
+    return write_TCA_register(TCA_CMD_BYTE_OUT_1, data);
 }
 
 /*
@@ -167,9 +184,12 @@ void write_TCA_output_1(uint8_t data) {
  *
  * Output:
  * none
+ *
+ * Return:
+ * 0 for success in sending, 1 for failure
  */
-void write_TCA_config_0(uint8_t data) {
-    write_TCA_register(TCA_CMD_BYTE_CFG_0, data);
+uint8_t write_TCA_config_0(uint8_t data) {
+    return write_TCA_register(TCA_CMD_BYTE_CFG_0, data);
 }
 
 /*
@@ -180,7 +200,78 @@ void write_TCA_config_0(uint8_t data) {
  *
  * Output:
  * none
+ *
+ * Return:
+ * 0 for success in sending, 1 for failure
  */
- void write_TCA_config_1(uint8_t data) {
-    write_TCA_register(TCA_CMD_BYTE_CFG_1, data);
+ uint8_t write_TCA_config_1(uint8_t data) {
+    return write_TCA_register(TCA_CMD_BYTE_CFG_1, data);
+}
+
+uint8_t set_TCA_output_pin_high (uint8_t port, uint8_t pin) {
+    uint8_t mask = (((uint8_t) 1) << pin);
+    if (port == 0) {
+        uint8_t port_0 = read_TCA_output_0();
+        port_0 |= mask;
+        return write_TCA_output_0(port_0);
+    }
+    else if (port == 1) {
+        uint8_t port_1 = read_TCA_output_1();
+        port_1 |= mask;
+        return write_TCA_output_1(port_1);
+    }
+    else {
+        return 1;
+    }
+}
+
+uint8_t set_TCA_output_pin_low (uint8_t port, uint8_t pin) {
+    uint8_t mask = (((uint8_t) 1) << pin);
+    if (port == 0) {
+        uint8_t port_0 = read_TCA_output_0();
+        port_0 &= ~mask;
+        return write_TCA_output_0(port_0);
+    }
+    else if (port == 1) {
+        uint8_t port_1 = read_TCA_output_1();
+        port_1 |= mask;
+        return write_TCA_output_1(port_1);
+    }
+    else {
+        return 1;
+    }
+}
+
+uint8_t set_TCA_config_pin_high (uint8_t port, uint8_t pin) {
+    uint8_t mask = (((uint8_t) 1) << pin);
+    if (port == 0) {
+        uint8_t port_0 = read_TCA_config_0();
+        port_0 |= mask;
+        return write_TCA_config_0(port_0);
+    }
+    else if (port == 1) {
+        uint8_t port_1 = read_TCA_config_1();
+        port_1 |= mask;
+        return write_TCA_config_1(port_1);
+    }
+    else {
+        return 1;
+    }
+}
+
+uint8_t set_TCA_config_pin_low (uint8_t port, uint8_t pin) {
+    uint8_t mask = (((uint8_t) 1) << pin);
+    if (port == 0) {
+        uint8_t port_0 = read_TCA_config_0();
+        port_0 &= ~mask;
+        return write_TCA_config_0(port_0);
+    }
+    else if (port == 1) {
+        uint8_t port_1 = read_TCA_config_1();
+        port_1 |= mask;
+        return write_TCA_config_1(port_1);
+    }
+    else {
+        return 1;
+    }
 }
