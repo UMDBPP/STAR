@@ -1,0 +1,107 @@
+﻿STEP to UG
+! INFO-     NX STEP AP203 - V11.0
+! INFO-      
+! INFO-     Start of Translation: 1-JUN-2017  4:47:48 PM
+! INFO-      
+! STATUS-   Converting Part: F:\UMD\Balloon Payload\Rocksat\STARduino\STAR\CAD\Mechanical\STEP Files\Base Plate Mk 2.stp
+! SUMMARY-   
+! SUMMARY-    STEP Header Information
+! SUMMARY-   
+! SUMMARY-  Description      Unknown
+! SUMMARY-  Imp_Level        2;1
+! SUMMARY-  File_Name        D:\UMD Near Space\star\CAD\Mechanical\STEP Files\Base Plate Mk 2.stp
+! SUMMARY-  Date             2017-05-28T15:27:49-05:00
+! SUMMARY-  Author           qupec
+! SUMMARY-  Organization     Unknown
+! SUMMARY-  Pre_Version      ST-DEVELOPER v16.5
+! SUMMARY-  Orig_System      Autodesk Inventor 2017
+! SUMMARY-  Authorization    Unknown
+! SUMMARY-  Schema_ID        automotive_design
+! SUMMARY-   
+! SUMMARY-    Summary of STEP Entities
+! SUMMARY-   
+! SUMMARY-  Entity Type                                                   Count
+! SUMMARY-  -----------                                                   ------
+! SUMMARY-  advanced_brep_shape_representation .........................:      1
+! SUMMARY-  advanced_face ..............................................:     58
+! SUMMARY-  application_context ........................................:      1
+! SUMMARY-  application_protocol_definition ............................:      1
+! SUMMARY-  axis2_placement_3d .........................................:    155
+! SUMMARY-  calendar_date ..............................................:      1
+! SUMMARY-  cartesian_point ............................................:    277
+! SUMMARY-  circle .....................................................:     96
+! SUMMARY-  closed_shell ...............................................:      1
+! SUMMARY-  conversion_based_unit_and_length_unit ......................:      1
+! SUMMARY-  conversion_based_unit_and_plane_angle_unit .................:      1
+! SUMMARY-  coordinated_universal_time_offset ..........................:      1
+! SUMMARY-  cylindrical_surface ........................................:     48
+! SUMMARY-  date_and_time ..............................................:      1
+! SUMMARY-  date_time_role .............................................:      1
+! SUMMARY-  dimensional_exponents ......................................:      2
+! SUMMARY-  direction ..................................................:    326
+! SUMMARY-  edge_curve .................................................:    112
+! SUMMARY-  edge_loop ..................................................:    196
+! SUMMARY-  face_bound .................................................:    138
+! SUMMARY-  face_outer_bound ...........................................:     58
+! SUMMARY-  geometric_representation_context_and_global_uncertainty_a ..:      2
+! SUMMARY-  length_measure_with_unit ...................................:      1
+! SUMMARY-  length_unit_and_si_unit ....................................:      1
+! SUMMARY-  line .......................................................:     16
+! SUMMARY-  local_time .................................................:      1
+! SUMMARY-  manifold_solid_brep ........................................:      1
+! SUMMARY-  oriented_edge ..............................................:    224
+! SUMMARY-  plane ......................................................:     10
+! SUMMARY-  plane_angle_measure_with_unit ..............................:      1
+! SUMMARY-  plane_angle_unit_and_si_unit ...............................:      1
+! SUMMARY-  product ....................................................:      1
+! SUMMARY-  product_context ............................................:      1
+! SUMMARY-  product_definition .........................................:      1
+! SUMMARY-  product_definition_context .................................:      1
+! SUMMARY-  product_definition_formation ...............................:      1
+! SUMMARY-  product_definition_shape ...................................:      1
+! SUMMARY-  product_related_product_category ...........................:      1
+! SUMMARY-  shape_definition_representation ............................:      1
+! SUMMARY-  shape_representation .......................................:      1
+! SUMMARY-  shape_representation_relationship ..........................:      1
+! SUMMARY-  si_unit_and_solid_angle_unit ...............................:      1
+! SUMMARY-  uncertainty_measure_with_unit ..............................:      2
+! SUMMARY-  vector .....................................................:     16
+! SUMMARY-  vertex_point ...............................................:    106
+! SUMMARY-                                                               -------
+! SUMMARY-  Total                                                           1869
+! STATUS-    
+! STATUS-   Converting to Output Form (Phase 2 of 3): 1-JUN-2017 4:47:48 PM
+! STATUS-    
+! STATUS-    
+! STATUS-   Generating UG geometry and placing them in parts
+! STATUS-    
+! STATUS-   Creating the UG part (Phase 3 of 3): 1-JUN-2017  4:47:48 PM
+! STATUS-    
+! STATUS-   Creating UG solid body from Input Ent Id 13
+! STATUS-    
+! STATUS-   simplifying Bsplines to analytics
+! STATUS-    
+! STATUS-   converting tolerant edges into exact edges
+! STATUS-    
+! STATUS-   doing final check of body to report any faults
+! STATUS-    
+! INFO-     Filing Part ..: F:\UMD\Balloon Payload\Rocksat\STARduino\STAR\CAD\Mechanical\STEP Files\Base Plate Mk 2_stp.prt
+! SUMMARY-   
+! SUMMARY-  Summary of Unigraphics Part Entities
+! SUMMARY-   
+! SUMMARY-  Entities Processed             Count
+! SUMMARY-  ------------------             -----
+! SUMMARY-  Solid .......................:     1
+! SUMMARY-                                 -----
+! SUMMARY-  Total                              1
+! INFO-      
+! INFO-     Total number of solids input for this translation       :         1
+! INFO-      
+! INFO-     Number of solids created without body validation faults :         1
+! INFO-      
+! INFO-     Number of solids created with body validation fault(s)  :         0
+! INFO-      
+! INFO-     Number of solids ending up as sheet bodies              :         0
+! INFO-      
+! INFO-     End of Translation: 1-JUN-2017  4:47:50 PM
+! INFO-      
