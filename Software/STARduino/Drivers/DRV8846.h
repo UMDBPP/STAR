@@ -26,13 +26,19 @@
 #define DRV_NSLEEP_PORT_TCA 1
 #define DRV_DIR_PORT_TCA 1
 
-
-#define PWM_MODULE      0 // TC 0
-#define PWM_OUT_PIN     13 // PWM on pin 13
-#define PWM_OUT_MUX     16 // 2^4 for TC; see multiplexer documentation
-
+// TODO
+#define PWM_PER 1488 // 8 MHz/(168 step/s * 32 div/step)
+#define DRV_GLCK_ID 0x1B // GCLK_TCC0 (datasheet table 15-5)
+#define DRV_GLCK_GEN_ID 0
+#define DRV_GCLK_DIV_FACTOR 6 // 48 MHz / 8 = 8 MHz
+#define DRV_OUT_PORT 0 // Port A
+#define DRV_OUT_PIN 8 // Pin 8 on port A (logical; physical pin is 13)
 
 uint8_t setup_DRV();
+
+void config_PWM();
+void start_PWM();
+void stop_PWM();
 
 uint8_t enable_DRV_output(void);
 uint8_t disable_DRV_output(void);

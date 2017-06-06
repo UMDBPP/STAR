@@ -1,6 +1,17 @@
 #include "DRV8846.h"
-//struct tc_module tc_instance; // TODO
 
+/*
+ * Sets up the DRV, but not the assosciated PWM system.
+ * 
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * 0 for success, 1 for failure
+ */
 uint8_t setup_DRV() {
     
     disable_DRV_output(); // For safety
@@ -17,26 +28,85 @@ uint8_t setup_DRV() {
     if(set_DRV_step_mode(255, 1)) { // Hi-Z, 1 for 32 microstep, rising edge only
         return 1; // Return if error
     }
-    /*
-    // TC setup code, from Atmel ASF examples
-    struct tc_config config_tc;
-    tc_get_config_defaults(&config_tc);
-    config_tc.counter_size = TC_COUNTER_SIZE_16BIT;
-    config_tc.wave_generation = TC_WAVE_GENERATION_NORMAL_PWM;
-    config_tc.counter_16_bit.compare_capture_channel[0] = 1488; // 8 MHz clock frequency, 168 step/s, 32 microstep/step
-    config_tc.pwm_channel[0].enabled = true;
-    config_tc.pwm_channel[0].pin_out = PWM_OUT_PIN;
-    config_tc.pwm_channel[0].pin_mux = PWM_OUT_MUX;
-    if(tc_init(&tc_instance, PWM_MODULE, &config_tc) != STATUS_OK) {
-        return 1; // Return if error
-    }
-    tc_enable(&tc_instance); // Start pwn train running
-    */
-    wake_DRV(); // Wake up, but output is still disabled
     
     return DRV_is_fault(); // Check DRV Fault status
 }
 
+/*
+ * Configures the PWM system, but does not start it.
+ * 
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * none
+ */
+void config_PWM() {
+  GCLK->CTRL.reg = GCLK_CTRL_SWRST; // Reset the clock
+
+    while ( (GCLK->CTRL.reg & GCLK_CTRL_SWRST) && (GCLK->STATUS.reg & GCLK_STATUS_SYNCBUSY) )
+    {
+        /* Wait for reset to complete */
+    }
+    
+    GCLK->GENDIV.reg = (GCLK_GENDIV_ID(DRV_GLCK_ID) | GCLK_GENDIV_DIV(DRV_GCLK_DIV_FACTOR)); // Set the division factor
+    
+    GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(DRV_GLCK_ID) | // Clock generator 0
+        GCLK_GENCTRL_SRC_DFLL48M | // Selected source is internal Phase Locked Loop at 48MHz
+        GCLK_GENCTRL_IDC | // Set 50/50 duty cycle
+        GCLK_GENCTRL_GENEN ; // Enable the generator
+    
+    GCLK->CLKCTRL.reg = (uint16_t) (GCLK_CLKCTRL_CLKEN | // Enable
+        GCLK_CLKCTRL_GEN(DRV_GLCK_GEN_ID) | // Generator ID
+        GCLK_CLKCTRL_ID(DRV_GLCK_ID)); // Clock ID
+    
+    
+    PORT->Group[DRV_OUT_PORT].PINCFG[DRV_OUT_PIN].bit.PMUXEN = 1; // Enable multiplexing for the output pin (PA08)
+    PORT->Group[DRV_OUT_PORT].PMUX[DRV_OUT_PIN/2].bit.PMUXE = 0x04; // Select peripheral E, TCC0/WO[0]; divide by 2 because each pinmux is even-odd
+    
+    stop_PWM(); // Disable to setup
+    TCC0->CTRLA.reg |= (TCC_CTRLA_PRESCALER_DIV1 | // No prescale
+        TC_CTRLA_MODE_COUNT16); // 16 bit resolution
+    TCC0->CC[0].reg = PWM_PER/2; // 50% duty cycle
+    TCC0->PER.reg = PWM_PER; // Set the period
+    TCC0->WAVE.bit.WAVEGEN = TCC_WAVE_WAVEGEN_NPWM; // PWM mode
+}
+
+/*
+ * Starts the PWM signal to the DRV.
+ * 
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * none
+ */
+void start_PWM() {
+    TCC0->CTRLA.bit.ENABLE = 1;
+}
+    
+/*
+ * Starts the PWM signal to the DRV.
+ * 
+ * Inputs:
+ * none
+ *
+ * Output:
+ * none
+ *
+ * Return:
+ * none
+ */
+void stop_PWM() {
+    TCC0->CTRLA.bit.ENABLE = 0;
+}
+    
 /*
  * Enables the DRV8846 output stage.
  * 
