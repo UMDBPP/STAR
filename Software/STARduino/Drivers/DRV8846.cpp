@@ -1,4 +1,5 @@
 #include "DRV8846.h"
+#include <Arduino.h>
 
 /*
  * Sets up the DRV, but not the assosciated PWM system.
@@ -45,32 +46,25 @@ uint8_t setup_DRV() {
  * none
  */
 void config_PWM() {
-  GCLK->CTRL.reg = GCLK_CTRL_SWRST; // Reset the clock
 
-    while ( (GCLK->CTRL.reg & GCLK_CTRL_SWRST) && (GCLK->STATUS.reg & GCLK_STATUS_SYNCBUSY) )
-    {
-        /* Wait for reset to complete */
-    }
-    
-    GCLK->GENDIV.reg = (GCLK_GENDIV_ID(DRV_GLCK_ID) | GCLK_GENDIV_DIV(DRV_GCLK_DIV_FACTOR)); // Set the division factor
-    
-    GCLK->GENCTRL.reg = GCLK_GENCTRL_ID(DRV_GLCK_ID) | // Clock generator 0
+   stop_PWM(); // Disable to setup
+  
+    GCLK->GENDIV.reg = (GCLK_GENDIV_ID(DRV_GLCK_GEN_ID) | GCLK_GENDIV_DIV(DRV_GCLK_DIV_FACTOR)); // Set the division factor
+    GCLK->GENCTRL.reg = (uint32_t) (GCLK_GENCTRL_ID(DRV_GLCK_GEN_ID) | // Clock generator for TCC
         GCLK_GENCTRL_SRC_DFLL48M | // Selected source is internal Phase Locked Loop at 48MHz
         GCLK_GENCTRL_IDC | // Set 50/50 duty cycle
-        GCLK_GENCTRL_GENEN ; // Enable the generator
+        GCLK_GENCTRL_GENEN); // Enable the generator*/
     
     GCLK->CLKCTRL.reg = (uint16_t) (GCLK_CLKCTRL_CLKEN | // Enable
         GCLK_CLKCTRL_GEN(DRV_GLCK_GEN_ID) | // Generator ID
         GCLK_CLKCTRL_ID(DRV_GLCK_ID)); // Clock ID
     
-    
     PORT->Group[DRV_OUT_PORT].PINCFG[DRV_OUT_PIN].bit.PMUXEN = 1; // Enable multiplexing for the output pin (PA08)
-    PORT->Group[DRV_OUT_PORT].PMUX[DRV_OUT_PIN/2].bit.PMUXE = 0x04; // Select peripheral E, TCC0/WO[0]; divide by 2 because each pinmux is even-odd
-    
-    stop_PWM(); // Disable to setup
+    PORT->Group[DRV_OUT_PORT].PMUX[DRV_OUT_PIN/2].bit.PMUXE = 0x04; // Select peripheral E, TCC0/WO[0]; divide by 2 because each pinmux is even-odd TODO changed
+
     TCC0->CTRLA.reg |= (TCC_CTRLA_PRESCALER_DIV1 | // No prescale
         TC_CTRLA_MODE_COUNT16); // 16 bit resolution
-    TCC0->CC[0].reg = PWM_PER/2; // 50% duty cycle
+    TCC0->CC[0].bit.CC = PWM_PER/2; // 50% duty cycle
     TCC0->PER.reg = PWM_PER; // Set the period
     TCC0->WAVE.bit.WAVEGEN = TCC_WAVE_WAVEGEN_NPWM; // PWM mode
 }
