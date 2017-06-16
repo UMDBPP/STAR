@@ -2,7 +2,7 @@
 //Michael Walker
 #include "PowerSensors.h"
 
-VoltageSense::VoltageSense(int _sensePin = VOLTAGE_SENSE_PIN_DEFAULT, uint8_t _numSamples=1){
+VoltageSense::VoltageSense(int _sensePin, uint8_t _numSamples){
 /*
  * constructor implementation of class that reads voltage from analog pin A0
  * 
@@ -19,12 +19,12 @@ VoltageSense::VoltageSense(int _sensePin = VOLTAGE_SENSE_PIN_DEFAULT, uint8_t _n
 	if (_numSamples >= VOLTAGE_MAX_SAMPLES){
 		_numSamples = VOLTAGE_MAX_SAMPLES;
 	}
-	elseif (_numSamples <= 1){
+	else if (_numSamples <= 1){
 		_numSamples = 1;
 	}
 	
-	set_sense_pin(_sensePin)
-	set_number_samples(_numsamples)
+	set_sense_pin(_sensePin);
+	set_number_samples(_numSamples);
 	pinMode(sensePin,INPUT);
 	
 }
@@ -56,7 +56,7 @@ uint16_t VoltageSense::read_voltage(){
 
 VoltageSense::~VoltageSense(){ }
 
-CurrentSense::CurrentSense(int _sensePin = CURRENT_SENSE_PIN_DEFAULT, uint8_t _numSamples=1){
+CurrentSense::CurrentSense(int _sensePin, uint8_t _numSamples){
 /*
  * Builds the class for sampling current from analog pin A4
  * Supersampling support
@@ -74,12 +74,12 @@ CurrentSense::CurrentSense(int _sensePin = CURRENT_SENSE_PIN_DEFAULT, uint8_t _n
  	if (_numSamples >= CURRENT_MAX_SAMPLES){
 		_numSamples = CURRENT_MAX_SAMPLES;
 	}
-	elseif (_numSamples <= 1){
+	else if (_numSamples <= 1){
 		_numSamples = 1;
 	}
 	
-	set_sense_pin(_sensePin)
-	set_number_samples(_numSamples)
+	set_sense_pin(_sensePin);
+	set_number_samples(_numSamples);
 	pinMode(sensePin,INPUT);
 	
 }

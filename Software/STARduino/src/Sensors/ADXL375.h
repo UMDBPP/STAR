@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include <Arduino.h>
-#include "DataStructures/Vector.h"
+#include "../DataStructures/Vector.h"
 
 #define ADXL_ADDRESS 0x1D
 

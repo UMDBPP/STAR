@@ -1,4 +1,5 @@
 #include <Wire.h>
+#include <Arduino.h>
 #include "HoneywellPressure.h"
 
 /*
@@ -22,7 +23,7 @@ HoneywellPressureI2C::HoneywellPressureI2C(uint8_t _samples){
 	if ((_samples <= PRESSURE_MAX_SAMPLES) && (_samples > 0)) {
 	    numSamples = _samples;
     } else {
-	    numSamples = _samples;
+	    numSamples = PRESSURE_MAX_SAMPLES;
     }
 }
 
@@ -48,7 +49,7 @@ uint8_t HoneywellPressureI2C::recieve_data(void) {
         uint8_t stat = 0; // Status byte
         uint8_t bytes[4] = {0};  //four bytes to store sensor data
 
-        Wire.requestFrom(SSC_ADDR, (uint8_t) 4);    //request sensor data
+        Wire.requestFrom(PRESSURE_I2C_ADDR, (uint8_t) 4);    //request sensor data
         for (uint8_t i = 0; i < 4; i++) {
             delay(4); // Is this delay necessary? We need 30 Hz performance from ALL sensors...
             bytes[i] = Wire.read();
@@ -72,7 +73,7 @@ uint8_t HoneywellPressureI2C::recieve_data(void) {
                 break;
         }
         if(status != PRESSURE_SENSOR_STATUS::NORMAL) {
-            return; // If there's a failure, the data is going to be invalid. Just return.
+            return 2; // If there's a failure, the data is going to be invalid. Just return.
         }
 
         // Extract the pressure and temp data
@@ -120,12 +121,12 @@ float HoneywellPressureI2C::convert_pressure() {
 /*
  * Set new supersampling value. Includes bounds check.
  *
- * Outputs: New number of samples for supersampling.
+ * Inputs: New number of samples for supersampling.
  */
 void HoneywellPressureI2C::set_number_samples(uint8_t _samples) {
     if ((_samples <= PRESSURE_MAX_SAMPLES) && (_samples > 0)) {
 	    numSamples = _samples;
     } else {
-	    numSamples = _samples;
+	    numSamples = PRESSURE_MAX_SAMPLES;
     }
 } 

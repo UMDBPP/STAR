@@ -385,9 +385,8 @@ void execute_command(uint8_t _Pkt_Buff[]){
        *   CCSDS Command Header (8 bytes)
        */
       sendTxtMsg(SERIAL_DEBUG,"INFO: <CMD> REBOOT command received");
-      
-      // set the reboot timer
-      wdt_enable(WDTO_1S);
+      unsigned int reset_val = 0x05FA0004;
+      RESET_REGISTER = reset_val;
 
       break;
     }

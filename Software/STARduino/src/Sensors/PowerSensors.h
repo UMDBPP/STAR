@@ -1,6 +1,7 @@
 #ifndef POWER_SENSE_H
 #define POWER_SENSE_H
 
+#include <Arduino.h>
 #include <stdint.h>
 
 // Maximum samples for sensor supersampling

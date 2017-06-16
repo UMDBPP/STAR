@@ -4,7 +4,7 @@
 #include "Messaging.h"
 #include "Commands.h"
 #include "STARduino.h"
-#include"drivers/TCA9535.h"
+#include"src/Drivers/TCA9535.h"
 
 /* Declare Variables */
 // Logfiles
@@ -37,10 +37,11 @@ void setup() {
  * none 
  * 
  */
-
-  // disable the watchdog timer immediately in case it was on because of a 
-  // commanded reboot
-  wdt_disable();
+  // Pull "Kill" ports high:
+  pinMode(16, OUTPUT); // Pi Kill
+  digitalWrite(16, HIGH);
+  pinMode(38, OUTPUT); // External Kill
+  digitalWrite(38, HIGH);
  
   // setup comms
   SERIAL_DEBUG.begin(57600);

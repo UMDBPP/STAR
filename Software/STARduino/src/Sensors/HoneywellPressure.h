@@ -13,7 +13,7 @@
 // Status code enum for pressure sensor (First 2 bits of data are status)
 // NOTE: This is an enum class, so to reference it, you MUST do PRESSURE_SENSOR_STATUS::NORMAL, etc.
 // Enum class used to avoid enum naming conflicts.
-enum class PRESSURE_SENSOR_STATUS { NORMAL, COMMAND_MODE, STALE_DATA, DIAGNOSTIC_FAULT };
+enum class PRESSURE_SENSOR_STATUS { NORMAL, COMMAND_MODE, STALE_DATA, DIAGNOSTIC_FAULT, MISSING };
 
 // Class to handle communication with Honeywell SSC pressure sensor over I2C.
 // Supports software supersampling.
@@ -31,7 +31,7 @@ class HoneywellPressureI2C {
         float convert_pressure();
 
         // Setter: numSamples
-        void set_number_samples(uint8_t _samples)
+        void set_number_samples(uint8_t _samples);
 
         // Getters for all stored values
         uint16_t get_pressure() { return pressureCounts; }

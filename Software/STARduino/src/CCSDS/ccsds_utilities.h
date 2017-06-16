@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 #include <string.h> // memcpy
-#include "ccsds.h"
+#include "CCSDS.h"
 
 #define CCSDS_CMD_PKT 1
 #define CCSDS_TLM_PKT 0

@@ -6,7 +6,6 @@
 #include <SD.h>
 #include <Wire.h>
 #include "RTClib.h"
-#include <avr/wdt.h> // watchdog timer/reboot
 
 /* Define Parameters */
 // used for setting size of buffers which will hold packets
@@ -37,15 +36,18 @@
 #define QUEUE_LEN 10//MAX_CMDS_IN_QUEUE
 
 /* Include project libraries */
-#include "CCSDS/CCSDS.h"
-#include "CCSDS/ccsds_utilities.h"
-#include "Queue/StaticQueue.h"
+#include "src/CCSDS/CCSDS.h"
+#include "src/CCSDS/ccsds_utilities.h"
+#include "src/Queue/StaticQueue.h"
 
 /* Define aliases */
+// Software Reset Register
+#define RESET_REGISTER *(unsigned int volatile *)0xE000ED0C
+
 // Serials
 #define SERIAL_DEBUG Serial // FIXME
-#define SERIAL_CTU Serial1 // FIXME
-#define SERIAL_PI Serial2 // FIXME
+#define SERIAL_CTU Serial
+#define SERIAL_PI Serial // FIXME
 
 // Pins
 #define PIN_SDCHIPSELECT 53 // FIXME

@@ -104,14 +104,14 @@ int MAX31725::write_tos_register(uint16_t _newTos) {
  *
  * Returns: current configuration as read from sensor.
  */
-uint8_t read_config_register() {
+uint8_t MAX31725::read_config_register() {
     // Set register to read
     Wire.beginTransmission(i2cAddress);
     Wire.write(TEMP_CONFIG_REGISTER);
     int status_ = Wire.endTransmission(false); // Send restart as per datasheet
 
     // If sensor didn't respond, return current config.
-    if(status != 0) {
+    if(status_ != 0) {
         return currentConfig;
     }
 
@@ -229,8 +229,8 @@ float MAX31725::convert_temp() {
  * Outputs: Modifys numSamples to new value.
  */
  void MAX31725::set_num_samples(uint8_t _newSamples) {
-    if((_samples <= TEMPERATURE_MAX_SAMPLES) && (_samples > 0)) {
-        numSamples = _samples;
+    if((_newSamples <= TEMPERATURE_MAX_SAMPLES) && (_newSamples > 0)) {
+        numSamples = _newSamples;
     } else {
         numSamples = TEMPERATURE_MAX_SAMPLES;
     }
