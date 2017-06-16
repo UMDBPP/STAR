@@ -112,8 +112,8 @@ inline void toggle_OUTPUT(int port, int pin) {
     }
 }
 
-inline int read_INPUT(int port, int pin) {
-    unsigned int buf;
+inline volatile int read_INPUT(int port, int pin) {
+    unsigned volatile int buf;
 
     if(port == PA) {
         buf = IN_A;
