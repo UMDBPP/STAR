@@ -19,7 +19,7 @@
 #define PMUX_A(pinnum) *(unsigned char volatile *)(GPIO_BASE_ADDR + 0x30 + (pinnum/2))
 
 #define DIR_B *(unsigned int volatile *)(GPIO_BASE_ADDR + 0x80)
-#define DIRCLR *(unsigned int volatile *)(GPIO_BASE_ADDR + 0x84)
+#define DIRCLR_B *(unsigned int volatile *)(GPIO_BASE_ADDR + 0x84)
 #define DIRSET_B *(unsigned int volatile *)(GPIO_BASE_ADDR + 0x88)
 #define DIRTGL_B *(unsigned int volatile *)(GPIO_BASE_ADDR + 0x8C)
 #define OUT_B *(unsigned int volatile *)(GPIO_BASE_ADDR + 0x90)
@@ -59,15 +59,15 @@ inline void set_DIR(int port, int pin, bool direction) {
 
     if(port == PA) {
         if(direction == IN) {
-            DIRCLR_A |= (1 << pin);
+            DIRCLR_A = (1 << pin);
         } else {
-            DIRSET_A |= (1 << pin);
+            DIRSET_A = (1 << pin);
         }
     } else if(port == PB) {
         if(direction == IN) {
-            DIRCLR_B |= (1 << pin);
+            DIRCLR_B = (1 << pin);
         } else {
-            DIRSET_B |= (1 << pin);
+            DIRSET_B = (1 << pin);
         }
     } else {
         return;
@@ -78,9 +78,9 @@ inline void toggle_DIR(int port, int pin) {
     if((pin > 31) || (pin < 0)) { return; }
 
     if(port == PA) {
-        DIRTGL_A |= (1 << pin);
+        DIRTGL_A = (1 << pin);
     } else if(port == PB) {
-        DIRTGL_B |= (1 << pin);
+        DIRTGL_B = (1 << pin);
     }
 }
 
@@ -89,15 +89,15 @@ inline void set_OUTPUT(int port, int pin, bool setting) {
 
     if(port == PA) {
         if(setting == HI) {
-            DIRSET_A |= (1 << pin);
+            DIRSET_A = (1 << pin);
         } else {
-            DIRCLR_A |= (1 << pin);
+            DIRCLR_A = (1 << pin);
         }
     } else if(port == PB) {
         if(setting == HI) {
-            DIRSET_B |= (1 << pin);
+            DIRSET_B = (1 << pin);
         } else {
-            DIRCLR_B |= (1 << pin);
+            DIRCLR_B = (1 << pin);
         }
     }
 }
@@ -106,9 +106,9 @@ inline void toggle_OUTPUT(int port, int pin) {
     if((pin > 31) || (pin < 0)) { return; }
 
     if(port == PA) {
-        OUTTGL_A |= (1 << pin);
+        OUTTGL_A = (1 << pin);
     } else if(port == PB) {
-        OUTTGL_B |= (1 << pin);
+        OUTTGL_B = (1 << pin);
     }
 }
 
