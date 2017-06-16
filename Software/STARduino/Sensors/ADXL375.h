@@ -2,7 +2,10 @@
 #define ADXL_H
 
 #include <stdint.h>
+#include <Arduino.h>
 #include "DataStructures/Vector.h"
+
+#define ADXL_ADDRESS 0x1D
 
 #define ADXL_MAX_SAMPLES 5 // Maximum samples for supersampling
 #define ADXL_DEVICE_ID 0b11100101
@@ -38,12 +41,34 @@
 #define ADXL_FIFO_CTL_REG 0x38
 #define ADXL_FIFO_STATUS_REG 0x39
 
+// Sample rates
+#define ADXL_SAMPLE_3200Hz 0b1111
+#define ADXL_SAMPLE_1600Hz 0b1110
+#define ADXL_SAMPLE_800Hz 0b1101
+#define ADXL_SAMPLE_400Hz 0b1100
+#define ADXL_SAMPLE_200Hz 0b1011
+#define ADXL_SAMPLE_100Hz 0b1010
+#define ADXL_SAMPLE_50Hz 0b1001
+#define ADXL_SAMPLE_25Hz 0b1000
+#define ADXL_SAMPLE_12_5Hz 0b0111
+#define ADXL_SAMPLE_6_25Hz 0b0110
+#define ADXL_SAMPLE_3_13Hz 0b0101
+#define ADXL_SAMPLE_1_56Hz 0b0100
+#define ADXL_SAMPLE_0_78Hz 0b0011
+#define ADXL_SAMPLE_0_39Hz 0b0010
+#define ADXL_SAMPLE_0_20Hz 0b0001
+#define ADXL_SAMPLE_0_10Hz 0b0000
+
+#define ADXL_CONVERSION_FACTOR 0.049f // 49 milli g per LSB
+#define ADXL_MAX_SAMPLES 5 // Max number of samples for supersampling
+
 // Class for interacting with the ADXL375 high-g accelerometer.
 // Provides methods for setup and reading data, and also conversions.
 // Also supports supersampling of data.
 class ADXL375 {
     public:
         ADXL375();
+        ADXL375(uint8_t);
         ~ADXL375();
 
         // Exposed single-byte read/write functions
@@ -53,6 +78,10 @@ class ADXL375 {
 
         uint8_t recieve_data();
         Vector3<float> convert_data();
+        
+        uint8_t set_sample_rate(uint8_t);
+
+        void set_number_samples(uint8_t);
 
         // Getters
         uint16_t get_x_accel() { return rawAccel.x; }
@@ -62,6 +91,7 @@ class ADXL375 {
 
     private:
         Vector3<uint16_t> rawAccel;
+        uint8_t numSamples;
 };
 
 #endif // ADXL_H
