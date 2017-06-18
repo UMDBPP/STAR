@@ -15,9 +15,9 @@
 uint8_t read_TCA_register(uint8_t command_byte) {
     Wire.beginTransmission(TCA_ADDRESS);
     Wire.write(command_byte);
+    Wire.endTransmission();
     Wire.requestFrom(TCA_ADDRESS,1);
     uint8_t result = Wire.read();
-    Wire.endTransmission();
     return result;
 }
 
