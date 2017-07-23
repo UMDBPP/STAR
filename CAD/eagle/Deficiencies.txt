@@ -26,6 +26,9 @@ Dash(-)=done
 
 
 ===============================Rev 2============================
-Switch Q5 gate and source
+Switch Q5 gate and source in the 5V protection circuit
 Remove pullups to external I2C bus or allow them to be shut off
 Fix 28V bias
+Resolve address conflict between RTC and BMX055 gyro
+Fix PCA9306 footrpint (change to TI library)
+Move the DEBUG_5V downstream of the protection circuit
