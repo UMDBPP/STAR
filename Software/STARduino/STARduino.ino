@@ -36,11 +36,11 @@ void setup() {
 
 void loop() {
   //Serial.println("TEST.");
-  //OUTTGL_A = (1 << BIASPIN);
+  OUTTGL_A = (1 << BIASPIN);
   OUTTGL_A = (1 << LEDPIN);
   delay(5000);
   OUTTGL_A = (1 << BIASPIN);
-  //OUTTGL_A = (1 << LEDPIN);
+  OUTTGL_A = (1 << LEDPIN);
   delay(5000);
 }
 
