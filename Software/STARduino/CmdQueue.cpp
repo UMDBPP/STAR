@@ -1,4 +1,3 @@
-
 // when _IS_UT_ is defined this file doesn't include it's normal 
 // header file which allows the UT to define what it needs
 // to for the test
@@ -352,4 +351,3 @@ void disable_cmd_queue(){
   sendTxtMsg(SERIAL_DEBUG, "INFO: <CMDQUEUE> Disabled command queue");
   Queue_Enabled_Flag = false;
 }
-

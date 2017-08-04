@@ -1,9 +1,29 @@
-#include "EZGPIO.h"
+#define CUTOFF_TIME_MILLISECONDS 600000
 
-int LEDPIN = 9;
-int BIASPIN = 28;
-int PIKILL = 16;
-int EXTKILL = 13;
+#include "EZGPIO.h"
+#include<Wire.h>
+#include "src/Sensors/ADXL375.h"
+#include "src/Sensors/MAX31725Temp.h"
+#include "src/Sensors/PowerSensors.h"
+#include "src/Sensors/BMX055.h"
+#include <SPI.h>
+#include<SD.h>
+
+
+uint8_t LEDPIN = 9;
+uint8_t BIASPIN = 28;
+uint8_t PIKILL = 16;
+uint8_t EXTKILL = 13;
+uint8_t SDCSPIN = 22;
+
+ADXL375 adxl;
+MAX31725 tempSensor;
+VoltageSense voltageSensor;
+CurrentSense currentSensor;
+BMX055_ACCEL bmxAccel;
+BMX055_GYRO bmxGyro;
+BMX055_MAG bmxMag;
+
 
 /* Define Functions */
 void setup() {
@@ -22,26 +42,147 @@ void setup() {
 
   */
   Serial.begin(9600);
+  Wire.begin();
   
-  // Pull "Kill" ports high:
-  DIRSET_A = (1 << PIKILL);
-  OUTSET_A = (1 << PIKILL);
+  for(int i = 0; i < 10; i ++)
+  {
+    Serial.print("Here: ");
+    Serial.println(i);
+    
+  }
+  
+  
+  Serial.println("Began");
+
+  // Enable ESB; 
+  
   DIRSET_A = (1 << EXTKILL);
   OUTSET_A = (1 << EXTKILL);
-  
-  DIRSET_A = (1 << BIASPIN);
   DIRSET_A = (1 << LEDPIN);
+  OUTSET_A = (1 << LEDPIN);
+  DIRSET_A = (1 << BIASPIN);
+  OUTSET_A = (1 << BIASPIN);
+
+  DIRSET_B = (1 << SDCSPIN);
   
+  OUTCLR_B = (1 << SDCSPIN);
+
+  Serial.print("Initializing SD card...");
+  // see if the card is present and can be initialized:
+  if (!SD.begin(4)) {
+    Serial.println("Card failed, or not present");
+    // don't do anything more:
+    return;
+  }
+  else
+  {
+    Serial.println("card initialized.");
+  }
+
+  adxl.begin();
+
+  File dataFile = SD.open("datalog.txt", FILE_WRITE);
+
+  if (dataFile) {
+    dataFile.println("MDSGC Rocksat-X Data Log");
+    dataFile.close();
+  }
+  else {
+    Serial.println("error opening datalog.txt");
+  }
+
 }
 
 void loop() {
-  //Serial.println("TEST.");
-  OUTTGL_A = (1 << BIASPIN);
-  OUTTGL_A = (1 << LEDPIN);
-  delay(5000);
-  OUTTGL_A = (1 << BIASPIN);
-  OUTTGL_A = (1 << LEDPIN);
-  delay(5000);
+    
+
+    uint32_t sensorReadingTime = millis();
+
+    if(sensorReadingTime > CUTOFF_TIME_MILLISECONDS)
+    {
+      OUTCLR_A = (1 << LEDPIN);
+      OUTCLR_A = (1 << EXTKILL);
+      OUTCLR_A = (1 << BIASPIN);
+    }
+    
+    uint16_t adcVoltageReading = voltageSensor.read_voltage();
+    uint16_t adcCurrentReading = currentSensor.read_current();
+  
+    adxl.recieve_data();
+    int16_t adxlAccelerometerXReading = adxl.get_x_accel();
+    int16_t adxlAccelerometerYReading = adxl.get_y_accel();
+    int16_t adxlAccelerometerZReading = adxl.get_z_accel();
+    
+    tempSensor.recieve_data();
+    uint16_t maximTemperatureReading = tempSensor.get_temperature();
+    
+    bmxAccel.recieve_data();
+    int16_t bmxAccelerometerXReading = bmxAccel.get_x_accel();
+    int16_t bmxAccelerometerYReading = bmxAccel.get_y_accel();
+    int16_t bmxAccelerometerZReading = bmxAccel.get_z_accel();
+    int16_t bmxAccelerometerTemperatureReading = bmxAccel.get_temp();
+
+    bmxGyro.recieve_data();
+    int16_t bmxGyroscopeXReading = bmxGyro.get_x_gyro();
+    int16_t bmxGyroscopeYReading = bmxGyro.get_y_gyro();
+    int16_t bmxGyroscopeZReading = bmxGyro.get_z_gyro();
+
+    // TODO Add BMX mag stuff
+    
+    uint32_t portADir = PORT->Group[0].DIR.reg;
+    uint32_t portBDir = PORT->Group[1].DIR.reg;
+    uint32_t portAOut = PORT->Group[0].OUTSET.reg; // TODO HACK
+    uint32_t portBOut = PORT->Group[1].OUTSET.reg; // TODO HACK
+      
+   File dataFile = SD.open("datalog.txt", FILE_WRITE);
+
+  // if the file is available, write to it:
+  if (dataFile) {
+    dataFile.print(sensorReadingTime);
+    dataFile.print(",");
+    dataFile.print(portADir);
+    dataFile.print(",");
+    dataFile.print(portBDir);
+    dataFile.print(",");
+    dataFile.print(portAOut);
+    dataFile.print(",");
+    dataFile.print(portBOut);
+    dataFile.print(",");
+    dataFile.print(adcVoltageReading);
+    dataFile.print(",");
+    dataFile.print(adcCurrentReading);
+    dataFile.print(",");
+    dataFile.print(adxlAccelerometerXReading);
+    dataFile.print(",");
+    dataFile.print(adxlAccelerometerYReading);
+    dataFile.print(",");
+    dataFile.print(adxlAccelerometerZReading);
+    dataFile.print(",");
+    dataFile.print(maximTemperatureReading);
+    dataFile.print(",");
+    dataFile.print(bmxAccelerometerXReading);
+    dataFile.print(",");
+    dataFile.print(bmxAccelerometerYReading);
+    dataFile.print(",");
+    dataFile.print(bmxAccelerometerZReading);
+    dataFile.print(",");
+    dataFile.print(bmxAccelerometerTemperatureReading);
+    dataFile.print(",");
+    dataFile.print(bmxGyroscopeXReading);
+    dataFile.print(",");
+    dataFile.print(bmxGyroscopeYReading);
+    dataFile.print(",");
+    dataFile.print(bmxGyroscopeZReading);
+    dataFile.println();
+    dataFile.close();
+    
+  }
+  // if the file isn't open, pop up an error:
+  else {
+    Serial.println("error opening datalog.txt");
+  }
+
+  
 }
 
 

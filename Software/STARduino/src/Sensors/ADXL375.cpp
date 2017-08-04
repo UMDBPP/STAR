@@ -92,9 +92,6 @@ uint8_t ADXL375::recieve_data() {
         int16_t x = ((x1 << 8) | x0);
         int16_t y = ((y1 << 8) | y0);
         int16_t z = ((z1 << 8) | z0);
-        Serial.println(x);       
-        Serial.println(y);
-        Serial.println(z);
         runningX += x;
         runningY += y;
         runningZ += z;
@@ -103,11 +100,6 @@ uint8_t ADXL375::recieve_data() {
     int16_t x = runningX / numSamples;
     int16_t y = runningY / numSamples;
     int16_t z = runningZ / numSamples;
-    Serial.println("==================================");
-    Serial.println(x);       
-    Serial.println(y);
-    Serial.println(z);
-    Serial.println("==================================");
     
     rawAccel = Vector3<int16_t>(x, y, z);
     
