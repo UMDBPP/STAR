@@ -2,7 +2,7 @@
 #include "ADXL375.h"
 
 ADXL375::ADXL375() {
-    Wire.begin();
+    //Wire.begin();
     this->numSamples = ADXL_MAX_SAMPLES;
 }
 
@@ -15,6 +15,11 @@ ADXL375::ADXL375(uint8_t samples) {
     }
 }
 
+/*
+ * Destructor. Empty but explicit.
+ */
+ ADXL375::~ADXL375() { }
+
 uint8_t ADXL375::read_register(uint8_t _addr, uint8_t& _data) {
     Wire.beginTransmission(ADXL_ADDRESS);
     uint8_t bytesSent = Wire.write(_addr);
@@ -22,7 +27,7 @@ uint8_t ADXL375::read_register(uint8_t _addr, uint8_t& _data) {
         return 1;
     } 
     
-    if(Wire.endTransmission()) { // Return code should be zero
+    if(Wire.endTransmission(false)) { // Return code should be zero
         return 1;
     }
     
@@ -43,9 +48,9 @@ uint8_t ADXL375::write_register(uint8_t _addr, uint8_t& _value) {
 
 uint8_t ADXL375::recieve_data() {
     // 32-bit to prevent overflow
-    uint32_t runningX = 0;
-    uint32_t runningY = 0;
-    uint32_t runningZ = 0;
+    int32_t runningX = 0;
+    int32_t runningY = 0;
+    int32_t runningZ = 0;
     
     for(uint8_t i = 0; i < numSamples; i++) {
         
@@ -60,12 +65,12 @@ uint8_t ADXL375::recieve_data() {
             return 1;
         } 
         
-        if(Wire.endTransmission()) { // Return code should be zero
+        if(Wire.endTransmission(false)) { // Return code should be zero
             return 1;
         }
         
         Wire.requestFrom(ADXL_ADDRESS, 7); // Read registers 0x31-0x37 (DATA_FORMAT - DATAZ1)
-        
+        uint8_t av = Wire.available();
         if(Wire.available() != 7) {
             return 1;
         }
@@ -78,20 +83,27 @@ uint8_t ADXL375::recieve_data() {
         uint8_t z0 = Wire.read();
         uint8_t z1 = Wire.read();
         
-        uint16_t x = ((x1 << 8) | x0);
-        uint16_t y = ((y1 << 8) | y0);
-        uint16_t z = ((z1 << 8) | z0);
-        
+        int16_t x = ((x1 << 8) | x0);
+        int16_t y = ((y1 << 8) | y0);
+        int16_t z = ((z1 << 8) | z0);
+        Serial.println(x);       
+        Serial.println(y);
+        Serial.println(z);
         runningX += x;
         runningY += y;
         runningZ += z;
     }
     
-    uint16_t x = runningX / numSamples;
-    uint16_t y = runningY / numSamples;
-    uint16_t z = runningZ / numSamples;
+    int16_t x = runningX / numSamples;
+    int16_t y = runningY / numSamples;
+    int16_t z = runningZ / numSamples;
+    Serial.println("==================================");
+    Serial.println(x);       
+    Serial.println(y);
+    Serial.println(z);
+    Serial.println("==================================");
     
-    rawAccel = Vector3<uint16_t>(x, y, z);
+    rawAccel = Vector3<int16_t>(x, y, z);
     
     return 0;
 }

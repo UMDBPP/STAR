@@ -7,7 +7,7 @@
  * Sets supersampling to max.
  */
 HoneywellPressureI2C::HoneywellPressureI2C(){
-	Wire.begin();
+	//Wire.begin();
     numSamples = PRESSURE_MAX_SAMPLES;
 }
 

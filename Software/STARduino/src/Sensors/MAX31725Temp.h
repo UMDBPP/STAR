@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define TEMPERATURE_MAX_SAMPLES 1 // Max samples for supersampling (NOTE: supersampling OFF for now!)
-#define TEMPERATURE_DEFAULT_ADDR 0x90 // Dafault I2C address for sensor (All addr bits to GND)
+#define TEMPERATURE_DEFAULT_ADDR 0x48 // Dafault I2C address for sensor (All addr bits to GND)
 
 // Class to interact with MAX31725 temperature sensor.
 // Supports multiple I2C addresses since MAX31725 can do that (and we have 2!)

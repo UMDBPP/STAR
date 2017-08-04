@@ -84,13 +84,13 @@ class ADXL375 {
         void set_number_samples(uint8_t);
 
         // Getters
-        uint16_t get_x_accel() { return rawAccel.x; }
-        uint16_t get_y_accel() { return rawAccel.y; }
-        uint16_t get_z_accel() { return rawAccel.z; }
-        Vector3<uint16_t> get_accel() { return rawAccel; }
+        int16_t get_x_accel() { return rawAccel.x; }
+        int16_t get_y_accel() { return rawAccel.y; }
+        int16_t get_z_accel() { return rawAccel.z; }
+        Vector3<int16_t> get_accel() { return rawAccel; }
 
     private:
-        Vector3<uint16_t> rawAccel;
+        Vector3<int16_t> rawAccel;
         uint8_t numSamples;
 };
 

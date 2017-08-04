@@ -1,4 +1,5 @@
 #include <Wire.h>
+#include <Arduino.h>
 #include "MAX31725Temp.h"
 
 #define TEMP_DATA_REGISTER 0x00
@@ -11,7 +12,7 @@
  * Also init I2C.
  */
 MAX31725::MAX31725(uint8_t _samples) {
-    Wire.begin();
+    //Wire.begin();
     i2cAddress = TEMPERATURE_DEFAULT_ADDR;
 
     if((_samples <= TEMPERATURE_MAX_SAMPLES) && (_samples > 0)) {
