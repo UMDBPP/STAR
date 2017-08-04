@@ -260,6 +260,8 @@ class BMX055_MAG {
 		BMX055_MAG();
 		BMX055_MAG(uint8_t);
 		~BMX055_MAG();
+        
+        void begin();
 
 		// Exposed single-byte read/write functions
 		uint8_t read_register(uint8_t _addr, uint8_t& _data);

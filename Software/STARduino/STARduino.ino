@@ -79,7 +79,9 @@ void setup() {
     Serial.println("card initialized.");
   }
 
+  // Not all sensors require begin() functions
   adxl.begin();
+  bmxMag.begin();
 
   File dataFile = SD.open("datalog.txt", FILE_WRITE);
 
@@ -127,7 +129,11 @@ void loop() {
     int16_t bmxGyroscopeYReading = bmxGyro.get_y_gyro();
     int16_t bmxGyroscopeZReading = bmxGyro.get_z_gyro();
 
-    // TODO Add BMX mag stuff
+    bmxMag.recieve_data();
+    int16_t bmxMagnetometerXReading = bmxMag.get_x_mag();
+    int16_t bmxMagnetometerYReading = bmxMag.get_y_mag();
+    int16_t bmxMagnetometerZReading =  bmxMag.get_z_mag();
+    uint16_t bmxMagnetometerHallReading = bmxMag.get_hall();
     
     uint32_t portADir = PORT->Group[0].DIR.reg;
     uint32_t portBDir = PORT->Group[1].DIR.reg;
@@ -173,6 +179,14 @@ void loop() {
     dataFile.print(bmxGyroscopeYReading);
     dataFile.print(",");
     dataFile.print(bmxGyroscopeZReading);
+    dataFile.print(",");
+    dataFile.print(bmxMagnetometerXReading);
+    dataFile.print(",");
+    dataFile.print(bmxMagnetometerYReading);
+    dataFile.print(",");
+    dataFile.print(bmxMagnetometerZReading);
+    dataFile.print(",");
+    dataFile.print(bmxMagnetometerHallReading);
     dataFile.println();
     dataFile.close();
     

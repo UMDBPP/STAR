@@ -11,9 +11,9 @@
   //#define ADXL_TEST
   //#define MAX_TEMP_TEST
   //#define POWER_SENSOR_TEST
-  //#define BMX_ACCEL_TEST
+  #define BMX_ACCEL_TEST
   //#define BMX_GYRO_TEST
-  //#define BMX_MAG_TEST
+  #define BMX_MAG_TEST
 #endif
 
 
@@ -89,6 +89,40 @@ void setup() {
 
   DIRSET_B = (1 << SDCSPIN);
   OUTCLR_B = (1 << SDCSPIN);
+
+  #ifdef BMX_MAG_TEST
+
+      uint8_t powerControlReg = 0x4B;
+    uint8_t opReg = 0x4C;
+    uint8_t opVal = 0x0;
+    uint8_t powerConrolValue = 0x01;
+    uint8_t val = 0x0;
+    
+    //Serial.println("==================");
+  
+
+
+    //uint8_t outVal = 255;
+    
+    //Serial.println(outVal);
+
+
+    //uint8_t result = bmxMag.read_register(powerControlReg, outVal);
+    //Serial.println(outVal);
+    
+    bmxMag.begin();
+    //bmxMag.write_register(powerControlReg, powerConrolValue);
+    //bmxMag.write_register(opReg, opVal);
+    
+    
+    
+   // result = bmxMag.read_register(powerControlReg, outVal);
+   // Serial.println(outVal);
+    //result = bmxMag.read_register(opReg, outVal);
+    //Serial.println(outVal);
+    //Serial.println("==================");
+      
+  #endif
 
 #ifdef LOG_TEST
   Serial.print("Initializing SD card...");
@@ -202,19 +236,7 @@ void loop() {
 
   #ifdef BMX_MAG_TEST
     bmxMag.recieve_data();
-    uint8_t powerControlReg = 0x4B;
-    uint8_t opReg = 0x4C;
-    uint8_t powerConrolValue = 0x01;
-    uint8_t val = 0x0;
-    bmxMag.write_register(powerControlReg, powerConrolValue);
 
-    uint8_t outVal = 255;
-    Serial.println("==================");
-        Serial.println(outVal);
-        uint8_t result = bmxMag.read_register(powerControlReg, outVal);
-    Serial.println(result);
-    Serial.println(outVal);
-      
     int16_t xMag = bmxMag.get_x_mag();
     int16_t yMag = bmxMag.get_y_mag();
     int16_t zMag = bmxMag.get_z_mag();

@@ -341,6 +341,17 @@ BMX055_MAG::BMX055_MAG(uint8_t samples) {
 
 BMX055_MAG::~BMX055_MAG() { }
 
+void BMX055_MAG::begin() {
+    Wire.begin();
+    
+    uint8_t powerVal = 0x01;
+    uint8_t sleepModeVal = 0x00;
+    
+    write_register(BMX_MAG_PWR_CTRL_RST_SPI, powerVal);
+    delay(50);
+    write_register(BMX_MAG_RATE, sleepModeVal);
+}
+
 uint8_t BMX055_MAG::read_register(uint8_t _addr, uint8_t& _data) {
 	Wire.beginTransmission(BMX_MAG_ADDRESS);
 	uint8_t bytesSent = Wire.write(_addr);
@@ -348,15 +359,11 @@ uint8_t BMX055_MAG::read_register(uint8_t _addr, uint8_t& _data) {
 		return 1;
 	}
 
-	if(Wire.endTransmission(false)) { //Wire.endTransmission fails if not 1
+	if(Wire.endTransmission()) { //Wire.endTransmission fails if not 1
 		return 1;
 	}
 
-	uint8_t bytesAvailable = Wire.requestFrom(BMX_MAG_ADDRESS, 1);
-    if(bytesAvailable != 1)
-    {
-        return 1;
-    }
+	Wire.requestFrom(BMX_MAG_ADDRESS, 1);
 	_data = Wire.read();
 	return 0;
 }
@@ -367,11 +374,6 @@ uint8_t BMX055_MAG::write_register(uint8_t _addr, uint8_t& _value) {
 	if(bytesSent != 1) {
 		return 1;
 	}
-    
-    if(Wire.endTransmission(false)) { // Return code should be zero
-            return 1;
-    }
-        
 	bytesSent = Wire.write(_value);
 	return (!bytesSent || Wire.endTransmission()); //byteSent should be 1, Wire.endTransmission should be 0
 }
@@ -427,9 +429,9 @@ uint8_t BMX055_MAG::recieve_data() {
 		runningHall += hall;
 	}
 
-	uint16_t x = runningX / numSamples;
-	uint16_t y = runningY / numSamples;
-	uint16_t z = runningZ / numSamples;
+	int16_t x = runningX / numSamples;
+	int16_t y = runningY / numSamples;
+	int16_t z = runningZ / numSamples;
 	hall = runningHall / numSamples;
 
 	rawMag = Vector3<int16_t>(x, y, z);
