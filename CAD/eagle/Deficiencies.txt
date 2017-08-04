@@ -32,3 +32,6 @@ Fix 28V bias
 Resolve address conflict between RTC and BMX055 gyro
 Fix PCA9306 footrpint (change to TI library)
 Move the DEBUG_5V downstream of the protection circuit
+Move chipselect pin for SD card to one that is mapped for the the Feather M0 - PA07 (D9) should work.
+Fix clearances for cortex connector and Pi SD card
+Fix Pi power supply issue
