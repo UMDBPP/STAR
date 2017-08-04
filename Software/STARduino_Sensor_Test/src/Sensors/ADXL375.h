@@ -70,6 +70,8 @@ class ADXL375 {
         ADXL375();
         ADXL375(uint8_t);
         ~ADXL375();
+        
+        void begin();
 
         // Exposed single-byte read/write functions
         // Many registers in ADXL375, not all will have dedicated functions.

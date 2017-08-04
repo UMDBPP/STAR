@@ -13,7 +13,7 @@
   //#define POWER_SENSOR_TEST
   //#define BMX_ACCEL_TEST
   //#define BMX_GYRO_TEST
-  #define BMX_MAG_TEST
+  //#define BMX_MAG_TEST
 #endif
 
 
@@ -42,12 +42,6 @@ int SDCSPIN = 22;
 #ifdef BMX_ACCEL_TEST
   #include "src/Sensors/BMX055.h"
   BMX055_ACCEL bmxAccel;
-#endif
-
-
-#ifdef BMX_GYRO_TEST
-  #include "src/Sensors/BMX055.h"
-  BMX055_GYRO bmxGyro;
 #endif
 
 
@@ -117,16 +111,16 @@ void setup() {
 void loop() {
 
   #ifdef ADXL_TEST
+    adxl.begin();
+    
 
-    adxl.recieve_data();
-
-    uint8_t data = 1 << 3;;
-    adxl.write_register(0x2D, data);
+    uint8_t data = 0xFF;;
     adxl.read_register(0x2D , data);
     Serial.print("Register: 0x");
     Serial.println(data, HEX);
 
-    
+    adxl.recieve_data();
+
     int16_t rawXAcc = adxl.get_x_accel();
     int16_t rawYAcc = adxl.get_y_accel();
     int16_t rawZAcc = adxl.get_z_accel();

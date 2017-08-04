@@ -19,6 +19,12 @@ ADXL375::ADXL375(uint8_t samples) {
  * Destructor. Empty but explicit.
  */
  ADXL375::~ADXL375() { }
+ 
+void ADXL375::begin() {
+    Wire.begin();
+    uint8_t enable_byte = 1 << 3;
+    write_register(ADXL_POWER_CTL_REG, enable_byte);
+}
 
 uint8_t ADXL375::read_register(uint8_t _addr, uint8_t& _data) {
     Wire.beginTransmission(ADXL_ADDRESS);
