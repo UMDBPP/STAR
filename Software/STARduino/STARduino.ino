@@ -15,7 +15,7 @@ uint8_t BIASPIN = 28;
 uint8_t PIKILL = 16;
 uint8_t EXTKILL = 13;
 uint8_t SDCSPIN = 22;
-uint8_6 FLASHCSPIN = 23;
+uint8_t FLASHCSPIN = 23;
 
 ADXL375 adxl;
 MAX31725 tempSensor;
