@@ -15,6 +15,7 @@ uint8_t BIASPIN = 28;
 uint8_t PIKILL = 16;
 uint8_t EXTKILL = 13;
 uint8_t SDCSPIN = 22;
+uint8_6 FLASHCSPIN = 23;
 
 ADXL375 adxl;
 MAX31725 tempSensor;
@@ -64,8 +65,9 @@ void setup() {
   OUTSET_A = (1 << BIASPIN);
 
   DIRSET_B = (1 << SDCSPIN);
-  
+  DIRSET_B = (1 << FLASHCSPIN);
   OUTCLR_B = (1 << SDCSPIN);
+  OUTSET_B = (1 << FLASHCSPIN);
 
   Serial.print("Initializing SD card...");
   // see if the card is present and can be initialized:
