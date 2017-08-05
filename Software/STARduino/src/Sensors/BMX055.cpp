@@ -348,7 +348,7 @@ void BMX055_MAG::begin() {
     uint8_t sleepModeVal = 0x00;
     
     write_register(BMX_MAG_PWR_CTRL_RST_SPI, powerVal);
-    delay(50);
+    delay(100);
     write_register(BMX_MAG_RATE, sleepModeVal);
 }
 
