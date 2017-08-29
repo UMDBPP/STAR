@@ -35,3 +35,4 @@ Move the DEBUG_5V downstream of the protection circuit
 Move chipselect pin for SD card to one that is mapped for the the Feather M0 - PA07 (D9) should work.
 Fix clearances for cortex connector, Pi SD card, and screw under 15-pin MDM
 Fix Pi power supply issue
+Change V_Sense voltage divider to be capable of reading higher voltages (at least 5.5 V)
